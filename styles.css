@@ -473,3 +473,31 @@ pre .c { color: var(--faint); }
   .stage { transition: none; }
   .progress { display: none; }
 }
+
+/* ===== LAYOUT POLISH: equal-height cards fill their space, tighter section rhythm ===== */
+.section { padding: 96px 0; }
+.section-head { margin-bottom: 48px; }
+.grid-3 > .card, .grid-2 > .card, .stack > .card, .card-chart { display: flex; flex-direction: column; }
+.grid-3 > .card .foot, .grid-2 > .card .foot, .card-chart > .foot { margin-top: auto !important; padding-top: 16px; }
+.card h3 { margin-bottom: 14px; }
+.card-top h3 { margin-bottom: 0; }
+.card-top { margin-bottom: 14px; }
+.replay { margin-bottom: 0; }
+
+.card-chart .chart { flex: 1; align-items: stretch; margin-bottom: 4px; }
+.card-chart .col { display: flex; flex-direction: column; justify-content: flex-end; }
+.card-chart .bars { flex: 1; height: auto; min-height: 240px; }
+.card-chart .legend { margin-bottom: 26px; }
+
+.dots { flex: 1; height: auto; min-height: 120px; max-height: 190px; margin-bottom: 0; }
+.dots div { height: 100%; }
+
+.kv:first-of-type { padding-top: 0; }
+.stack > .card .axis { margin-top: 30px; }
+
+@media (max-width: 760px) {
+  .section { padding: 68px 0; }
+  .section-head { margin-bottom: 34px; }
+}
+.stack { align-content: stretch; grid-template-rows: auto 1fr; }
+@media (max-width: 980px) { .stack { grid-template-rows: none; } }
