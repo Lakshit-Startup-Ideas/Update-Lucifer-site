@@ -19,6 +19,8 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="progress" aria-hidden="true"><i></i></div>
+
 <header class="nav-wrap">
   <nav class="nav" aria-label="Main">
     <a class="brand" href="#top" aria-label="Lucifer Lab, top of page">
@@ -28,6 +30,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#result">Result</a></li>
       <li><a href="#method">Method</a></li>
+      <li><a href="#memory">Memory</a></li>
       <li><a href="#milestones">Milestones</a></li>
       <li><a href="#limits">Limits</a></li>
       <li><a href="#reproduce">Reproduce</a></li>
@@ -45,8 +48,11 @@
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="sky" aria-hidden="true">
-    <div class="sky-glow"></div>
-    <svg class="sky-fog" viewBox="0 0 1440 420" preserveAspectRatio="none">
+    <div class="sky-glow" data-depth="14"></div>
+    <div class="orbs">
+      <i class="orb o1" data-depth="34"></i><i class="orb o2" data-depth="22"></i><i class="orb o3" data-depth="46"></i><i class="orb o4" data-depth="28"></i>
+    </div>
+    <svg class="sky-fog" viewBox="0 0 1440 420" preserveAspectRatio="none" data-depth="-10">
       <defs>
         <linearGradient id="fog1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b9a8" stop-opacity=".55"/><stop offset="1" stop-color="#7d6a95" stop-opacity=".1"/></linearGradient>
         <linearGradient id="fog2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b79ab4" stop-opacity=".5"/><stop offset="1" stop-color="#1b1a28" stop-opacity=".2"/></linearGradient>
@@ -58,7 +64,7 @@
 
   <div class="wrap hero-inner">
     <p class="eyebrow"><span class="dot"></span> Version 1 closed · 12 Nov 2026</p>
-    <h1 class="reveal">Does an AI that remembers its mistakes <em>actually get better?</em></h1>
+    <h1 class="reveal" data-split>Does an AI that remembers its mistakes <em>actually get better?</em></h1>
     <p class="lede">Lucifer Lab is a small, open lab built to answer one question fairly: does an agent with persistent memory solve later, related tasks better than the same model without it? Version 1 has its first real answer.</p>
     <div class="cta-row">
       <a class="btn btn-light" href="#result">See the result <span aria-hidden="true">→</span></a>
@@ -68,6 +74,7 @@
   </div>
 
   <div class="wrap">
+    <div class="stage" data-stage>
     <figure class="app reveal" aria-label="Preview of the Lucifer Lab results view">
       <div class="app-bar">
         <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -85,6 +92,10 @@
             <div class="mini-row hot"><span>Lucifer</span><div class="track"><i style="--w:50%"></i></div><b>50%</b></div>
             <div class="mini-row"><span>Wrong notes</span><div class="track"><i style="--w:0%"></i></div><b>0%</b></div>
           </div>
+          <div class="live" aria-label="Illustration of one lesson being written and reused">
+            <div class="live-head"><span class="live-dot"></span> Illustration · how one lesson gets written, then reused</div>
+            <ol class="live-log" id="live-log" aria-live="off"></ol>
+          </div>
           <div class="app-foot">
             <div><small>Lucifer − baseline</small><b>+0.50</b></div>
             <div><small>95% interval</small><b>+0.30 to +0.70</b></div>
@@ -100,6 +111,7 @@
         </aside>
       </div>
     </figure>
+    </div>
   </div>
 </section>
 
@@ -124,7 +136,10 @@
 
     <div class="grid-result">
       <article class="card card-chart reveal">
-        <h3>First-try success by phase</h3>
+        <div class="card-top">
+          <h3>First-try success by phase</h3>
+          <button class="replay" type="button" id="replay" aria-label="Replay the chart animation"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Replay</button>
+        </div>
         <div class="legend" aria-hidden="true">
           <span><i class="sw sw-base"></i>No memory</span>
           <span><i class="sw sw-luc"></i>Lucifer</span>
@@ -133,25 +148,25 @@
         <div class="chart" role="table" aria-label="First-try success by phase and condition">
           <div class="col" role="row" aria-label="Similar tasks">
             <div class="bars">
-              <div class="bar b-base" style="--h:0%"><em>0%</em></div>
-              <div class="bar b-luc" style="--h:67%"><em>67%</em></div>
-              <div class="bar b-irr" style="--h:0%"><em>0%</em></div>
+              <div class="bar b-base" style="--h:0%" data-tip="No memory · 0 of 60"><em>0%</em></div>
+              <div class="bar b-luc" style="--h:67%" data-tip="Lucifer · 40 of 60"><em>67%</em></div>
+              <div class="bar b-irr" style="--h:0%" data-tip="Wrong notes · 0 of 60"><em>0%</em></div>
             </div>
             <p>Similar<small>same idea, new task</small></p>
           </div>
           <div class="col" role="row" aria-label="Transfer tasks">
             <div class="bars">
-              <div class="bar b-base" style="--h:0%"><em>0%</em></div>
-              <div class="bar b-luc" style="--h:17%"><em>17%</em></div>
-              <div class="bar b-irr" style="--h:0%"><em>0%</em></div>
+              <div class="bar b-base" style="--h:0%" data-tip="No memory · 0 of 30"><em>0%</em></div>
+              <div class="bar b-luc" style="--h:17%" data-tip="Lucifer · 5 of 30"><em>17%</em></div>
+              <div class="bar b-irr" style="--h:0%" data-tip="Wrong notes · 0 of 30"><em>0%</em></div>
             </div>
             <p>Transfer<small>looser connection</small></p>
           </div>
           <div class="col" role="row" aria-label="Replay tasks">
             <div class="bars">
-              <div class="bar b-base" style="--h:0%"><em>0%</em></div>
-              <div class="bar b-luc" style="--h:98%"><em>98%</em></div>
-              <div class="bar b-irr" style="--h:2%"><em>2%</em></div>
+              <div class="bar b-base" style="--h:0%" data-tip="No memory · 0 of 60"><em>0%</em></div>
+              <div class="bar b-luc" style="--h:98%" data-tip="Lucifer · 59 of 60"><em>98%</em></div>
+              <div class="bar b-irr" style="--h:2%" data-tip="Wrong notes · 1 of 60"><em>2%</em></div>
             </div>
             <p>Replay<small>same task again</small></p>
           </div>
@@ -162,7 +177,7 @@
       <div class="stack">
         <article class="card reveal">
           <h3>The gain, with its uncertainty</h3>
-          <p class="big">+0.50</p>
+          <p class="big" data-num="0.50" data-prefix="+">+0.50</p>
           <p class="sub">Lucifer minus no memory, first try. The same figure against wrong notes.</p>
           <div class="axis" aria-label="95 percent interval from plus 0.30 to plus 0.70 on a scale from minus 0.2 to plus 0.8">
             <div class="axis-line"></div>
@@ -262,6 +277,45 @@
         <h3>Memory you can audit</h3>
         <p>Memory is a hash-chained store: each lesson points at the one before, so any edit is detectable. Rolling back archives lessons instead of erasing them, and every lesson records where it came from. Every step is also traced, with a local dashboard to click into any attempt.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY (interactive 3D) -->
+<section class="section memory" id="memory">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">The memory</p>
+      <h2>A chain of lessons you can <em>touch, break and roll back.</em></h2>
+      <p>Drag the chain to turn it. Edit an old lesson and watch the check fail from that point on. Roll back and the lesson is archived, never erased. This is a small live illustration of the idea, with example lessons.</p>
+    </div>
+
+    <div class="mem-grid">
+      <div class="mem-stage reveal" id="mem-stage" tabindex="0" role="group" aria-label="3D view of a hash-chained memory. Drag, or use the arrow keys, to rotate it.">
+        <div class="dial" id="dial" aria-hidden="true"></div>
+        <ol class="scene" id="scene"></ol>
+        <p class="hint" aria-hidden="true"><span></span> Drag to rotate</p>
+        <noscript><p class="nojs">The live chain needs JavaScript. In short: each lesson stores a fingerprint of the one before it, so editing an old lesson breaks every link after it.</p></noscript>
+      </div>
+
+      <div class="mem-side reveal">
+        <div class="mem-status" id="mem-status" role="status" aria-live="polite">
+          <span class="chip chip-ok" id="mem-chip">Chain verified</span>
+          <p id="mem-msg">4 lessons, every link checks out.</p>
+        </div>
+        <div class="mem-actions">
+          <button class="mbtn" type="button" id="m-add">Add a lesson</button>
+          <button class="mbtn" type="button" id="m-tamper" aria-pressed="false">Tamper with lesson 2</button>
+          <button class="mbtn" type="button" id="m-roll">Roll back last</button>
+          <button class="mbtn mbtn-quiet" type="button" id="m-reset">Reset</button>
+        </div>
+        <ul class="mem-notes">
+          <li><b>Chained</b><span>Each lesson stores a fingerprint of the one before it, so an edit anywhere is detectable.</span></li>
+          <li><b>Archived, not erased</b><span>Rolling back moves lessons aside. Their record stays.</span></li>
+          <li><b>Traceable</b><span>Every lesson records which attempt wrote it.</span></li>
+        </ul>
+        <p class="foot">Illustration only: example lessons and a toy fingerprint. The real store and its checks are in the repository.</p>
+      </div>
     </div>
   </div>
 </section>

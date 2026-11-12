@@ -11,9 +11,18 @@ Experiment code and raw results: https://github.com/Lakshit-Startup-Ideas/Lucife
 |---|---|
 | `index.html` | the whole page (hero, result, method, milestones, limits, reproduce, FAQ) |
 | `styles.css` | all styling, design tokens at the top (`:root`) |
-| `script.js` | reveal on scroll, number count-up, mobile menu (page works without it) |
+| `script.js` | reveal on scroll, count-ups, hero depth and tilt, live demo, the 3D memory chain, chart replay, mobile menu (the page reads fine without it) |
 | `favicon.svg`, `robots.txt` | icon, crawler rules |
 | `vercel.json` | clean URLs and security headers |
+
+## Motion and interactivity
+
+No libraries, no build step: CSS 3D transforms plus one small script.
+
+- Hero: words blur in, glass orbs and the sky shift with the pointer, the app card tilts back and flattens on scroll, and its log types out a short illustration of one lesson being written and reused.
+- Result: the chart replays on demand (Replay button), bars show their counts on hover, and the +0.50 counts up.
+- Memory (`#memory`): a 3D chain of example lessons. Drag or use the arrow keys to turn it; add a lesson, tamper with lesson 2 (the check fails from that point on), roll back (archived, not erased) or reset. The fingerprint is a toy hash for illustration, and the lessons are examples, not real data.
+- Cards lean toward the pointer on devices with a mouse. With `prefers-reduced-motion`, everything is static and nothing is hidden.
 
 ## Run it locally
 
