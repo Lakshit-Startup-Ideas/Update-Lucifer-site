@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucifer Lab — does an AI that remembers its mistakes get better?</title>
+<meta name="description" content="Lucifer Lab is an open, fair test of one question: does an AI agent with persistent memory solve later, related tasks better than the same model without it? Version 1 results, method and code.">
+<meta name="theme-color" content="#0d0c11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lucifer Lab — does an AI that remembers its mistakes get better?">
+<meta property="og:description" content="A fair, open test of AI memory. Version 1: +50 points first-try success over no memory and over wrong notes, with confidence intervals and every limit stated.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Lucifer Lab, top of page">
+      <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/><circle cx="19" cy="19" r="2" fill="currentColor" opacity=".6"/></svg>
+      <span>Lucifer Lab</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#result">Result</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#milestones">Milestones</a></li>
+      <li><a href="#limits">Limits</a></li>
+      <li><a href="#reproduce">Reproduce</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn-light nav-cta" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View code</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="sky" aria-hidden="true">
+    <div class="sky-glow"></div>
+    <svg class="sky-fog" viewBox="0 0 1440 420" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="fog1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b9a8" stop-opacity=".55"/><stop offset="1" stop-color="#7d6a95" stop-opacity=".1"/></linearGradient>
+        <linearGradient id="fog2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b79ab4" stop-opacity=".5"/><stop offset="1" stop-color="#1b1a28" stop-opacity=".2"/></linearGradient>
+      </defs>
+      <path d="M0 250C140 200 260 270 420 235s300-70 470-20 360 60 550-15v220H0Z" fill="url(#fog1)"/>
+      <path d="M0 310C180 270 300 330 500 300s320-60 520-15 300 45 420 5v125H0Z" fill="url(#fog2)"/>
+    </svg>
+  </div>
+
+  <div class="wrap hero-inner">
+    <p class="eyebrow"><span class="dot"></span> Version 1 closed · 12 Nov 2026</p>
+    <h1 class="reveal">Does an AI that remembers its mistakes <em>actually get better?</em></h1>
+    <p class="lede">Lucifer Lab is a small, open lab built to answer one question fairly: does an agent with persistent memory solve later, related tasks better than the same model without it? Version 1 has its first real answer.</p>
+    <div class="cta-row">
+      <a class="btn btn-light" href="#result">See the result <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">Read the code</a>
+    </div>
+    <p class="hero-note">One model · 18 scored tasks · 5 seeds · every limit stated below</p>
+  </div>
+
+  <div class="wrap">
+    <figure class="app reveal" aria-label="Preview of the Lucifer Lab results view">
+      <div class="app-bar">
+        <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="app-title">qwen14b-convention · 5 seeds · 630 attempts</span>
+        <span class="chip chip-ok">Gate 1 · pass</span>
+      </div>
+      <div class="app-body">
+        <aside class="app-side" aria-hidden="true">
+          <span class="on">Overview</span><span>Runs</span><span>Memory chain</span><span>Gates</span><span>Traces</span>
+        </aside>
+        <div class="app-main">
+          <h3 class="app-h">First-try success on similar + transfer tasks</h3>
+          <div class="mini-bars">
+            <div class="mini-row"><span>No memory</span><div class="track"><i style="--w:0%"></i></div><b>0%</b></div>
+            <div class="mini-row hot"><span>Lucifer</span><div class="track"><i style="--w:50%"></i></div><b>50%</b></div>
+            <div class="mini-row"><span>Wrong notes</span><div class="track"><i style="--w:0%"></i></div><b>0%</b></div>
+          </div>
+          <div class="app-foot">
+            <div><small>Lucifer − baseline</small><b>+0.50</b></div>
+            <div><small>95% interval</small><b>+0.30 to +0.70</b></div>
+            <div><small>Memory chains audited</small><b>10</b></div>
+          </div>
+        </div>
+        <aside class="app-chain" aria-hidden="true">
+          <small>Memory chain · structure</small>
+          <div class="blk"><span>lesson 1</span><code>prev 0000…</code></div>
+          <div class="blk"><span>lesson 2</span><code>prev a9f1…</code></div>
+          <div class="blk"><span>lesson 3</span><code>prev 4c07…</code></div>
+          <div class="blk dim"><span>rolled back</span><code>archived</code></div>
+        </aside>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="band" aria-label="Run in numbers">
+  <div class="wrap stats">
+    <div><b data-count="630">630</b><span>attempts recorded</span></div>
+    <div><b data-count="5">5</b><span>independent seeds</span></div>
+    <div><b data-count="3">3</b><span>conditions compared</span></div>
+    <div><b data-count="125">125</b><span>automated tests passing</span></div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="section" id="result">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">The result</p>
+      <h2>On hidden house conventions, memory lifted first-try success by <em>fifty points.</em></h2>
+      <p>Model <code>qwen2.5-coder:14b</code>, 30 convention tasks (18 scored), 5 seeds, run on GitHub's own servers. First try means the very first answer passed every hidden test, with no retry.</p>
+    </div>
+
+    <div class="grid-result">
+      <article class="card card-chart reveal">
+        <h3>First-try success by phase</h3>
+        <div class="legend" aria-hidden="true">
+          <span><i class="sw sw-base"></i>No memory</span>
+          <span><i class="sw sw-luc"></i>Lucifer</span>
+          <span><i class="sw sw-irr"></i>Wrong notes</span>
+        </div>
+        <div class="chart" role="table" aria-label="First-try success by phase and condition">
+          <div class="col" role="row" aria-label="Similar tasks">
+            <div class="bars">
+              <div class="bar b-base" style="--h:0%"><em>0%</em></div>
+              <div class="bar b-luc" style="--h:67%"><em>67%</em></div>
+              <div class="bar b-irr" style="--h:0%"><em>0%</em></div>
+            </div>
+            <p>Similar<small>same idea, new task</small></p>
+          </div>
+          <div class="col" role="row" aria-label="Transfer tasks">
+            <div class="bars">
+              <div class="bar b-base" style="--h:0%"><em>0%</em></div>
+              <div class="bar b-luc" style="--h:17%"><em>17%</em></div>
+              <div class="bar b-irr" style="--h:0%"><em>0%</em></div>
+            </div>
+            <p>Transfer<small>looser connection</small></p>
+          </div>
+          <div class="col" role="row" aria-label="Replay tasks">
+            <div class="bars">
+              <div class="bar b-base" style="--h:0%"><em>0%</em></div>
+              <div class="bar b-luc" style="--h:98%"><em>98%</em></div>
+              <div class="bar b-irr" style="--h:2%"><em>2%</em></div>
+            </div>
+            <p>Replay<small>same task again</small></p>
+          </div>
+        </div>
+        <p class="foot">Replay at 98% is memorisation, because the notes contain the answers. It is shown, not counted.</p>
+      </article>
+
+      <div class="stack">
+        <article class="card reveal">
+          <h3>The gain, with its uncertainty</h3>
+          <p class="big">+0.50</p>
+          <p class="sub">Lucifer minus no memory, first try. The same figure against wrong notes.</p>
+          <div class="axis" aria-label="95 percent interval from plus 0.30 to plus 0.70 on a scale from minus 0.2 to plus 0.8">
+            <div class="axis-line"></div>
+            <div class="axis-zero"><span>0</span></div>
+            <div class="axis-range" style="--l:50%;--r:10%"></div>
+            <div class="axis-dot" style="--x:70%"></div>
+            <div class="axis-lab" style="--x:50%">+0.30</div>
+            <div class="axis-lab" style="--x:90%">+0.70</div>
+          </div>
+          <p class="foot">95% interval from a paired bootstrap over tasks (10,000 resamples). It stays above zero.</p>
+        </article>
+
+        <article class="card reveal">
+          <h3>Three promotion gates</h3>
+          <ul class="gates">
+            <li><span class="chip chip-ok">Pass</span><div><b>Improvement</b><small>Beats no memory and wrong notes, interval above zero.</small></div></li>
+            <li><span class="chip chip-mid">Inconclusive</span><div><b>Retention</b><small>The baseline masters no task, so there is nothing to lose.</small></div></li>
+            <li><span class="chip chip-ok">Pass</span><div><b>Auditability</b><small>10 memory chains verified, rollback and provenance intact.</small></div></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <article class="card reveal">
+        <h3>After one retry</h3>
+        <div class="kv"><span>No memory</span><b>52%</b></div>
+        <div class="kv hot"><span>Lucifer</span><b>82%</b></div>
+        <div class="kv"><span>Wrong notes</span><b>53%</b></div>
+        <p class="foot">The model can fix a convention once told. Memory's gain is skipping the failed first try.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Tokens per task</h3>
+        <div class="kv"><span>No memory</span><b>395</b></div>
+        <div class="kv hot"><span>Lucifer</span><b>432</b></div>
+        <div class="kv"><span>Wrong notes</span><b>754</b></div>
+        <p class="foot">Wrong notes did not raise first-try success, but they cost nearly twice the tokens.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Consistent across seeds</h3>
+        <div class="dots" role="img" aria-label="Lucifer solved 8, 10, 8, 8 and 11 of 18 scored tasks across the five seeds; the other two conditions solved none in any seed">
+          <div><i style="--h:44%"></i><span>8</span></div>
+          <div><i style="--h:56%"></i><span>10</span></div>
+          <div><i style="--h:44%"></i><span>8</span></div>
+          <div><i style="--h:44%"></i><span>8</span></div>
+          <div><i style="--h:61%"></i><span>11</span></div>
+        </div>
+        <p class="foot">Lucifer solved 8, 10, 8, 8 and 11 of 18 per seed. Both other conditions solved 0 in every seed.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="section section-alt" id="method">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">The method</p>
+      <h2>Same model, same exam, three ways to prepare.</h2>
+      <p>Everything is identical except what the model is allowed to remember. Hidden tests mark every answer, and a failed first try gets exactly one retry with the test output.</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card reveal">
+        <span class="num">A</span>
+        <h3>No memory</h3>
+        <p>The model sits every task cold. This is the honest starting line.</p>
+      </article>
+      <article class="card card-hot reveal">
+        <span class="num">B</span>
+        <h3>Lucifer</h3>
+        <p>Lessons from earlier failures are written to memory, then the three most relevant are shown on later tasks.</p>
+      </article>
+      <article class="card reveal">
+        <span class="num">C</span>
+        <h3>Wrong notes</h3>
+        <p>A control. It reads the same amount of memory, but the least relevant lessons. If this helped, the effect would be luck, not learning.</p>
+      </article>
+    </div>
+
+    <div class="flow reveal" aria-label="Phases of one run">
+      <div class="step"><b>1 · Experience</b><p>The model works through tasks and gets test feedback. Memory is written here.</p></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>2 · Similar</b><p>New tasks that share a convention with earlier ones.</p></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>3 · Transfer</b><p>Tasks with a looser link to what was learned.</p></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>4 · Replay</b><p>Earlier tasks again, to check what was kept.</p></div>
+    </div>
+
+    <div class="grid-2">
+      <article class="card reveal">
+        <h3>Why hidden conventions</h3>
+        <p>The first exam used well-specified tasks and strong models scored 96–100% with no memory, so it could show nothing. Memory only has room to help where a model cannot know something up front but can learn it from feedback, such as a house format or an exact error message. So Version 1 tests exactly that.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Memory you can audit</h3>
+        <p>Memory is a hash-chained store: each lesson points at the one before, so any edit is detectable. Rolling back archives lessons instead of erasing them, and every lesson records where it came from. Every step is also traced, with a local dashboard to click into any attempt.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section class="section" id="milestones">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Achievements</p>
+      <h2>What Version 1 took to get right.</h2>
+    </div>
+    <ol class="timeline">
+      <li class="reveal"><span class="t-dot"></span><div><b>The lab itself</b><p>80 tasks (50 pitfall, 30 hidden-convention) with hidden tests, a sandboxed runner, hash-chained memory with rollback, three conditions, a paired bootstrap and three gates. 125 tests pass.</p></div></li>
+      <li class="reveal"><span class="t-dot"></span><div><b>A useless first exam, caught early</b><p>Strong models scored 96–100% with no memory, so that exam could never show an effect. Calibration said so before any claim was made.</p></div></li>
+      <li class="reveal"><span class="t-dot"></span><div><b>A scoring bug found by the dashboard</b><p>The retention check mistook luck for forgetting (regression to the mean). The dashboard exposed it and the gate's selection was fixed.</p></div></li>
+      <li class="reveal"><span class="t-dot"></span><div><b>Everything moved onto CI/CD</b><p>Experiments now run on GitHub Actions: one job per seed, a merge step, gates in the job summary, and published results committed automatically.</p></div></li>
+      <li class="reveal"><span class="t-dot t-on"></span><div><b>First real result · Version 1 closed</b><p>+50 points first-try success over no memory and over wrong notes, interval +30 to +70, on 5 seeds. Published with every caveat.</p></div></li>
+    </ol>
+
+    <article class="card calib reveal">
+      <h3>Picking a model that has room to learn</h3>
+      <p class="sub">Calibration on the runners, one seed, convention tasks. Small models cannot apply a hidden convention even after feedback, so memory has nothing to add.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Model</th><th>First try</th><th>After one retry</th><th>Time per call</th></tr></thead>
+          <tbody>
+            <tr><td><code>qwen2.5-coder:3b</code></td><td>0%</td><td>17%</td><td>≈ 10.5 s</td></tr>
+            <tr><td><code>qwen2.5-coder:7b</code></td><td>0%</td><td>26%</td><td>≈ 11 s</td></tr>
+            <tr class="hot"><td><code>qwen2.5-coder:14b</code></td><td>0%</td><td>60%</td><td>≈ 27 s</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="foot">The 14b is the first model that can fix a convention once told, so it was chosen for the real run.</p>
+    </article>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section class="section section-alt" id="limits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Honest limits</p>
+      <h2>What this result does <em>not</em> show.</h2>
+      <p>A "no effect" result would have been published too. These are the reasons to read this one as a first look, not proof.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card reveal"><h3>The baseline is zero by design</h3><p>The conventions are hidden, so no model can pass first try without learning them. The gain is mostly skipping the failed first try. After one retry, no memory already reaches 52%.</p></article>
+      <article class="card reveal"><h3>Transfer is weak</h3><p>Lucifer helps most where a new task is close to an old one (67%). On looser links it manages 17%.</p></article>
+      <article class="card reveal"><h3>Small and single</h3><p>One model, 18 scored tasks, 5 seeds, and tasks the author wrote. Replay at 98% is memorisation, not understanding.</p></article>
+      <article class="card reveal"><h3>Retention is undecided</h3><p>Because the baseline masters no task, the retention gate has nothing to test. It stays inconclusive.</p></article>
+      <article class="card reveal"><h3>A side run, not merged</h3><p>An earlier hosted run on another model (one seed) pointed the same way, +0.44. Its other seeds hit a free-tier daily cap, so it is not part of the result above.</p></article>
+      <article class="card card-hot reveal"><h3>What comes next</h3><p>More tasks (48+ scored), a second model, a held-out task family never seen during design, and a stronger test of transfer.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- REPRODUCE -->
+<section class="section" id="reproduce">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Reproduce it</p>
+      <h2>Open code, and a run you can start yourself.</h2>
+      <p>The experiment runs as a GitHub Actions workflow, so no local models and no GPU are needed. Results land in the repository with the report and raw rows.</p>
+    </div>
+    <div class="grid-2">
+      <article class="card reveal">
+        <h3>Run the lab locally</h3>
+        <pre><code><span class="c"># clone, install, run the tests</span>
+git clone https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks
+cd Lucifer-BenchMarks
+python -m venv .venv &amp;&amp; .venv/bin/pip install -e .
+.venv/bin/pytest</code></pre>
+        <p class="foot">125 tests, about four minutes.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Run the experiment on GitHub</h3>
+        <pre><code><span class="c"># Actions → Experiment → Run workflow</span>
+model     qwen2.5-coder:14b
+taskset   convention
+seeds     5
+publish   true</code></pre>
+        <p class="foot">One job per seed, then a merge and the three gates in the job summary.</p>
+      </article>
+    </div>
+    <div class="cta-row center reveal">
+      <a class="btn btn-light" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">Open the repository <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-alt" id="faq">
+  <div class="wrap narrow">
+    <div class="section-head reveal">
+      <p class="kicker">Before you ask</p>
+      <h2>Straight answers.</h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary>Is this proof that AI memory works?</summary><p>No. It is a first look: one model, 18 scored tasks and 5 seeds. It shows that lessons learned from test feedback get retrieved and used on similar tasks. It does not show broad understanding.</p></details>
+      <details><summary>Why is the no-memory score exactly 0%?</summary><p>The conventions are hidden and only revealed by test feedback, so a model that has not seen the feedback cannot know them. That is the point of the exam. It is why the retry numbers are reported next to the first-try ones.</p></details>
+      <details><summary>What is the "wrong notes" condition for?</summary><p>It is a control. It gets the same amount of memory but the least relevant lessons. If it matched Lucifer, the benefit would come from having any notes at all, not from the right ones. It scored 0%.</p></details>
+      <details><summary>How do you know the memory was not edited afterwards?</summary><p>Each lesson is chained to the previous one by a hash, so a change breaks the chain. Rollbacks archive lessons instead of deleting them, and each lesson records its provenance. The third gate checks all of this on every run.</p></details>
+      <details><summary>Where does it run?</summary><p>On GitHub Actions runners (4 CPUs, no GPU), with a pinned Ollama and the model cached between runs. One job per seed, so a full 5-seed run takes a few hours.</p></details>
+      <details><summary>What if the next run shows no effect?</summary><p>It gets published the same way. The gates were fixed before the run, and the code and rows are open so anyone can recompute them.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">A fair test, in the open.</h2>
+    <p class="reveal">Read the method, check the numbers, or run it yourself.</p>
+    <div class="cta-row center reveal">
+      <a class="btn btn-light" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View on GitHub <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="#result">Back to the result</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div class="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/></svg><span>Lucifer Lab</span></div>
+    <p>Built by Lakshit Mathur. A personal research project, open source.</p>
+    <ul>
+      <li><a href="#result">Result</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#limits">Limits</a></li>
+      <li><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
