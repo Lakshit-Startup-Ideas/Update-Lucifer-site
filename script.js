@@ -498,6 +498,14 @@
           document.getElementById("v-ci").textContent = "95% interval " + fmt(r1[1]) + " to " + fmt(r1[2]) + " · " + r1[3] + " tasks";
           document.getElementById("v-eff2").textContent = fmt(r2[0]);
           document.getElementById("v-ci2").textContent = "95% interval " + fmt(r2[1]) + " to " + fmt(r2[2]) + " · " + r2[3] + " tasks";
+          var seedsU = rows.map(function (r) { return r.seed; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort();
+          var pick = seedsU.filter(function (v, i) { return i % 2 === 0; });
+          var byTask = {};
+          rows.forEach(function (r) { if (r.condition === "baseline" && r.phase !== "experience" && pick.indexOf(r.seed) > -1) (byTask[r.task_id] = byTask[r.task_id] || []).push(r.pass_at_1 ? 1 : 0); });
+          var mastered = Object.keys(byTask).filter(function (k) { return byTask[k].reduce(function (x, y) { return x + y; }, 0) / byTask[k].length >= 0.8; }).length;
+          document.getElementById("v-gate").textContent = mastered === 0
+            ? "Retention gate: inconclusive. The baseline masters 0 tasks (at least 80% first try on half the seeds), so there is nothing to lose."
+            : "Retention gate: the baseline masters " + mastered + " task(s); see the published report for the verdict.";
           var match = fmt(r1[0]) === "+0.50" && fmt(r1[1]) === "+0.30" && fmt(r1[2]) === "+0.70";
           setState(match ? "Done · matches the published +0.50 [+0.30, +0.70]" : "Done · differs from the published figures, see the numbers above", match ? "ok" : "err");
           vrun.disabled = false; vrun.textContent = "Run it again";

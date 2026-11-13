@@ -231,6 +231,9 @@ assert N["lucifer"]["prim_p1"] == 45 and N["baseline"]["prim_p1"] == 0 and N["ir
 seeds = sorted({r["seed"] for r in rows})
 conv = [t for t in TASKS if t.set == "convention"]
 assert len(conv) == 30 and len(rows) == 630
+GENS = sum(r["attempts"] for r in rows)
+RETRIED = sum(1 for r in rows if r["attempts"] > 1)
+assert (GENS, RETRIED) == (1115, 485)
 
 
 def mean(xs):
@@ -240,10 +243,11 @@ def mean(xs):
 # ================================================================================================================ RESULTS
 def build_results() -> None:
     kp = f'''<div class="kpis">
-  <div class="kpi reveal"><small>First-try success, similar + transfer</small><b>{pct(N["lucifer"]["prim_p1"], 90)}</b><span>Lucifer · {frac(N["lucifer"]["prim_p1"], 90)} attempts<br>No memory: {frac(0, 90)} · Wrong notes: {frac(0, 90)}</span></div>
+  <div class="kpi reveal"><small>First-try success, similar + transfer</small><b>{pct(N["lucifer"]["prim_p1"], 90)}</b><span>Lucifer · {frac(N["lucifer"]["prim_p1"], 90)} task runs: similar {pct(p1(sel("lucifer", "similar")), 60)}, transfer {pct(p1(sel("lucifer", "transfer")), 30)}<br>No memory: {frac(0, 90)} · Wrong notes: {frac(0, 90)}</span></div>
   <div class="kpi reveal"><small>Gain over no memory</small><b>+0.50</b><span>95% interval +0.30 to +0.70, paired bootstrap over 18 tasks</span></div>
   <div class="kpi reveal"><small>After one retry</small><b>{pct(N["lucifer"]["prim_p2"], 90)}</b><span>No memory {pct(N["baseline"]["prim_p2"], 90)} · Wrong notes {pct(N["irrelevant"]["prim_p2"], 90)}</span></div>
 </div>
+<div class="callout reveal"><b>Terms.</b> A <b>task run</b> is one task given to the model once for one condition and seed, with at most one retry. There are 630 of them, and the model was called {GENS:,} times counting retries. <b>First try</b> (pass@1) is the first answer of a task run. When a table says “out of 60”, it means 60 task runs.</div>
 <div class="prose reveal"><p>The <strong>primary metric</strong> was fixed before the run: pass@1, meaning the very first answer passes every hidden test, on the <em>similar</em> and <em>transfer</em> tasks. That is 18 tasks, each tried on 5 seeds, so 90 attempts per condition. A retry is allowed afterwards, with the failing test's message, but it does not count for pass@1.</p></div>'''
 
     # by phase
@@ -325,7 +329,7 @@ def build_results() -> None:
         cells.append(meter(p2(pr), len(pr), c == "lucifer"))
         rrow.append(cells)
     t_retry = table(["Condition", "Similar · first", "Similar · after retry", "Transfer · first", "Transfer · after retry", "Both · after retry"], rrow, "dt dt-wide", 820)
-    retry_note = f'<div class="callout reveal"><b>How to read this.</b> The conventions are hidden, so No memory cannot pass first try ({frac(0, 210)} attempts in the whole run). But it can fix the mistake once it sees the failing test: {pct(N["baseline"]["prim_p2"], 90)} pass after one retry. What memory buys is skipping the failed first try. After a retry the gap is about 30 points (82% against 52%), not 50.</div>'
+    retry_note = f'<div class="callout reveal"><b>How to read this.</b> The conventions are hidden, so No memory was not expected to pass first try, and did not ({frac(0, 210)} task runs in the whole run). But it can fix the mistake once it sees the failing test: {pct(N["baseline"]["prim_p2"], 90)} pass after one retry. What memory buys is skipping the failed first try. After a retry the gap is about 30 points (82% against 52%), not 50.</div>'
 
     # cost
     crow = []
@@ -352,7 +356,7 @@ def build_results() -> None:
 <div class="callout warn reveal"><b>The overall verdict is “not passed”.</b> The workflow's own report ends with “All three gates: NOT passed”, because gate 2 is inconclusive. Gate 1, the question this version set out to answer, passed. The site does not round that up.</div>'''
 
     # data
-    files = [("report.txt", "The text report and gate verdicts"), ("rows.json", "One row per task attempt-sequence (630 rows)"), ("audits.json", "The memory audits (10 stores)"), ("meta.json", "Model, seeds, settings")]
+    files = [("report.txt", "The text report and gate verdicts"), ("rows.json", "One row per task run (630 rows)"), ("audits.json", "The memory audits (10 stores)"), ("meta.json", "Model, seeds, settings")]
     drows = []
     for fn, d in files:
         sz = (RUN / fn).stat().st_size
@@ -374,7 +378,7 @@ def build_results() -> None:
     )
     write("results", "Results", "The full Version 1 result of Lucifer Lab: first-try and after-retry success by phase, family, task and seed, cost, retrieval and the three gates, all computed from the published rows.", "Results",
           "Every number from the first real run, <em>with the counts behind it.</em>",
-          "One model, 30 hidden-convention tasks, 5 seeds, 3 conditions and 630 recorded attempts. Nothing here is typed in by hand: this page is generated from the published rows.",
+          "One model, 30 hidden-convention tasks, 5 seeds, 3 conditions: 630 task runs and 1,115 model generations counting retries. Nothing here is typed in by hand: this page is generated from the published rows.",
           [("headline", "Headline"), ("phase", "By phase"), ("family", "By convention"), ("transfer", "Transfer"), ("seeds", "Seeds"), ("retry", "Retry"), ("cost", "Cost"), ("retrieval", "Retrieval"), ("gates", "Gates"), ("data", "Raw data")], body)
 
 
@@ -390,15 +394,15 @@ def build_method() -> None:
     cond_note = '<div class="prose reveal"><p>All three get the same model, the same prompts, the same tasks in the same order within a seed, and the same single retry. Memory is built fresh for every seed and condition, so nothing leaks between runs.</p></div>'
 
     ph = table(["Phase", "Tasks", "Per condition and seed", "Memory"], [
-        ["<b>1 · Experience</b>", "12, in a seeded random order", "12 attempts", "Written to (Lucifer and Wrong notes)"],
+        ["<b>1 · Experience</b>", "12, in a seeded random order", "12 task runs", "Written to (Lucifer and Wrong notes)"],
         ["<b>2 · Similar</b>", "12 new tasks, same convention as an experience task", "12", "Read-only"],
         ["<b>3 · Transfer</b>", "6 new tasks that combine conventions", "6", "Read-only"],
         ["<b>4 · Replay</b>", "the 12 experience tasks again", "12", "Read-only"],
     ], "dt", 640)
-    ph_note = f'<div class="prose reveal"><p>That is 42 task attempts per condition and seed. Over 5 seeds and 3 conditions: 42 × 5 × 3 = <strong>630 recorded attempts</strong>. The evaluation order is shuffled once per seed and is the same for all three conditions. Learning happens only in phase 1; in phases 2 to 4 memory is frozen, so nothing can be learned from the exam itself.</p></div>'
+    ph_note = f'<div class="prose reveal"><p>That is 42 task runs per condition and seed. Over 5 seeds and 3 conditions: 42 × 5 × 3 = <strong>630 task runs</strong>. A task run is one task given to the model once, with at most one retry. {RETRIED} of the 630 needed the retry, so the model was called {GENS:,} times in all. The evaluation order is shuffled once per seed and is the same for all three conditions. Learning happens only in phase 1; in phases 2 to 4 memory is frozen, so nothing can be learned from the exam itself.</p></div>'
 
     why = f'''<div class="grid-2">
-<article class="card reveal"><h3>Why the conventions are hidden</h3><p>The first exam used fully specified tasks and strong models scored 96 to 100% with no memory, so it could show nothing. Memory can only help where the model cannot know something up front but can learn it from feedback, like a house format or an exact error message. So each convention task gives a natural spec that leaves the convention out, and only the failing test reveals it.</p></article>
+<article class="card reveal"><h3>Why the conventions are hidden</h3><p>The first exam used fully specified tasks and strong models scored 96 to 100% with no memory, so it could show nothing. Memory can only help where the model cannot be expected to know something up front but can learn it from feedback, like a house format or an exact error message. So each convention task gives a natural spec that leaves the convention out, and only the failing test reveals it. A model could in principle guess a convention right; the baseline never did (0 of 210 task runs).</p></article>
 <article class="card reveal"><h3>What “hidden” looks like</h3><p>The spec for <code>order_id</code> is just “returns the identifier of order number n”. The tests expect <code>'ORD-00007'</code>. Nothing in the spec says the prefix or the padding. A test (<code>test_convention_tasks_hide_their_convention_from_the_spec</code>) checks that no convention task leaks its convention into the spec.</p><p class="foot"><a href="tasks.html">Browse all 30 tasks →</a></p></article>
 </div>'''
 
@@ -453,7 +457,7 @@ def build_method() -> None:
     ], "dt", 760)
 
     infra = f'''<div class="prose reveal"><p>Nothing heavy runs on a laptop. The experiment is a GitHub Actions workflow (<code>experiment.yml</code>): one parallel job per seed on a CPU runner (4 vCPU, no GPU), each installing a pinned Ollama and pulling the model, then a merge job that joins the seeds, runs the report and the gates, and optionally commits the result files. The run behind this site is <a href="{REPO}/actions/runs/{RUN_ID}" rel="noopener">workflow run {RUN_ID}</a>; the published files are in commit <code>{COMMIT}</code>.</p></div>
-{table(["Setting", "Value"], [["Model", f"<code>qwen2.5-coder:14b</code> (via Ollama, backend <code>{e(meta['backend'])}</code>)"], ["Temperature", "0.7"], ["Seeds", ", ".join(map(str, meta["seeds"]))], ["Lessons shown per task (k)", str(meta["k"])], ["Retries", str(meta["retries"])], ["Tasks", f"{meta['tasks']} convention tasks"], ["Recorded attempts", str(len(rows))]], "dt", 420)}'''
+{table(["Setting", "Value"], [["Model", f"<code>qwen2.5-coder:14b</code> (via Ollama, backend <code>{e(meta['backend'])}</code>)"], ["Temperature", "0.7"], ["Seeds", ", ".join(map(str, meta["seeds"]))], ["Lessons shown per task (k)", str(meta["k"])], ["Retries", str(meta["retries"])], ["Tasks", f"{meta['tasks']} convention tasks"], ["Task runs", str(len(rows))], ["Model generations, including retries", f"{GENS:,}"]], "dt", 420)}'''
 
     body = (
         block("question", "The question", "", q)
@@ -562,7 +566,7 @@ def build_memory() -> None:
 
     chain = f'''<div class="prose reveal"><p>Each lesson's hash covers the hash of the lesson before it. The first lesson links to a genesis value of 64 zeros. This is the exact function from <code>memory.py</code>:</p></div>
 {code("def _hash(parent, version, task_id, kind, text):\n    return sha256('|'.join([parent, str(version), task_id, kind, text])).hexdigest()")}
-<div class="prose reveal"><p>Change any earlier lesson and its hash changes, so the next lesson's stored parent no longer matches, and so on down the chain. <code>verify_chain()</code> walks the table from version 1 and returns false at the first mismatch. The tests cover both an edited and a deleted lesson (<code>test_changing_an_old_lesson_is_detected</code>, <code>test_deleting_a_lesson_is_detected</code>).</p></div>'''
+<div class="prose reveal"><p>Change any earlier lesson and its hash changes, so the next lesson's stored parent no longer matches, and so on down the chain. A hash chain makes edits <em>detectable when it is verified</em>. It does not make the memory impossible to change. <code>verify_chain()</code> walks the table from version 1 and returns false at the first mismatch. The tests cover both an edited and a deleted lesson (<code>test_changing_an_old_lesson_is_detected</code>, <code>test_deleting_a_lesson_is_detected</code>).</p></div>'''
 
     demo = '''<div class="mem-grid">
   <div class="mem-stage reveal" id="mem-stage" tabindex="0" role="group" aria-label="3D view of a hash-chained memory. Drag, or use the arrow keys, to rotate it.">
@@ -618,7 +622,7 @@ def build_memory() -> None:
     )
     write("memory", "Memory", "How Lucifer's memory works: an append-only hash-chained SQLite store of lessons with provenance, rollback that archives instead of deleting, and an audit. Includes an interactive 3D chain.", "Memory",
           "A notebook you can audit, <em>and try to break.</em>",
-          "Lessons are written after failures, chained by hash, and shown to the model later. The mechanism is small on purpose, so that every claim about it can be checked.",
+          "Lessons are written after failures, chained by hash for tamper detection, and shown to the model later. The mechanism is small on purpose, so that every claim about it can be checked.",
           [("what", "What it is"), ("chain", "Hash chain"), ("play", "Try it"), ("rollback", "Rollback"), ("audit", "Audit results"), ("example", "A lesson"), ("limits", "Limits")], body)
 
 
@@ -637,6 +641,8 @@ def build_proof() -> None:
     <div class="v-card"><small>Lucifer − wrong notes</small><b id="v-eff2">–</b><span id="v-ci2"></span></div>
   </div>
   <div class="table-wrap"><table class="dt" id="v-table" style="min-width:560px"><thead><tr><th>Phase</th><th>No memory</th><th>Lucifer</th><th>Wrong notes</th></tr></thead><tbody><tr><td colspan="4" class="dimcell">Press the button.</td></tr></tbody></table></div>
+  <p class="foot v-unit"><b>What is counted.</b> 630 task runs (210 per condition; 90 per condition on the primary metric). The bootstrap resamples the <b>18 tasks</b>, not the task runs: each task's five seeds are averaged first. The first-try column counts task runs, not model generations.</p>
+  <p class="foot" id="v-gate">Retention gate: not computed yet.</p>
   <p class="foot">The published values are 0%, 67%, 17%, 98% by phase and +0.50 with a 95% interval of +0.30 to +0.70. The browser uses a different random generator from the Python lab, so a rerun may move an interval end by a hair; it should land on the same two-decimal figures. To check the file is the one in the repository, compare the fingerprint with <code>shasum -a 256 results/published/qwen14b-convention/rows.json</code> on your own checkout of commit <code>{COMMIT}</code>.</p>
 </div>'''
 
@@ -747,7 +753,7 @@ def build_limits() -> None:
     lim = []
     pc = {c: sel(c, phases=PRIMARY) for c in CONDS}
     items = [
-        ("The baseline is zero by design", f"The conventions are hidden, so No memory solved {frac(0, 210)} attempts first try. After one retry it reaches {pct(p2(pc['baseline']), 90)}. The gain is mostly skipping a failed first try, not solving something that was otherwise unsolvable.", "Report first-try and after-retry side by side (done), and add tasks where the baseline sits in the middle."),
+        ("The baseline is zero by design", f"The task descriptions leave the conventions out, so a model has to infer them or guess; No memory solved {frac(0, 210)} task runs first try. After one retry it reaches {pct(p2(pc['baseline']), 90)}. The gain is mostly skipping a failed first try, not solving something that was otherwise unsolvable.", "Report first-try and after-retry side by side (done), and add tasks where the baseline sits in the middle."),
         ("Transfer is weak", f"On similar tasks Lucifer got {pct(p1(sel('lucifer','similar')), 60)}; on tasks that combine conventions, {pct(p1(sel('lucifer','transfer')), 30)}. It helps most when a new task is close to an old one.", "A stronger transfer test with new conventions, not only combinations of seen ones."),
         ("The lesson contains the answer", "In these tasks a lesson literally includes the failing test, so the model is using a pasted correct example. Replay at 98% is memorisation. This is real but modest learning.", "Tasks where the lesson must be abstracted, not copied."),
         ("One model, 18 scored tasks", "One 14B coder model, 12 similar and 6 transfer tasks, 5 seeds, written by the author. The interval is wide for a reason.", "A second model, and at least about 48 scored tasks (see the power table)."),

@@ -47,7 +47,7 @@
     <p class="crumbs"><a href="index.html">Lucifer Lab</a><span>/</span><span>Memory</span></p>
     <p class="kicker-pill">Memory</p>
     <h1 data-split>A notebook you can audit, <em>and try to break.</em></h1>
-    <p class="lede">Lessons are written after failures, chained by hash, and shown to the model later. The mechanism is small on purpose, so that every claim about it can be checked.</p>
+    <p class="lede">Lessons are written after failures, chained by hash for tamper detection, and shown to the model later. The mechanism is small on purpose, so that every claim about it can be checked.</p>
     <nav class="chips-nav" aria-label="On this page"><a href="#what">What it is</a><a href="#chain">Hash chain</a><a href="#play">Try it</a><a href="#rollback">Rollback</a><a href="#audit">Audit results</a><a href="#example">A lesson</a><a href="#limits">Limits</a></nav>
   </div>
 </section>
@@ -70,7 +70,7 @@ version: 1, 2, 3 ... (one per write)</code></pre><p class="foot">Provenance is b
 <div class="prose reveal"><p>Each lesson's hash covers the hash of the lesson before it. The first lesson links to a genesis value of 64 zeros. This is the exact function from <code>memory.py</code>:</p></div>
 <pre class=""><code>def _hash(parent, version, task_id, kind, text):
     return sha256(&#x27;|&#x27;.join([parent, str(version), task_id, kind, text])).hexdigest()</code></pre>
-<div class="prose reveal"><p>Change any earlier lesson and its hash changes, so the next lesson's stored parent no longer matches, and so on down the chain. <code>verify_chain()</code> walks the table from version 1 and returns false at the first mismatch. The tests cover both an edited and a deleted lesson (<code>test_changing_an_old_lesson_is_detected</code>, <code>test_deleting_a_lesson_is_detected</code>).</p></div>
+<div class="prose reveal"><p>Change any earlier lesson and its hash changes, so the next lesson's stored parent no longer matches, and so on down the chain. A hash chain makes edits <em>detectable when it is verified</em>. It does not make the memory impossible to change. <code>verify_chain()</code> walks the table from version 1 and returns false at the first mismatch. The tests cover both an edited and a deleted lesson (<code>test_changing_an_old_lesson_is_detected</code>, <code>test_deleting_a_lesson_is_detected</code>).</p></div>
   </div>
 </section>
 <section class="block" id="play">

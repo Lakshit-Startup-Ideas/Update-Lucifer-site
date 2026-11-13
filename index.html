@@ -78,7 +78,7 @@
     <figure class="app reveal" aria-label="Preview of the Lucifer Lab results view">
       <div class="app-bar">
         <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="app-title">qwen14b-convention · 5 seeds · 630 attempts</span>
+        <span class="app-title">qwen14b-convention · 5 seeds · 630 task runs</span>
         <span class="chip chip-ok">Gate 1 · pass</span>
       </div>
       <div class="app-body">
@@ -118,7 +118,7 @@
 <!-- NUMBERS -->
 <section class="band" aria-label="Run in numbers">
   <div class="wrap stats">
-    <div><b data-count="630">630</b><span>attempts recorded</span></div>
+    <div><b data-count="630">630</b><span>task runs (1,115 model calls with retries)</span></div>
     <div><b data-count="5">5</b><span>independent seeds</span></div>
     <div><b data-count="3">3</b><span>conditions compared</span></div>
     <div><b data-count="125">125</b><span>automated tests passing</span></div>
@@ -297,7 +297,7 @@
       </article>
       <article class="card reveal">
         <h3>Memory you can audit</h3>
-        <p>Memory is a hash-chained store: each lesson points at the one before, so any edit is detectable. Rolling back archives lessons instead of erasing them, and every lesson records where it came from. Every step is also traced, with a local dashboard to click into any attempt.</p>
+        <p>Memory is a hash-chained store: each lesson points at the one before, so an edit is detectable when the chain is verified (a hash chain detects edits, it does not prevent them). Rolling back archives lessons instead of erasing them, and every lesson records where it came from. Every step is also traced, with a local dashboard to click into any attempt.</p>
       </article>
     </div>
   </div>
@@ -333,7 +333,7 @@
           <button class="mbtn mbtn-quiet" type="button" id="m-reset">Reset</button>
         </div>
         <ul class="mem-notes">
-          <li><b>Chained</b><span>Each lesson stores a fingerprint of the one before it, so an edit anywhere is detectable.</span></li>
+          <li><b>Chained</b><span>Each lesson stores a fingerprint of the one before it, so an edit anywhere is detectable when the chain is checked.</span></li>
           <li><b>Archived, not erased</b><span>Rolling back moves lessons aside. Their record stays.</span></li>
           <li><b>Traceable</b><span>Every lesson records which attempt wrote it.</span></li>
         </ul>
@@ -387,7 +387,7 @@
       <a class="more" href="limits.html">Limits in detail, and how to help →</a>
     </div>
     <div class="grid-3">
-      <article class="card reveal"><h3>The baseline is zero by design</h3><p>The conventions are hidden, so no model can pass first try without learning them. The gain is mostly skipping the failed first try. After one retry, no memory already reaches 52%.</p></article>
+      <article class="card reveal"><h3>The baseline is zero by design</h3><p>The task descriptions deliberately leave the conventions out, so a model has to infer them from feedback or happen to guess right. No memory solved 0 of 210 task runs on the first try. The gain is mostly skipping the failed first try. After one retry, no memory already reaches 52%.</p></article>
       <article class="card reveal"><h3>Transfer is weak</h3><p>Lucifer helps most where a new task is close to an old one (67%). On looser links it manages 17%.</p></article>
       <article class="card reveal"><h3>Small and single</h3><p>One model, 18 scored tasks, 5 seeds, and tasks the author wrote. Replay at 98% is memorisation, not understanding.</p></article>
       <article class="card reveal"><h3>Retention is undecided</h3><p>Because the baseline masters no task, the retention gate has nothing to test. It stays inconclusive.</p></article>
@@ -441,9 +441,9 @@ publish   true</code></pre>
     </div>
     <div class="faq reveal">
       <details open><summary>Is this proof that AI memory works?</summary><p>No. It is a first look: one model, 18 scored tasks and 5 seeds. It shows that lessons learned from test feedback get retrieved and used on similar tasks. It does not show broad understanding.</p></details>
-      <details><summary>Why is the no-memory score exactly 0%?</summary><p>The conventions are hidden and only revealed by test feedback, so a model that has not seen the feedback cannot know them. That is the point of the exam. It is why the retry numbers are reported next to the first-try ones.</p></details>
+      <details><summary>Why is the no-memory score exactly 0%?</summary><p>The conventions are hidden and only revealed by test feedback, so a model that has not seen the feedback is very unlikely to guess them. That is the point of the exam. It is why the retry numbers are reported next to the first-try ones.</p></details>
       <details><summary>What is the "wrong notes" condition for?</summary><p>It is a control. It gets the same amount of memory but the least relevant lessons. If it matched Lucifer, the benefit would come from having any notes at all, not from the right ones. It scored 0%.</p></details>
-      <details><summary>How do you know the memory was not edited afterwards?</summary><p>Each lesson is chained to the previous one by a hash, so a change breaks the chain. Rollbacks archive lessons instead of deleting them, and each lesson records its provenance. The third gate checks all of this on every run.</p></details>
+      <details><summary>How do you know the memory was not edited afterwards?</summary><p>Each lesson is chained to the previous one by a hash, so a change breaks the chain when it is verified (that detects edits; it does not prevent them). Rollbacks archive lessons instead of deleting them, and each lesson records its provenance. The third gate checks all of this on every run.</p></details>
       <details><summary>Where does it run?</summary><p>On GitHub Actions runners (4 CPUs, no GPU), with a pinned Ollama and the model cached between runs. One job per seed, so a full 5-seed run takes a few hours.</p></details>
       <details><summary>What if the next run shows no effect?</summary><p>It gets published the same way. The gates were fixed before the run, and the code and rows are open so anyone can recompute them.</p></details>
     </div>
