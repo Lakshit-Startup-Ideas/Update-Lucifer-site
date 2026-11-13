@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory — Lucifer Lab</title>
+<meta name="description" content="How Lucifer&#x27;s memory works: an append-only hash-chained SQLite store of lessons with provenance, rollback that archives instead of deleting, and an audit. Includes an interactive 3D chain.">
+<meta name="theme-color" content="#0d0c11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Memory — Lucifer Lab">
+<meta property="og:description" content="How Lucifer&#x27;s memory works: an append-only hash-chained SQLite store of lessons with provenance, rollback that archives instead of deleting, and an audit. Includes an interactive 3D chain.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="memory">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Lucifer Lab, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/><circle cx="19" cy="19" r="2" fill="currentColor" opacity=".6"/></svg>
+      <span>Lucifer Lab</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="results.html">Results</a></li>
+      <li><a href="method.html">Method</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="memory.html" aria-current="page">Memory</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="limits.html">Limits</a></li>
+    </ul>
+    <a class="btn btn-light nav-cta" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View code</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
+<main id="main">
+<section class="phero">
+  <div class="sky" aria-hidden="true"><div class="sky-glow" data-depth="14"></div><div class="orbs"><i class="orb o1" data-depth="30"></i><i class="orb o3" data-depth="40"></i></div></div>
+  <div class="wrap phero-in">
+    <p class="crumbs"><a href="index.html">Lucifer Lab</a><span>/</span><span>Memory</span></p>
+    <p class="kicker-pill">Memory</p>
+    <h1 data-split>A notebook you can audit, <em>and try to break.</em></h1>
+    <p class="lede">Lessons are written after failures, chained by hash, and shown to the model later. The mechanism is small on purpose, so that every claim about it can be checked.</p>
+    <nav class="chips-nav" aria-label="On this page"><a href="#what">What it is</a><a href="#chain">Hash chain</a><a href="#play">Try it</a><a href="#rollback">Rollback</a><a href="#audit">Audit results</a><a href="#example">A lesson</a><a href="#limits">Limits</a></nav>
+  </div>
+</section>
+<section class="block" id="what">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>What memory is here</h2></div>
+<div class="prose reveal"><p>Memory here is deliberately plain: <strong>a small SQLite table of lessons</strong>, each linked to the one before it by a hash. Nothing about the model changes (no weights, no training). The model simply sees a few earlier lessons in its prompt. That makes the mechanism easy to inspect, and it is why the audit can be so strict.</p></div><div class="grid-2">
+<article class="card reveal"><h3>What a lesson holds</h3><pre class=""><code>id, version, task_id, kind, text,
+run_id, seed, parent_hash, hash
+
+kind: &#x27;failure&#x27; or &#x27;fix&#x27;
+version: 1, 2, 3 ... (one per write)</code></pre><p class="foot">Provenance is built in: every lesson records which task, run and seed produced it.</p></article>
+<article class="card reveal"><h3>When one is written</h3><p>Only in the <b>experience</b> phase, and only for Lucifer and Wrong notes. A failed first try writes a <i>failure</i> lesson. A failure that was fixed on the retry writes a second, <i>fix</i> lesson containing the code that finally passed. In the evaluation phases memory is read-only.</p></article>
+</div>
+  </div>
+</section>
+<section class="block block-alt" id="chain">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>The hash chain</h2></div>
+<div class="prose reveal"><p>Each lesson's hash covers the hash of the lesson before it. The first lesson links to a genesis value of 64 zeros. This is the exact function from <code>memory.py</code>:</p></div>
+<pre class=""><code>def _hash(parent, version, task_id, kind, text):
+    return sha256(&#x27;|&#x27;.join([parent, str(version), task_id, kind, text])).hexdigest()</code></pre>
+<div class="prose reveal"><p>Change any earlier lesson and its hash changes, so the next lesson's stored parent no longer matches, and so on down the chain. <code>verify_chain()</code> walks the table from version 1 and returns false at the first mismatch. The tests cover both an edited and a deleted lesson (<code>test_changing_an_old_lesson_is_detected</code>, <code>test_deleting_a_lesson_is_detected</code>).</p></div>
+  </div>
+</section>
+<section class="block" id="play">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Try it</h2><p>Drag the chain to turn it. Edit an old lesson, roll back, or add one, and watch the check react.</p></div>
+<div class="mem-grid">
+  <div class="mem-stage reveal" id="mem-stage" tabindex="0" role="group" aria-label="3D view of a hash-chained memory. Drag, or use the arrow keys, to rotate it.">
+    <div class="dial" id="dial" aria-hidden="true"></div>
+    <ol class="scene" id="scene"></ol>
+    <p class="hint" aria-hidden="true"><span></span> Drag to rotate</p>
+    <noscript><p class="nojs">The live chain needs JavaScript.</p></noscript>
+  </div>
+  <div class="mem-side reveal">
+    <div class="mem-status" id="mem-status" role="status" aria-live="polite"><span class="chip chip-ok" id="mem-chip">Chain verified</span><p id="mem-msg">4 lessons, every link checks out.</p></div>
+    <div class="mem-actions">
+      <button class="mbtn" type="button" id="m-add">Add a lesson</button>
+      <button class="mbtn" type="button" id="m-tamper" aria-pressed="false">Tamper with lesson 2</button>
+      <button class="mbtn" type="button" id="m-roll">Roll back last</button>
+      <button class="mbtn mbtn-quiet" type="button" id="m-reset">Reset</button>
+    </div>
+    <p class="foot">This runs the same SHA-256 formula as the real store, in your browser, with short example lessons in place of real ones. Edit lesson 2 and every hash from there on stops matching.</p>
+  </div>
+</div>
+  </div>
+</section>
+<section class="block block-alt" id="rollback">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Rollback and the audit</h2></div>
+<div class="prose reveal"><p><code>rollback(version)</code> goes back to an earlier version. The later lessons are <strong>moved into an <code>archived</code> table, not deleted</strong>, together with the version they were rolled back to, so an audit can still see exactly what was undone.</p>
+<p>The audit (<code>audit()</code>) makes three checks, on a <em>copy</em> so the original is never touched:</p></div>
+<div class="grid-3">
+<article class="card reveal"><span class="num">1</span><h3>Chain</h3><p>Every lesson's version, parent and hash recompute correctly from version 1.</p></article>
+<article class="card reveal"><span class="num">2</span><h3>Rollback</h3><p>Roll a copy back to the middle: the chain still verifies, the head hash equals the earlier version's hash, and the remaining history is identical to the snapshot taken before.</p></article>
+<article class="card reveal"><span class="num">3</span><h3>Provenance</h3><p>Every lesson has a task, a run and a non-negative seed.</p></article>
+</div>
+  </div>
+</section>
+<section class="block" id="audit">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>The real audit results</h2><p>From the published run.</p></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:640px"><thead><tr><th>Store</th><th>Condition</th><th>Lessons</th><th>Chain</th><th>Rollback</th><th>Provenance</th><th>Result</th></tr></thead><tbody><tr><td>Seed 0</td><td>Lucifer</td><td>10</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 0</td><td>Wrong notes</td><td>19</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 1</td><td>Lucifer</td><td>8</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 1</td><td>Wrong notes</td><td>18</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 2</td><td>Lucifer</td><td>9</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 2</td><td>Wrong notes</td><td>16</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 3</td><td>Lucifer</td><td>9</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 3</td><td>Wrong notes</td><td>17</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 4</td><td>Lucifer</td><td>9</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr><tr><td>Seed 4</td><td>Wrong notes</td><td>19</td><td>✓</td><td>✓</td><td>✓</td><td><b>pass</b></td></tr></tbody></table></div><div class="prose reveal"><p>All 10 stores from the run passed all three checks. These are the real audits from <code>audits.json</code>. Wrong notes wrote more lessons (16 to 19 per store) than Lucifer (8 to 10) because it failed its first tries more often in the experience phase (7 of 60 first-try passes, against 33 of 60), and every failure writes a lesson.</p></div>
+  </div>
+</section>
+<section class="block block-alt" id="example">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>A lesson, written out</h2></div>
+<div class="prose reveal"><p>A worked example of a lesson, exactly as it is written. The “failing test” text comes from the real sandbox run on a plain answer:</p></div><pre class=""><code>A first attempt at &#x27;format_date&#x27; failed. The spec said: `format_date(year, month, day)` writes a calendar date as text. this check failed: assert format_date(2026, 3, 5) == &#x27;05-Mar-2026&#x27;  (AssertionError: )</code></pre><div class="prose reveal"><p>Later, on a similar date task, retrieval scores this lesson highly because it shares many words with the new spec (“year”, “month”, “day”, “writes”, “date”, “text”), so it is likely put into the prompt under “Notes from earlier tasks”. The model sees the expected <code>05-Mar-2026</code> format and applies it. <a href="proof.html#follow">See what actually happened →</a></p></div>
+  </div>
+</section>
+<section class="block" id="limits">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Be clear about what it is</h2></div>
+<div class="callout warn reveal"><b>What this memory does not do.</b> It does not change the model. It does not summarise or generalise: a lesson is the task, the spec and the failing test, so in the convention tasks it literally contains a correct example. The result therefore measures “can the model use a pasted correct example from an earlier task”, a modest but real form of learning. It does not yet show broad skill transfer.</div>
+  </div>
+</section>
+<section class="block"><div class="wrap pager"><a class="card pg" href="tasks.html"><small>← Previous</small><b>Tasks</b><span>All 30 tasks, hidden tests and outcomes</span></a><a class="card pg pg-next" href="proof.html"><small>Next →</small><b>Proof</b><span>Recompute it in your browser</span></a></div></section>
+</main>
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div class="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/></svg><span>Lucifer Lab</span></div>
+    <p>Built by Lakshit Mathur. A personal research project, open source.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li><li><a href="results.html">Results</a></li><li><a href="method.html">Method</a></li><li><a href="tasks.html">Tasks</a></li><li><a href="memory.html">Memory</a></li><li><a href="proof.html">Proof</a></li><li><a href="journey.html">Journey</a></li><li><a href="limits.html">Limits</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>

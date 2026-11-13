@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof of concept — Lucifer Lab</title>
+<meta name="description" content="Verify the Lucifer Lab result yourself: recompute the headline and the bootstrap interval in your browser from the raw rows, follow one lesson end to end, and see which claims are and are not supported.">
+<meta name="theme-color" content="#0d0c11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Proof of concept — Lucifer Lab">
+<meta property="og:description" content="Verify the Lucifer Lab result yourself: recompute the headline and the bootstrap interval in your browser from the raw rows, follow one lesson end to end, and see which claims are and are not supported.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="proof">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Lucifer Lab, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/><circle cx="19" cy="19" r="2" fill="currentColor" opacity=".6"/></svg>
+      <span>Lucifer Lab</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="results.html">Results</a></li>
+      <li><a href="method.html">Method</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="memory.html">Memory</a></li>
+      <li><a href="proof.html" aria-current="page">Proof</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="limits.html">Limits</a></li>
+    </ul>
+    <a class="btn btn-light nav-cta" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View code</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
+<main id="main">
+<section class="phero">
+  <div class="sky" aria-hidden="true"><div class="sky-glow" data-depth="14"></div><div class="orbs"><i class="orb o1" data-depth="30"></i><i class="orb o3" data-depth="40"></i></div></div>
+  <div class="wrap phero-in">
+    <p class="crumbs"><a href="index.html">Lucifer Lab</a><span>/</span><span>Proof</span></p>
+    <p class="kicker-pill">Proof of concept</p>
+    <h1 data-split>Don't trust the page. <em>Recompute it.</em></h1>
+    <p class="lede">The raw rows are downloaded into your browser and the headline is calculated again, live. Then one lesson is followed from a failed attempt to a first-try pass.</p>
+    <nav class="chips-nav" aria-label="On this page"><a href="#recompute">Recompute</a><a href="#follow">One lesson</a><a href="#controls">Controls</a><a href="#ledger">Claim and status</a><a href="#reproduce">Run it</a></nav>
+  </div>
+</section>
+<section class="block" id="recompute">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Recompute it yourself, right here</h2></div>
+<div class="prose reveal"><p>The result is a calculation over <code>rows.json</code>. Press the button and your browser will download that file from this site, show its SHA-256 fingerprint, rebuild the table, and rerun the 10,000-resample bootstrap. Nothing is sent anywhere, and nothing on this block is hard-coded.</p></div>
+<div class="verify reveal" id="verify">
+  <div class="verify-bar">
+    <button class="btn btn-light" type="button" id="v-run">Recompute from the raw rows</button>
+    <span class="v-state" id="v-state">Not run yet</span>
+  </div>
+  <div class="v-grid">
+    <div class="v-card"><small>Rows loaded</small><b id="v-rows">–</b></div>
+    <div class="v-card"><small>SHA-256 of rows.json</small><b class="mono" id="v-hash">–</b></div>
+    <div class="v-card"><small>Lucifer − baseline</small><b id="v-eff">–</b><span id="v-ci"></span></div>
+    <div class="v-card"><small>Lucifer − wrong notes</small><b id="v-eff2">–</b><span id="v-ci2"></span></div>
+  </div>
+  <div class="table-wrap"><table class="dt" id="v-table" style="min-width:560px"><thead><tr><th>Phase</th><th>No memory</th><th>Lucifer</th><th>Wrong notes</th></tr></thead><tbody><tr><td colspan="4" class="dimcell">Press the button.</td></tr></tbody></table></div>
+  <p class="foot">The published values are 0%, 67%, 17%, 98% by phase and +0.50 with a 95% interval of +0.30 to +0.70. The browser uses a different random generator from the Python lab, so a rerun may move an interval end by a hair; it should land on the same two-decimal figures. To check the file is the one in the repository, compare the fingerprint with <code>shasum -a 256 results/published/qwen14b-convention/rows.json</code> on your own checkout of commit <code>1a88d19</code>.</p>
+</div>
+  </div>
+</section>
+<section class="block block-alt" id="follow">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Follow one lesson from failure to success</h2><p>A single convention, traced through the whole experiment.</p></div>
+<ol class="pipe reveal">
+<li><b>1 · An experience task</b><span>The model is asked for <code>format_date</code>: “<code>format_date(year, month, day)</code> writes a calendar date as text.” A plain answer writes an ISO date like <code>2026-03-05</code>.</span></li>
+<li><b>2 · The referee says no</b><span>This is the real message from the sandbox, produced by running the plain answer: <code class="wrapcode">this check failed: assert format_date(2026, 3, 5) == &#x27;05-Mar-2026&#x27;  (AssertionError: )</code></span></li>
+<li><b>3 · A lesson is written</b><span>Lucifer and Wrong notes store the lesson (see the <a href="memory.html#example">full text</a>). No memory stores nothing.</span></li>
+<li><b>4 · A similar task arrives later</b><span>The model is asked for <code>format_deadline</code>: “<code>format_deadline(year, month, day)</code> writes a deadline date as text.” Lucifer's retrieval puts the three most relevant lessons in its prompt (every Lucifer similar attempt in this run was shown at least one lesson). No memory is shown none; Wrong notes is shown the three least relevant.</span></li>
+<li><b>5 · What happened</b><span>The real outcomes on the five seeds, from <code>rows.json</code>:<div class="outs inline"><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span><em>0 first try · 5 after retry, of 5</em></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span><em>5 first try · 5 after retry, of 5</em></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span><em>0 first try · 5 after retry, of 5</em></div></div></span></li>
+</ol>
+<div class="legend dotkey reveal"><span><i class="d d1"></i>passed on the first try</span><span><i class="d d2"></i>passed after the retry</span><span><i class="d d0"></i>failed both</span></div>
+<div class="prose reveal"><p>Step 2 is generated by running the lab's own sandbox on the task's plain answer, so it is exactly what the model would be told. It is <em>not</em> a recording of a model's attempt (the raw model replies are not in the published files). Step 5 is recorded data. <a href="tasks.html#date-4">Open the full task →</a></p></div>
+  </div>
+</section>
+<section class="block" id="controls">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>The test can say no</h2></div>
+<div class="prose reveal"><p>A measurement is only worth trusting if it can come out negative. Before any real run, the lab was checked on <strong>simulated agents</strong> with a known truth, so we could see whether the gates tell them apart. These are automated tests in <code>tests/test_controls.py</code>:</p></div>
+<div class="grid-3">
+<article class="card reveal"><h3>An agent that cannot learn</h3><p>Must almost never be reported as improving. (<code>test_an_agent_that_cannot_learn_is_almost_never_reported_as_improving</code>)</p></article>
+<article class="card reveal"><h3>An agent that learns</h3><p>Must be detected once the task set is large enough. (<code>test_with_about_four_times_the_tasks_a_real_effect_is_detected_and_a_null_one_is_not</code>)</p></article>
+<article class="card reveal"><h3>An agent hurt by memory</h3><p>Must be reported as hurt. (<code>test_an_agent_hurt_by_memory_is_reported_as_hurt</code>)</p></article>
+</div>
+<div class="callout warn reveal"><b>This is also why the result is a first look.</b> The same tests show that a set with only 12 primary tasks misses a real effect (<code>test_a_set_with_only_12_primary_tasks_misses_a_real_effect_so_it_must_not_be_trusted</code>). This run had 18. See the <a href="limits.html#power">power table</a>.</div>
+  </div>
+</section>
+<section class="block block-alt" id="ledger">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Claim, check, status</h2><p>What is proven by this evidence and what is not.</p></div>
+<div class="table-wrap reveal"><table class="dt dt-wide" style="min-width:760px"><thead><tr><th>Claim</th><th>How to check it</th><th>Status</th></tr></thead><tbody><tr><td>Lucifer beats no memory on first try, +0.50 [+0.30, +0.70]</td><td>Recompute in this page; read <code>rows.json</code></td><td><span class='chip chip-ok'>Reproduced here</span></td></tr><tr><td>Wrong notes did not help on the primary metric</td><td>Same recomputation, third column</td><td><span class='chip chip-ok'>Reproduced here</span></td></tr><tr><td>Memory was not edited after the fact</td><td>Audit table: chain, rollback, provenance on all 10 stores</td><td><span class='chip chip-ok'>In the published audits</span></td></tr><tr><td>The tasks hide their convention and can tell right from wrong</td><td>Read each task; the lab tests every task with a reference and a plain answer</td><td><span class='chip chip-ok'>Tested in the lab</span></td></tr><tr><td>The harness can tell learning from no learning</td><td>Simulated-agent controls in <code>tests/test_controls.py</code></td><td><span class='chip chip-ok'>Tested in the lab</span></td></tr><tr><td>Lucifer works on other models</td><td>Not tested. A side run on another model pointed the same way for one seed only</td><td><span class='chip chip-mid'>Not shown</span></td></tr><tr><td>Lucifer works on other kinds of task</td><td>Not tested. Held-out task families are future work</td><td><span class='chip chip-mid'>Not shown</span></td></tr><tr><td>Lucifer transfers to loosely related tasks</td><td>Transfer was 17% first try</td><td><span class='chip chip-mid'>Weak</span></td></tr></tbody></table></div>
+  </div>
+</section>
+<section class="block" id="reproduce">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Run it yourself</h2></div>
+<div class="grid-2">
+<article class="card reveal"><h3>Run the lab and its tests</h3><pre class=""><code>git clone https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks
+cd Lucifer-BenchMarks
+python -m venv .venv &amp;&amp; .venv/bin/pip install -e .
+.venv/bin/pytest</code></pre><p class="foot">125 tests, about four minutes.</p></article>
+<article class="card reveal"><h3>Repeat the experiment on GitHub</h3><pre class=""><code># Actions → Experiment → Run workflow
+model     qwen2.5-coder:14b
+taskset   convention
+seeds     5
+publish   true</code></pre><p class="foot">One job per seed, then a merge and the three gates in the job summary. No GPU and no local model needed.</p></article>
+</div>
+<div class="prose reveal"><p>The files behind this site: <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/tree/main/results/published/qwen14b-convention" rel="noopener">results/published/qwen14b-convention</a> (commit <code>1a88d19</code>), the workflow run <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/actions/runs/43163827087" rel="noopener">43163827087</a>, the task set in <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/src/lucifer/tasks.py" rel="noopener"><code>src/lucifer/tasks.py</code></a>, and the plan that fixed the gates in advance, <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/docs/EXPERIMENT-PLAN.md" rel="noopener"><code>docs/EXPERIMENT-PLAN.md</code></a>.</p></div>
+  </div>
+</section>
+<section class="block"><div class="wrap pager"><a class="card pg" href="memory.html"><small>← Previous</small><b>Memory</b><span>The store, the chain, the audit</span></a><a class="card pg pg-next" href="journey.html"><small>Next →</small><b>Journey</b><span>What was tried, caught and fixed</span></a></div></section>
+</main>
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div class="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/></svg><span>Lucifer Lab</span></div>
+    <p>Built by Lakshit Mathur. A personal research project, open source.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li><li><a href="results.html">Results</a></li><li><a href="method.html">Method</a></li><li><a href="tasks.html">Tasks</a></li><li><a href="memory.html">Memory</a></li><li><a href="proof.html">Proof</a></li><li><a href="journey.html">Journey</a></li><li><a href="limits.html">Limits</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>

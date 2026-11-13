@@ -233,20 +233,27 @@
   var mstage = document.getElementById("mem-stage");
   var scene = document.getElementById("scene");
   if (mstage && scene) {
-    var POOL = ["Errors start with ERR_", "Dates are ISO-8601, in UTC", "IDs carry a type prefix, like usr_", "Money is stored as whole cents", "Lists are sorted by id", "Names are trimmed and lowercased"];
-    var START = 4, MAXN = 6, EDIT = "Dates are local time, any format";
+    // Same formula as the real store (memory.py): sha256(parent | version | task_id | kind | text), with short example lesson texts.
+    var POOL = [
+      { t: "errors-1", k: "failure", x: "Error messages read invalid age: abc" },
+      { t: "date-1", k: "failure", x: "Dates are written 05-Mar-2026" },
+      { t: "ident-1", k: "failure", x: "Order ids look like ORD-00007" },
+      { t: "price-1", k: "failure", x: "Prices show as ₹1,234.56" },
+      { t: "price-2", k: "failure", x: "Refunds start with a minus, -₹25.00" },
+      { t: "date-2", k: "failure", x: "Birth dates use 04-Jul-1990 too" }
+    ];
+    var START = 4, MAXN = 6, EDIT = "Dates are written 2026-03-05", GENESIS = new Array(65).join("0");
     var chainL = [], archived = [], nextIdx = START, tampered = false;
-    var fp = function (s) {
-      var x = 0x811c9dc5;
-      for (var i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 0x01000193) >>> 0; }
-      return ("00000000" + x.toString(16)).slice(-8);
+    var fp = function (parent, version, task, kind, text) { return sha256([parent, String(version), task, kind, text].join("|")); };
+    var mkBlock = function (item, prev, version) {
+      return { task: item.t, kind: item.k, version: version, text: item.x, shown: item.x, prev: prev, hash: fp(prev, version, item.t, item.k, item.x), el: null, y: 0, slot: 0 };
     };
-    var mkBlock = function (text, prev) { return { text: text, shown: text, prev: prev, hash: fp(prev + "|" + text), el: null, y: 0, slot: 0 }; };
     var verify = function () {
+      var parent = GENESIS;
       for (var i = 0; i < chainL.length; i++) {
-        var b = chainL[i], re = fp(b.prev + "|" + b.shown);
-        if (re !== b.hash) return { at: i, re: re };
-        if (i > 0 && b.prev !== chainL[i - 1].hash) return { at: i, re: re };
+        var b = chainL[i], re = fp(b.prev, b.version, b.task, b.kind, b.shown);
+        if (b.prev !== parent || re !== b.hash) return { at: i, re: re };
+        parent = b.hash;
       }
       return null;
     };
@@ -267,8 +274,8 @@
       el.style.setProperty("--y", y);
       el.querySelector(".p-n").textContent = label;
       el.querySelector("b").textContent = b.shown;
-      el.querySelector(".pv").textContent = "prev " + b.prev + " → ";
-      el.querySelector(".hv").textContent = "hash " + b.hash;
+      el.querySelector(".pv").textContent = "prev " + b.prev.slice(0, 8) + " → ";
+      el.querySelector(".hv").textContent = "hash " + b.hash.slice(0, 8);
       el.querySelector(".p-s").textContent = mark;
     };
     var paint = function () {
@@ -283,7 +290,7 @@
       var s = n === 1 ? "" : "s";
       if (bad) {
         chip.textContent = "Chain broken"; chip.className = "chip chip-bad"; box.classList.add("bad");
-        msg.textContent = "Lesson " + (bad.at + 1) + " was edited. Its stored fingerprint is " + chainL[bad.at].hash + " but it now computes to " + bad.re + (bad.at < n - 1 ? ". Everything after it can no longer be trusted." : ".");
+        msg.textContent = "Lesson " + (bad.at + 1) + " was edited. Its stored hash is " + chainL[bad.at].hash.slice(0, 8) + "… but it now computes to " + bad.re.slice(0, 8) + "…" + (bad.at < n - 1 ? " Everything after it can no longer be trusted." : "");
       } else {
         chip.textContent = "Chain verified"; chip.className = "chip chip-ok"; box.classList.remove("bad");
         msg.textContent = n + " lesson" + s + ", every link checks out." + (archived.length ? " " + archived.length + " archived, not erased." : "");
@@ -296,13 +303,13 @@
     };
     var init = function () {
       scene.innerHTML = ""; chainL = []; archived = []; nextIdx = START; tampered = false;
-      var prev = "00000000";
-      for (var i = 0; i < START; i++) { var b = mkBlock(POOL[i], prev); chainL.push(b); prev = b.hash; }
+      var prev = GENESIS;
+      for (var i = 0; i < START; i++) { var b = mkBlock(POOL[i], prev, i + 1); chainL.push(b); prev = b.hash; }
       paint();
     };
     bAdd.addEventListener("click", function () {
       var last = chainL[chainL.length - 1];
-      chainL.push(mkBlock(POOL[nextIdx++ % POOL.length], last.hash));
+      chainL.push(mkBlock(POOL[nextIdx++ % POOL.length], last.hash, chainL.length + 1));
       paint();
     });
     bTam.addEventListener("click", function () {
@@ -375,6 +382,128 @@
       }, { threshold: 0.05 });
       mo.observe(mstage);
     }
+  }
+
+  // Synchronous SHA-256 of a string (UTF-8). Verified against Python's hashlib; used by the memory demo.
+  function sha256(str) {
+    var enc = new TextEncoder().encode(str), l = enc.length, bl = l * 8;
+    var n = ((l + 9 + 63) >> 6) << 6, m = new Uint8Array(n);
+    m.set(enc); m[l] = 0x80;
+    var dv = new DataView(m.buffer);
+    dv.setUint32(n - 8, Math.floor(bl / 4294967296)); dv.setUint32(n - 4, bl >>> 0);
+    var K = [], h = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19], p = 2, c = 0;
+    var isP = function (x) { for (var i = 2; i * i <= x; i++) if (x % i === 0) return false; return true; };
+    while (c < 64) { if (isP(p)) K[c++] = Math.floor((Math.pow(p, 1 / 3) % 1) * 4294967296) >>> 0; p++; }
+    var w = new Array(64);
+    for (var o = 0; o < n; o += 64) {
+      var i;
+      for (i = 0; i < 16; i++) w[i] = dv.getUint32(o + i * 4);
+      for (i = 16; i < 64; i++) {
+        var a = w[i - 15], b = w[i - 2];
+        var s0 = ((a >>> 7) | (a << 25)) ^ ((a >>> 18) | (a << 14)) ^ (a >>> 3);
+        var s1 = ((b >>> 17) | (b << 15)) ^ ((b >>> 19) | (b << 13)) ^ (b >>> 10);
+        w[i] = (w[i - 16] + s0 + w[i - 7] + s1) >>> 0;
+      }
+      var A = h[0], B = h[1], C = h[2], D = h[3], E = h[4], F = h[5], G = h[6], H = h[7];
+      for (i = 0; i < 64; i++) {
+        var S1 = ((E >>> 6) | (E << 26)) ^ ((E >>> 11) | (E << 21)) ^ ((E >>> 25) | (E << 7));
+        var t1 = (H + S1 + ((E & F) ^ (~E & G)) + K[i] + w[i]) >>> 0;
+        var S0 = ((A >>> 2) | (A << 30)) ^ ((A >>> 13) | (A << 19)) ^ ((A >>> 22) | (A << 10));
+        var t2 = (S0 + ((A & B) ^ (A & C) ^ (B & C))) >>> 0;
+        H = G; G = F; F = E; E = (D + t1) >>> 0; D = C; C = B; B = A; A = (t1 + t2) >>> 0;
+      }
+      h[0] = (h[0] + A) >>> 0; h[1] = (h[1] + B) >>> 0; h[2] = (h[2] + C) >>> 0; h[3] = (h[3] + D) >>> 0;
+      h[4] = (h[4] + E) >>> 0; h[5] = (h[5] + F) >>> 0; h[6] = (h[6] + G) >>> 0; h[7] = (h[7] + H) >>> 0;
+    }
+    return h.map(function (x) { return ("00000000" + x.toString(16)).slice(-8); }).join("");
+  }
+
+  // Task explorer: filter the task cards by phase and by convention.
+  var tgrid = document.querySelector(".tgrid");
+  if (tgrid) {
+    var fstate = { split: "all", family: "all" };
+    var cards = Array.prototype.slice.call(tgrid.querySelectorAll(".tcard"));
+    var refilter = function () {
+      cards.forEach(function (cd) {
+        var ok = (fstate.split === "all" || cd.getAttribute("data-split") === fstate.split) && (fstate.family === "all" || cd.getAttribute("data-family") === fstate.family);
+        cd.hidden = !ok;
+      });
+    };
+    Array.prototype.forEach.call(document.querySelectorAll(".fchip"), function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-key");
+        fstate[key] = btn.getAttribute("data-val");
+        Array.prototype.forEach.call(document.querySelectorAll('.fchip[data-key="' + key + '"]'), function (o) { o.classList.toggle("on", o === btn); });
+        refilter();
+      });
+    });
+    // Opening a card from a heat tile must show it even if a filter hides it.
+    var showHidden = function () {
+      var id = location.hash.slice(1), el = id && document.getElementById(id);
+      if (el && el.hidden) {
+        fstate.split = "all"; fstate.family = "all";
+        Array.prototype.forEach.call(document.querySelectorAll(".fchip"), function (o) { o.classList.toggle("on", o.getAttribute("data-val") === "all"); });
+        refilter(); el.scrollIntoView();
+      }
+    };
+    window.addEventListener("hashchange", showHidden);
+  }
+
+  // Proof page: download rows.json, fingerprint it, rebuild the table and rerun the paired bootstrap, all in the browser.
+  var vrun = document.getElementById("v-run");
+  if (vrun) {
+    var vstate = document.getElementById("v-state");
+    var setState = function (t, cls) { vstate.textContent = t; vstate.className = "v-state " + (cls || ""); };
+    var fmt = function (x) { return (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(2); };
+    var rng = function (a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
+    var taskMeans = function (rows, cond) {
+      var m = {}, o = {};
+      rows.forEach(function (r) { if (r.condition === cond && (r.phase === "similar" || r.phase === "transfer")) (m[r.task_id] = m[r.task_id] || []).push(r.pass_at_1 ? 1 : 0); });
+      Object.keys(m).forEach(function (k) { o[k] = m[k].reduce(function (x, y) { return x + y; }, 0) / m[k].length; });
+      return o;
+    };
+    var boot = function (a, b, N, seed) {
+      var t = Object.keys(a).filter(function (k) { return k in b; }).sort();
+      var d = t.map(function (k) { return b[k] - a[k]; }), r = rng(seed), ms = [];
+      for (var i = 0; i < N; i++) { var sum = 0; for (var j = 0; j < d.length; j++) sum += d[(r() * d.length) | 0]; ms.push(sum / d.length); }
+      ms.sort(function (x, y) { return x - y; });
+      return [d.reduce(function (x, y) { return x + y; }, 0) / d.length, ms[Math.floor(0.025 * N)], ms[Math.floor(0.975 * N) - 1], d.length];
+    };
+    vrun.addEventListener("click", function () {
+      vrun.disabled = true; setState("Downloading rows.json…", "busy");
+      fetch("data/rows.json").then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.arrayBuffer(); }).then(function (buf) {
+        var rows = JSON.parse(new TextDecoder().decode(buf));
+        var hashP = window.crypto && crypto.subtle
+          ? crypto.subtle.digest("SHA-256", buf).then(function (d) { return Array.prototype.map.call(new Uint8Array(d), function (x) { return ("0" + x.toString(16)).slice(-2); }).join(""); })
+          : Promise.resolve("(needs https or localhost)");
+        return hashP.then(function (hash) { return { rows: rows, hash: hash }; });
+      }).then(function (res) {
+        var rows = res.rows;
+        document.getElementById("v-rows").textContent = rows.length;
+        document.getElementById("v-hash").textContent = res.hash;
+        var body = ["experience", "similar", "transfer", "replay"].map(function (ph) {
+          var cells = ["baseline", "lucifer", "irrelevant"].map(function (c) {
+            var rs = rows.filter(function (r) { return r.condition === c && r.phase === ph; });
+            var n = rs.filter(function (r) { return r.pass_at_1; }).length;
+            return "<td>" + n + " of " + rs.length + " (" + Math.round(100 * n / rs.length) + "%)</td>";
+          });
+          return "<tr><td><b>" + ph.charAt(0).toUpperCase() + ph.slice(1) + "</b></td>" + cells.join("") + "</tr>";
+        }).join("");
+        document.querySelector("#v-table tbody").innerHTML = body;
+        setState("Running 10,000 bootstrap resamples…", "busy");
+        setTimeout(function () {
+          var B = taskMeans(rows, "baseline"), L = taskMeans(rows, "lucifer"), I = taskMeans(rows, "irrelevant");
+          var r1 = boot(B, L, 10000, 1), r2 = boot(I, L, 10000, 1);
+          document.getElementById("v-eff").textContent = fmt(r1[0]);
+          document.getElementById("v-ci").textContent = "95% interval " + fmt(r1[1]) + " to " + fmt(r1[2]) + " · " + r1[3] + " tasks";
+          document.getElementById("v-eff2").textContent = fmt(r2[0]);
+          document.getElementById("v-ci2").textContent = "95% interval " + fmt(r2[1]) + " to " + fmt(r2[2]) + " · " + r2[3] + " tasks";
+          var match = fmt(r1[0]) === "+0.50" && fmt(r1[1]) === "+0.30" && fmt(r1[2]) === "+0.70";
+          setState(match ? "Done · matches the published +0.50 [+0.30, +0.70]" : "Done · differs from the published figures, see the numbers above", match ? "ok" : "err");
+          vrun.disabled = false; vrun.textContent = "Run it again";
+        }, 30);
+      }).catch(function (err) { setState("Could not load the data: " + err.message, "err"); vrun.disabled = false; });
+    });
   }
 
   // Mobile menu.

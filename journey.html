@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journey — Lucifer Lab</title>
+<meta name="description" content="The story of Lucifer Lab Version 1: the timeline, what calibration showed, the bugs found and fixed along the way, and what each taught.">
+<meta name="theme-color" content="#0d0c11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Journey — Lucifer Lab">
+<meta property="og:description" content="The story of Lucifer Lab Version 1: the timeline, what calibration showed, the bugs found and fixed along the way, and what each taught.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="journey">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Lucifer Lab, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/><circle cx="19" cy="19" r="2" fill="currentColor" opacity=".6"/></svg>
+      <span>Lucifer Lab</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="results.html">Results</a></li>
+      <li><a href="method.html">Method</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="memory.html">Memory</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="journey.html" aria-current="page">Journey</a></li>
+      <li><a href="limits.html">Limits</a></li>
+    </ul>
+    <a class="btn btn-light nav-cta" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View code</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
+<main id="main">
+<section class="phero">
+  <div class="sky" aria-hidden="true"><div class="sky-glow" data-depth="14"></div><div class="orbs"><i class="orb o1" data-depth="30"></i><i class="orb o3" data-depth="40"></i></div></div>
+  <div class="wrap phero-in">
+    <p class="crumbs"><a href="index.html">Lucifer Lab</a><span>/</span><span>Journey</span></p>
+    <p class="kicker-pill">Journey</p>
+    <h1 data-split>What was tried, <em>caught and fixed.</em></h1>
+    <p class="lede">A result is only as good as the path to it. Here are the wrong turns: an exam that was too easy, a flawed task, a scoring bug and a power study that fooled us once.</p>
+    <nav class="chips-nav" aria-label="On this page"><a href="#timeline">Timeline</a><a href="#calibration">Calibration</a><a href="#lessons">Lessons</a></nav>
+  </div>
+</section>
+<section class="block" id="timeline">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>How it got here</h2><p>Two days, twelve commits, one question.</p></div>
+<ol class="timeline wide"><li class="reveal"><span class="t-dot"></span><div><small class="when">11 Nov 2026</small><b>The lab, built</b><p>Task set, sandbox, versioned memory with rollback, three conditions, a paired bootstrap, three gates, and simulated-agent controls to test the tester.</p><a class="commit" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/commit/d8655b1" rel="noopener">commit d8655b1</a></div></li><li class="reveal"><span class="t-dot"></span><div><small class="when">11 Nov</small><b>Calibration says the exam is too easy</b><p>Three hosted models scored 100%, 96% and 42% first try with no memory. A flawed task (<code>days_between</code> did not say its inputs were integers) was caught and its spec fixed.</p><a class="commit" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/commit/7be58d6" rel="noopener">commit 7be58d6</a></div></li><li class="reveal"><span class="t-dot"></span><div><small class="when">11 Nov</small><b>The power study is corrected</b><p>An early 20-run table said 90% power at 24 tasks. That was a lucky draw; 60 runs gave 72%. The plan now asks for about 48 similar and transfer tasks.</p><a class="commit" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/commit/8868edb" rel="noopener">commit 8868edb</a></div></li><li class="reveal"><span class="t-dot"></span><div><small class="when">11 Nov</small><b>Tracing and a dashboard</b><p>Every step of every solve is recorded, with a local dashboard to click into any attempt.</p><a class="commit" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/commit/c6c090e" rel="noopener">commit c6c090e</a></div></li><li class="reveal"><span class="t-dot"></span><div><small class="when">11 Nov</small><b>Harder families, and a scoring bug found</b><p>Four harder families brought the set to 50 tasks. The dashboard exposed a bug: the retention gate picked tasks and measured them on the same runs and mistook luck for forgetting. Selection now uses half the seeds, measurement the other half.</p><a class="commit" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/commit/c7b8ee7" rel="noopener">commit c7b8ee7</a></div></li><li class="reveal"><span class="t-dot"></span><div><small class="when">11 Nov</small><b>Hidden conventions</b><p>Strong models saturate well-specified tasks, so memory had nothing to improve. 30 convention tasks were added whose rule can only be learned from a failing test.</p><a class="commit" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/commit/f92ccb8" rel="noopener">commit f92ccb8</a></div></li><li class="reveal"><span class="t-dot"></span><div><small class="when">12 Nov</small><b>Everything moves onto CI/CD</b><p>Experiments run on GitHub Actions: one job per seed, a merge step, gates in the job summary, published results committed automatically.</p><a class="commit" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/commit/136a110" rel="noopener">commit 136a110</a></div></li><li class="reveal"><span class="t-dot t-on"></span><div><small class="when">12 Nov</small><b>First real result</b><p>Five seeds of <code>qwen2.5-coder:14b</code>: +0.50 first-try improvement, interval +0.30 to +0.70, published with every caveat. Version 1 closed.</p><a class="commit" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/commit/1a88d19" rel="noopener">commit 1a88d19</a></div></li></ol><div class="prose reveal"><p>Dates and commit ids come from the repository history; the links open the exact commits.</p></div>
+  </div>
+</section>
+<section class="block block-alt" id="calibration">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Picking a model that has room to learn</h2></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:640px"><thead><tr><th>Model (Groq, hosted)</th><th>Mean first try</th><th>Usable tasks (20–80%)</th><th>Too easy</th><th>Too hard</th></tr></thead><tbody><tr><td><code>qwen/qwen3.8-27b</code></td><td>100%</td><td>0</td><td>24</td><td>0</td></tr><tr><td><code>openai/gpt-oss-20b</code></td><td>96%</td><td>0</td><td>23</td><td>1</td></tr><tr><td><code>allam-2-7b</code></td><td>42%</td><td>2</td><td>9</td><td>13</td></tr></tbody></table></div><div class="table-wrap reveal"><table class="dt" style="min-width:560px"><thead><tr><th>Model (GitHub runner)</th><th>First try</th><th>After one retry</th><th>Time per call</th></tr></thead><tbody><tr><td><code>qwen2.5-coder:3b</code></td><td>0%</td><td>17%</td><td>about 10.5 s</td></tr><tr><td><code>qwen2.5-coder:7b</code></td><td>0%</td><td>26%</td><td>about 11 s</td></tr><tr class="hot"><td><code>qwen2.5-coder:14b</code></td><td>0%</td><td>60%</td><td>about 27 s</td></tr></tbody></table></div><div class="prose reveal"><p>Calibration asks: <em>is there room for memory to help?</em> The first table (3 seeds, baseline only, the older fully specified tasks) found strong models at the ceiling, so no memory effect could show. The second (1 seed, convention tasks) found the opposite problem: a 3B or 7B model cannot apply a hidden convention even when told. The 14B was the first that could fix one after feedback (60%), so it became the subject of the real run.</p></div>
+  </div>
+</section>
+<section class="block" id="lessons">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>What was learned along the way</h2></div>
+<div class="grid-2">
+<article class="card reveal"><h3>Strong models saturate</h3><p>96–100% first-try success with no memory leaves nothing to improve. Making tasks more numerous does not help; they must hide something learnable.</p></article>
+<article class="card reveal"><h3>Choosing and measuring on the same data fakes results</h3><p>The retention-gate bug was exactly this. Regression to the mean looked like forgetting until selection and measurement were split across seeds.</p></article>
+<article class="card reveal"><h3>Small sets give weak verdicts</h3><p>About 26 primary tasks detect a real +20 point effect roughly half the time. The first real run has 18, so it is a first look.</p></article>
+<article class="card reveal"><h3>Feedback alone fixes most conventions</h3><p>After one retry the baseline reaches 52%. Any memory gain therefore has to show up on the <em>first</em> try, which is why that is the primary metric.</p></article>
+<article class="card reveal"><h3>Simple retrieval was enough</h3><p>Plain word-matching TF-IDF did as well as anything tried (word pairs, stemming). Semantic retrieval is still untested.</p></article>
+<article class="card reveal"><h3>A hosted free tier is not an experiment platform</h3><p>A side run on a hosted model pointed the same way (+0.44, one seed) but its other seeds hit a daily token cap, so it is not part of the result. The real run moved onto pinned models on GitHub runners.</p></article>
+</div>
+  </div>
+</section>
+<section class="block"><div class="wrap pager"><a class="card pg" href="proof.html"><small>← Previous</small><b>Proof</b><span>Recompute it in your browser</span></a><a class="card pg pg-next" href="limits.html"><small>Next →</small><b>Limits</b><span>What this does not show, and how to help</span></a></div></section>
+</main>
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div class="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/></svg><span>Lucifer Lab</span></div>
+    <p>Built by Lakshit Mathur. A personal research project, open source.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li><li><a href="results.html">Results</a></li><li><a href="method.html">Method</a></li><li><a href="tasks.html">Tasks</a></li><li><a href="memory.html">Memory</a></li><li><a href="proof.html">Proof</a></li><li><a href="journey.html">Journey</a></li><li><a href="limits.html">Limits</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>

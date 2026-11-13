@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tasks — Lucifer Lab</title>
+<meta name="description" content="Browse all 30 hidden-convention tasks of Lucifer Lab: the spec the model sees, the hidden tests, a failing plain answer, the reference answer and the per-seed outcome for each condition.">
+<meta name="theme-color" content="#0d0c11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tasks — Lucifer Lab">
+<meta property="og:description" content="Browse all 30 hidden-convention tasks of Lucifer Lab: the spec the model sees, the hidden tests, a failing plain answer, the reference answer and the per-seed outcome for each condition.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="tasks">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Lucifer Lab, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/><circle cx="19" cy="19" r="2" fill="currentColor" opacity=".6"/></svg>
+      <span>Lucifer Lab</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="results.html">Results</a></li>
+      <li><a href="method.html">Method</a></li>
+      <li><a href="tasks.html" aria-current="page">Tasks</a></li>
+      <li><a href="memory.html">Memory</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="limits.html">Limits</a></li>
+    </ul>
+    <a class="btn btn-light nav-cta" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View code</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
+<main id="main">
+<section class="phero">
+  <div class="sky" aria-hidden="true"><div class="sky-glow" data-depth="14"></div><div class="orbs"><i class="orb o1" data-depth="30"></i><i class="orb o3" data-depth="40"></i></div></div>
+  <div class="wrap phero-in">
+    <p class="crumbs"><a href="index.html">Lucifer Lab</a><span>/</span><span>Tasks</span></p>
+    <p class="kicker-pill">Tasks</p>
+    <h1 data-split>All thirty tasks, <em>with the answers hidden in plain sight.</em></h1>
+    <p class="lede">The spec the model saw, the tests it was marked against, and what each condition did on every seed. If you doubt the exam, read the exam.</p>
+    <nav class="chips-nav" aria-label="On this page"><a href="#overview">At a glance</a><a href="#families">Conventions</a><a href="#explorer">Explorer</a></nav>
+  </div>
+</section>
+<section class="block" id="overview">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>All 30 tasks at a glance</h2><p>Tasks with their convention hidden. Twelve are for experience, twelve for the similar test and six for transfer.</p></div>
+<div class="prose reveal"><p>Each tile is one evaluation task. The number is how many of the 5 seeds Lucifer solved <strong>on the first try</strong>. No memory and Wrong notes scored 0 of 5 on every one of these tiles. Click a tile to jump to the task.</p></div>
+<div class="heat reveal"><a class="cell c0" href="#ident-4" title="shipment_id: Lucifer first try on 0 of 5 seeds"><b>shipment_id</b><small>0/5</small></a><a class="cell c3" href="#ident-5" title="refund_id: Lucifer first try on 3 of 5 seeds"><b>refund_id</b><small>3/5</small></a><a class="cell c0" href="#ident-6" title="ticket_id: Lucifer first try on 0 of 5 seeds"><b>ticket_id</b><small>0/5</small></a><a class="cell c4" href="#price-4" title="format_fee: Lucifer first try on 4 of 5 seeds"><b>format_fee</b><small>4/5</small></a><a class="cell c1" href="#price-5" title="format_discount: Lucifer first try on 1 of 5 seeds"><b>format_discount</b><small>1/5</small></a><a class="cell c2" href="#price-6" title="format_balance: Lucifer first try on 2 of 5 seeds"><b>format_balance</b><small>2/5</small></a><a class="cell c5" href="#date-4" title="format_deadline: Lucifer first try on 5 of 5 seeds"><b>format_deadline</b><small>5/5</small></a><a class="cell c5" href="#date-5" title="format_start: Lucifer first try on 5 of 5 seeds"><b>format_start</b><small>5/5</small></a><a class="cell c5" href="#date-6" title="format_range: Lucifer first try on 5 of 5 seeds"><b>format_range</b><small>5/5</small></a><a class="cell c5" href="#errors-4" title="parse_port: Lucifer first try on 5 of 5 seeds"><b>parse_port</b><small>5/5</small></a><a class="cell c5" href="#errors-5" title="parse_year: Lucifer first try on 5 of 5 seeds"><b>parse_year</b><small>5/5</small></a><a class="cell c5" href="#errors-6" title="parse_score: Lucifer first try on 5 of 5 seeds"><b>parse_score</b><small>5/5</small></a><a class="cell c1" href="#mixed-11" title="describe_order: Lucifer first try on 1 of 5 seeds"><b>describe_order</b><small>1/5</small></a><a class="cell c0" href="#mixed-12" title="invoice_line: Lucifer first try on 0 of 5 seeds"><b>invoice_line</b><small>0/5</small></a><a class="cell c0" href="#mixed-13" title="refund_note: Lucifer first try on 0 of 5 seeds"><b>refund_note</b><small>0/5</small></a><a class="cell c0" href="#mixed-14" title="receipt_header: Lucifer first try on 0 of 5 seeds"><b>receipt_header</b><small>0/5</small></a><a class="cell c0" href="#mixed-15" title="ticket_label: Lucifer first try on 0 of 5 seeds"><b>ticket_label</b><small>0/5</small></a><a class="cell c4" href="#mixed-16" title="total_line: Lucifer first try on 4 of 5 seeds"><b>total_line</b><small>4/5</small></a></div>
+<div class="heat-key reveal"><span><i class="cell c0"></i>0</span><span><i class="cell c2"></i>2</span><span><i class="cell c3"></i>3–4</span><span><i class="cell c5"></i>5 of 5</span></div>
+  </div>
+</section>
+<section class="block block-alt" id="families">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>The four conventions</h2></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:700px"><thead><tr><th>Family</th><th>The hidden convention</th><th>Tasks</th></tr></thead><tbody><tr><td><b>Identifiers</b></td><td>KIND in capitals (first three letters), a hyphen, the number padded to five digits</td><td><a href="#ident-1"><code>order_id</code></a>, <a href="#ident-2"><code>invoice_id</code></a>, <a href="#ident-3"><code>customer_id</code></a>, <a href="#ident-4"><code>shipment_id</code></a>, <a href="#ident-5"><code>refund_id</code></a>, <a href="#ident-6"><code>ticket_id</code></a></td></tr><tr><td><b>Prices</b></td><td>₹, thousands separators, two decimals; refunds and discounts get a leading minus</td><td><a href="#price-1"><code>format_price</code></a>, <a href="#price-2"><code>format_refund</code></a>, <a href="#price-3"><code>format_total</code></a>, <a href="#price-4"><code>format_fee</code></a>, <a href="#price-5"><code>format_discount</code></a>, <a href="#price-6"><code>format_balance</code></a></td></tr><tr><td><b>Dates</b></td><td>DD-Mon-YYYY, such as 05-Mar-2026</td><td><a href="#date-1"><code>format_date</code></a>, <a href="#date-2"><code>format_birthday</code></a>, <a href="#date-3"><code>format_expiry</code></a>, <a href="#date-4"><code>format_deadline</code></a>, <a href="#date-5"><code>format_start</code></a>, <a href="#date-6"><code>format_range</code></a></td></tr><tr><td><b>Error messages</b></td><td>ValueError: “invalid &lt;noun&gt;: &lt;input as given&gt;”</td><td><a href="#errors-1"><code>parse_age</code></a>, <a href="#errors-2"><code>parse_quantity</code></a>, <a href="#errors-3"><code>parse_percent</code></a>, <a href="#errors-4"><code>parse_port</code></a>, <a href="#errors-5"><code>parse_year</code></a>, <a href="#errors-6"><code>parse_score</code></a></td></tr><tr><td><b>Transfer (mixed)</b></td><td>two or three of the above in one line, or a new prefix</td><td><a href="#mixed-11"><code>describe_order</code></a>, <a href="#mixed-12"><code>invoice_line</code></a>, <a href="#mixed-13"><code>refund_note</code></a>, <a href="#mixed-14"><code>receipt_header</code></a>, <a href="#mixed-15"><code>ticket_label</code></a>, <a href="#mixed-16"><code>total_line</code></a></td></tr></tbody></table></div>
+  </div>
+</section>
+<section class="block" id="explorer">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Task explorer</h2><p>Every task as it was given: what the model was told, what the hidden tests check, a plain answer that fails and the reference that passes, and what each condition did on each of the five seeds.</p></div>
+<div class="filters reveal" role="group" aria-label="Filter tasks"><div><span>Phase</span><button type="button" class="fchip on" data-key="split" data-val="all">All</button><button type="button" class="fchip" data-key="split" data-val="exp">Experience</button><button type="button" class="fchip" data-key="split" data-val="sim">Similar</button><button type="button" class="fchip" data-key="split" data-val="xfer">Transfer</button></div><div><span>Convention</span><button type="button" class="fchip on" data-key="family" data-val="all">All</button><button type="button" class="fchip" data-key="family" data-val="ident">Identifiers</button><button type="button" class="fchip" data-key="family" data-val="price">Prices</button><button type="button" class="fchip" data-key="family" data-val="date">Dates</button><button type="button" class="fchip" data-key="family" data-val="errors">Errors</button><button type="button" class="fchip" data-key="family" data-val="mixed">Mixed</button></div></div><div class="legend dotkey reveal"><span><i class="d d1"></i>passed on the first try</span><span><i class="d d2"></i>passed after the retry</span><span><i class="d d0"></i>failed both</span><span class="dim">one dot per seed, seeds 0 to 4</span></div><div class="tgrid"><article class="tcard" id="ident-1" data-split="exp" data-family="ident">
+  <header><code class="tid">ident-1</code><span class="chip">Identifiers</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>order_id</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>order_id(n)</code> returns the identifier of order number n.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 4 first try, 1 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert order_id(7) == &#x27;ORD-00007&#x27;
+assert order_id(12345) == &#x27;ORD-12345&#x27;
+assert order_id(1) == &#x27;ORD-00001&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def order_id(n):
+    return f&#x27;ORD-{n}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def order_id(n):
+    return f&#x27;ORD-{n:05d}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="ident-2" data-split="exp" data-family="ident">
+  <header><code class="tid">ident-2</code><span class="chip">Identifiers</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>invoice_id</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>invoice_id(n)</code> returns the identifier of invoice number n.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 1 first try, 4 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 0 first try, 4 after retry, 1 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 1 first try, 4 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d1"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert invoice_id(7) == &#x27;INV-00007&#x27;
+assert invoice_id(98765) == &#x27;INV-98765&#x27;
+assert invoice_id(42) == &#x27;INV-00042&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def invoice_id(n):
+    return f&#x27;INV-{n}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def invoice_id(n):
+    return f&#x27;INV-{n:05d}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="ident-3" data-split="exp" data-family="ident">
+  <header><code class="tid">ident-3</code><span class="chip">Identifiers</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>customer_id</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>customer_id(n)</code> returns the identifier of customer number n.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 3 first try, 2 after retry, 0 failed"><i class="d d2"></i><i class="d d1"></i><i class="d d1"></i><i class="d d2"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert customer_id(3) == &#x27;CUS-00003&#x27;
+assert customer_id(10) == &#x27;CUS-00010&#x27;
+assert customer_id(54321) == &#x27;CUS-54321&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def customer_id(n):
+    return f&#x27;CUS-{n}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def customer_id(n):
+    return f&#x27;CUS-{n:05d}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="ident-4" data-split="sim" data-family="ident">
+  <header><code class="tid">ident-4</code><span class="chip">Identifiers</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>shipment_id</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>shipment_id(n)</code> returns the identifier of shipment number n.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert shipment_id(5) == &#x27;SHI-00005&#x27;
+assert shipment_id(123) == &#x27;SHI-00123&#x27;
+assert shipment_id(99999) == &#x27;SHI-99999&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def shipment_id(n):
+    return f&#x27;SHP-{n}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def shipment_id(n):
+    return f&#x27;SHI-{n:05d}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="ident-5" data-split="sim" data-family="ident">
+  <header><code class="tid">ident-5</code><span class="chip">Identifiers</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>refund_id</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>refund_id(n)</code> returns the identifier of refund number n.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 3 first try, 2 after retry, 0 failed"><i class="d d2"></i><i class="d d1"></i><i class="d d2"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert refund_id(4) == &#x27;REF-00004&#x27;
+assert refund_id(250) == &#x27;REF-00250&#x27;
+assert refund_id(7) == &#x27;REF-00007&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def refund_id(n):
+    return f&#x27;REF-{n}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def refund_id(n):
+    return f&#x27;REF-{n:05d}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="ident-6" data-split="sim" data-family="ident">
+  <header><code class="tid">ident-6</code><span class="chip">Identifiers</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>ticket_id</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>ticket_id(n)</code> returns the identifier of support ticket number n.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert ticket_id(9) == &#x27;TIC-00009&#x27;
+assert ticket_id(31) == &#x27;TIC-00031&#x27;
+assert ticket_id(20000) == &#x27;TIC-20000&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def ticket_id(n):
+    return f&#x27;TKT-{n}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def ticket_id(n):
+    return f&#x27;TIC-{n:05d}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="price-1" data-split="exp" data-family="price">
+  <header><code class="tid">price-1</code><span class="chip">Prices</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>format_price</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_price(cents)</code> shows an amount given in whole cents as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 4 first try, 1 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_price(123456) == &#x27;₹1,234.56&#x27;
+assert format_price(5) == &#x27;₹0.05&#x27;
+assert format_price(100000000) == &#x27;₹1,000,000.00&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_price(cents):
+    return f&#x27;{cents / 100:.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_price(cents):
+    return f&#x27;₹{cents / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="price-2" data-split="exp" data-family="price">
+  <header><code class="tid">price-2</code><span class="chip">Prices</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>format_refund</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_refund(cents)</code> shows a refund of the given whole cents as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 4 first try, 1 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d2"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_refund(2500) == &#x27;-₹25.00&#x27;
+assert format_refund(123456) == &#x27;-₹1,234.56&#x27;
+assert format_refund(1) == &#x27;-₹0.01&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_refund(cents):
+    return f&#x27;{cents / 100:.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_refund(cents):
+    return f&#x27;-₹{cents / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="price-3" data-split="exp" data-family="price">
+  <header><code class="tid">price-3</code><span class="chip">Prices</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>format_total</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_total(cents_list)</code> shows the sum of a list of amounts in whole cents as text; an empty list gives zero.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 4 after retry, 1 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 1 first try, 3 after retry, 1 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 4 after retry, 1 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_total([100000, 50050]) == &#x27;₹1,500.50&#x27;
+assert format_total([]) == &#x27;₹0.00&#x27;
+assert format_total([99]) == &#x27;₹0.99&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_total(cents_list):
+    return f&#x27;{sum(cents_list) / 100:.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_total(cents_list):
+    return f&#x27;₹{sum(cents_list) / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="price-4" data-split="sim" data-family="price">
+  <header><code class="tid">price-4</code><span class="chip">Prices</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>format_fee</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_fee(cents)</code> shows a fee given in whole cents as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 4 after retry, 1 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 4 first try, 1 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d2"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 3 after retry, 2 failed"><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_fee(250000) == &#x27;₹2,500.00&#x27;
+assert format_fee(75) == &#x27;₹0.75&#x27;
+assert format_fee(1234567) == &#x27;₹12,345.67&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_fee(cents):
+    return f&#x27;₹{cents / 100:.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_fee(cents):
+    return f&#x27;₹{cents / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="price-5" data-split="sim" data-family="price">
+  <header><code class="tid">price-5</code><span class="chip">Prices</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>format_discount</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_discount(cents)</code> shows a discount of the given whole cents as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 1 first try, 3 after retry, 1 failed"><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_discount(15000) == &#x27;-₹150.00&#x27;
+assert format_discount(99) == &#x27;-₹0.99&#x27;
+assert format_discount(2000000) == &#x27;-₹20,000.00&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_discount(cents):
+    return f&#x27;₹{cents / 100:,.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_discount(cents):
+    return f&#x27;-₹{cents / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="price-6" data-split="sim" data-family="price">
+  <header><code class="tid">price-6</code><span class="chip">Prices</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>format_balance</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_balance(cents)</code> shows an account balance, given in whole cents, as text; the balance can be negative.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 2 first try, 2 after retry, 1 failed"><i class="d d2"></i><i class="d d1"></i><i class="d d2"></i><i class="d d1"></i><i class="d d0"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 3 after retry, 2 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_balance(150000) == &#x27;₹1,500.00&#x27;
+assert format_balance(-2500) == &#x27;-₹25.00&#x27;
+assert format_balance(0) == &#x27;₹0.00&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_balance(cents):
+    return f&#x27;₹{cents / 100:,.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_balance(cents):
+    return f&#x27;-₹{-cents / 100:,.2f}&#x27; if cents &lt; 0 else f&#x27;₹{cents / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="date-1" data-split="exp" data-family="date">
+  <header><code class="tid">date-1</code><span class="chip">Dates</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>format_date</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_date(year, month, day)</code> writes a calendar date as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 1 first try, 4 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d1"></i><i class="d d2"></i><i class="d d2"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_date(2026, 3, 5) == &#x27;05-Mar-2026&#x27;
+assert format_date(1999, 12, 31) == &#x27;31-Dec-1999&#x27;
+assert format_date(2030, 1, 9) == &#x27;09-Jan-2030&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_date(year, month, day):
+    return f&#x27;{year}-{month:02d}-{day:02d}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_date(year, month, day):
+    months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
+    return f&#x27;{day:02d}-{months[month - 1]}-{year}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="date-2" data-split="exp" data-family="date">
+  <header><code class="tid">date-2</code><span class="chip">Dates</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>format_birthday</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_birthday(year, month, day)</code> writes a person&#x27;s birth date as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 3 first try, 2 after retry, 0 failed"><i class="d d2"></i><i class="d d1"></i><i class="d d1"></i><i class="d d2"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 2 first try, 3 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d1"></i><i class="d d2"></i><i class="d d1"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_birthday(1990, 7, 4) == &#x27;04-Jul-1990&#x27;
+assert format_birthday(2001, 11, 23) == &#x27;23-Nov-2001&#x27;
+assert format_birthday(1985, 2, 1) == &#x27;01-Feb-1985&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_birthday(year, month, day):
+    return f&#x27;{day}/{month}/{year}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_birthday(year, month, day):
+    months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
+    return f&#x27;{day:02d}-{months[month - 1]}-{year}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="date-3" data-split="exp" data-family="date">
+  <header><code class="tid">date-3</code><span class="chip">Dates</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>format_expiry</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_expiry(year, month, day)</code> writes the expiry date of a product as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 2 first try, 3 after retry, 0 failed"><i class="d d1"></i><i class="d d2"></i><i class="d d2"></i><i class="d d1"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 0 first try, 4 after retry, 1 failed"><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 4 after retry, 1 failed"><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_expiry(2027, 8, 15) == &#x27;15-Aug-2027&#x27;
+assert format_expiry(2026, 1, 2) == &#x27;02-Jan-2026&#x27;
+assert format_expiry(2040, 10, 31) == &#x27;31-Oct-2040&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_expiry(year, month, day):
+    return f&#x27;{day:02d}.{month:02d}.{year}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_expiry(year, month, day):
+    months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
+    return f&#x27;{day:02d}-{months[month - 1]}-{year}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="date-4" data-split="sim" data-family="date">
+  <header><code class="tid">date-4</code><span class="chip">Dates</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>format_deadline</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_deadline(year, month, day)</code> writes a deadline date as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_deadline(2026, 9, 30) == &#x27;30-Sep-2026&#x27;
+assert format_deadline(2026, 4, 3) == &#x27;03-Apr-2026&#x27;
+assert format_deadline(2028, 6, 11) == &#x27;11-Jun-2028&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_deadline(year, month, day):
+    return f&#x27;{day:02d}-{month:02d}-{year}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_deadline(year, month, day):
+    months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
+    return f&#x27;{day:02d}-{months[month - 1]}-{year}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="date-5" data-split="sim" data-family="date">
+  <header><code class="tid">date-5</code><span class="chip">Dates</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>format_start</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_start(year, month, day)</code> writes the start date of a project as text.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_start(2026, 5, 1) == &#x27;01-May-2026&#x27;
+assert format_start(2027, 12, 25) == &#x27;25-Dec-2027&#x27;
+assert format_start(2026, 2, 14) == &#x27;14-Feb-2026&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_start(year, month, day):
+    return f&#x27;{month}/{day}/{year}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_start(year, month, day):
+    months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
+    return f&#x27;{day:02d}-{months[month - 1]}-{year}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="date-6" data-split="sim" data-family="date">
+  <header><code class="tid">date-6</code><span class="chip">Dates</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>format_range</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>format_range(y1, m1, d1, y2, m2, d2)</code> writes the period from the first date to the second as text, with the word &#x27;to&#x27; between the two dates.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 4 after retry, 1 failed"><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert format_range(2026, 3, 5, 2026, 3, 9) == &#x27;05-Mar-2026 to 09-Mar-2026&#x27;
+assert format_range(2026, 12, 30, 2027, 1, 2) == &#x27;30-Dec-2026 to 02-Jan-2027&#x27;
+assert format_range(2030, 6, 1, 2030, 6, 1) == &#x27;01-Jun-2030 to 01-Jun-2030&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def format_range(y1, m1, d1, y2, m2, d2):
+    return f&#x27;{y1}-{m1:02d}-{d1:02d} to {y2}-{m2:02d}-{d2:02d}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def format_range(y1, m1, d1, y2, m2, d2):
+    months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
+    f = lambda y, m, d: f&#x27;{d:02d}-{months[m - 1]}-{y}&#x27;
+    return f(y1, m1, d1) + &#x27; to &#x27; + f(y2, m2, d2)</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="errors-1" data-split="exp" data-family="errors">
+  <header><code class="tid">errors-1</code><span class="chip">Error messages</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>parse_age</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>parse_age(s)</code> turns text into an age as an int; the age must be a whole number from 0 to 150, and anything else is an error.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 1 after retry, 4 failed"><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 4 first try, 0 after retry, 1 failed"><i class="d d1"></i><i class="d d0"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 2 first try, 0 after retry, 3 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d1"></i><i class="d d1"></i><i class="d d0"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 1 after retry, 4 failed"><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>try:
+    parse_age(&#x27;abc&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid age: abc&#x27;, str(e)
+assert parse_age(&#x27;42&#x27;) == 42
+try:
+    parse_age(&#x27;151&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid age: 151&#x27;, str(e)
+try:
+    parse_age(&#x27;&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid age: &#x27;, str(e)</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def parse_age(s):
+    n = int(s)
+    if not 0 &lt;= n &lt;= 150:
+        raise ValueError(&#x27;age out of range&#x27;)
+    return n</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def parse_age(s):
+    try:
+        n = int(s)
+    except ValueError:
+        raise ValueError(f&#x27;invalid age: {s}&#x27;) from None
+    if not 0 &lt;= n &lt;= 150:
+        raise ValueError(f&#x27;invalid age: {s}&#x27;)
+    return n</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="errors-2" data-split="exp" data-family="errors">
+  <header><code class="tid">errors-2</code><span class="chip">Error messages</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>parse_quantity</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>parse_quantity(s)</code> turns text into a quantity as an int; the quantity must be a whole number from 1 to 999, and anything else is an error.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 3 after retry, 2 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 2 first try, 2 after retry, 1 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 1 first try, 2 after retry, 2 failed"><i class="d d0"></i><i class="d d1"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 2 after retry, 3 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 2 after retry, 3 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>try:
+    parse_quantity(&#x27;abc&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid quantity: abc&#x27;, str(e)
+assert parse_quantity(&#x27;5&#x27;) == 5
+try:
+    parse_quantity(&#x27;1000&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid quantity: 1000&#x27;, str(e)
+try:
+    parse_quantity(&#x27;&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid quantity: &#x27;, str(e)</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def parse_quantity(s):
+    n = int(s)
+    if not 1 &lt;= n &lt;= 999:
+        raise ValueError(&#x27;quantity out of range&#x27;)
+    return n</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def parse_quantity(s):
+    try:
+        n = int(s)
+    except ValueError:
+        raise ValueError(f&#x27;invalid quantity: {s}&#x27;) from None
+    if not 1 &lt;= n &lt;= 999:
+        raise ValueError(f&#x27;invalid quantity: {s}&#x27;)
+    return n</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="errors-3" data-split="exp" data-family="errors">
+  <header><code class="tid">errors-3</code><span class="chip">Error messages</span><span class="chip chip-mid">Experience</span></header>
+  <h3><code>parse_percent</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>parse_percent(s)</code> turns text into a percent as an int; the percent must be a whole number from 0 to 100, and anything else is an error.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Experience phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, experience: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, experience: 4 first try, 0 after retry, 1 failed"><i class="d d0"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, experience: 1 first try, 3 after retry, 1 failed"><i class="d d2"></i><i class="d d1"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div></div><div class="outgroup"><small>Replay phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, replay: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, replay: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, replay: 0 first try, 4 after retry, 1 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>try:
+    parse_percent(&#x27;abc&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid percent: abc&#x27;, str(e)
+assert parse_percent(&#x27;50&#x27;) == 50
+try:
+    parse_percent(&#x27;101&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid percent: 101&#x27;, str(e)
+try:
+    parse_percent(&#x27;&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid percent: &#x27;, str(e)</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def parse_percent(s):
+    n = int(s)
+    if not 0 &lt;= n &lt;= 100:
+        raise ValueError(&#x27;percent out of range&#x27;)
+    return n</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def parse_percent(s):
+    try:
+        n = int(s)
+    except ValueError:
+        raise ValueError(f&#x27;invalid percent: {s}&#x27;) from None
+    if not 0 &lt;= n &lt;= 100:
+        raise ValueError(f&#x27;invalid percent: {s}&#x27;)
+    return n</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="errors-4" data-split="sim" data-family="errors">
+  <header><code class="tid">errors-4</code><span class="chip">Error messages</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>parse_port</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>parse_port(s)</code> turns text into a port as an int; the port must be a whole number from 1 to 65535, and anything else is an error.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 2 after retry, 3 failed"><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>try:
+    parse_port(&#x27;abc&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid port: abc&#x27;, str(e)
+assert parse_port(&#x27;8080&#x27;) == 8080
+try:
+    parse_port(&#x27;65536&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid port: 65536&#x27;, str(e)
+try:
+    parse_port(&#x27;&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid port: &#x27;, str(e)</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def parse_port(s):
+    n = int(s)
+    if not 1 &lt;= n &lt;= 65535:
+        raise ValueError(&#x27;port out of range&#x27;)
+    return n</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def parse_port(s):
+    try:
+        n = int(s)
+    except ValueError:
+        raise ValueError(f&#x27;invalid port: {s}&#x27;) from None
+    if not 1 &lt;= n &lt;= 65535:
+        raise ValueError(f&#x27;invalid port: {s}&#x27;)
+    return n</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="errors-5" data-split="sim" data-family="errors">
+  <header><code class="tid">errors-5</code><span class="chip">Error messages</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>parse_year</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>parse_year(s)</code> turns text into a year as an int; the year must be a whole number from 1900 to 2100, and anything else is an error.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>try:
+    parse_year(&#x27;abc&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid year: abc&#x27;, str(e)
+assert parse_year(&#x27;2026&#x27;) == 2026
+try:
+    parse_year(&#x27;2101&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid year: 2101&#x27;, str(e)
+try:
+    parse_year(&#x27;&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid year: &#x27;, str(e)</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def parse_year(s):
+    n = int(s)
+    if not 1900 &lt;= n &lt;= 2100:
+        raise ValueError(&#x27;year out of range&#x27;)
+    return n</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def parse_year(s):
+    try:
+        n = int(s)
+    except ValueError:
+        raise ValueError(f&#x27;invalid year: {s}&#x27;) from None
+    if not 1900 &lt;= n &lt;= 2100:
+        raise ValueError(f&#x27;invalid year: {s}&#x27;)
+    return n</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="errors-6" data-split="sim" data-family="errors">
+  <header><code class="tid">errors-6</code><span class="chip">Error messages</span><span class="chip chip-mid">Similar</span></header>
+  <h3><code>parse_score</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>parse_score(s)</code> turns text into a score as an int; the score must be a whole number from 0 to 10, and anything else is an error.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Similar phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, similar: 0 first try, 4 after retry, 1 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, similar: 5 first try, 0 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, similar: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>try:
+    parse_score(&#x27;abc&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid score: abc&#x27;, str(e)
+assert parse_score(&#x27;7&#x27;) == 7
+try:
+    parse_score(&#x27;11&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid score: 11&#x27;, str(e)
+try:
+    parse_score(&#x27;&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid score: &#x27;, str(e)</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def parse_score(s):
+    n = int(s)
+    if not 0 &lt;= n &lt;= 10:
+        raise ValueError(&#x27;score out of range&#x27;)
+    return n</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def parse_score(s):
+    try:
+        n = int(s)
+    except ValueError:
+        raise ValueError(f&#x27;invalid score: {s}&#x27;) from None
+    if not 0 &lt;= n &lt;= 10:
+        raise ValueError(f&#x27;invalid score: {s}&#x27;)
+    return n</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="mixed-11" data-split="xfer" data-family="mixed">
+  <header><code class="tid">mixed-11</code><span class="chip">Transfer (mixed)</span><span class="chip chip-mid">Transfer</span></header>
+  <h3><code>describe_order</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>describe_order(n, cents)</code> returns one line about an order: its identifier, then a colon and a space, then its price.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Transfer phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, transfer: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, transfer: 1 first try, 2 after retry, 2 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, transfer: 0 first try, 5 after retry, 0 failed"><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert describe_order(7, 123456) == &#x27;ORD-00007: ₹1,234.56&#x27;
+assert describe_order(12, 5) == &#x27;ORD-00012: ₹0.05&#x27;
+assert describe_order(99999, 100000000) == &#x27;ORD-99999: ₹1,000,000.00&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def describe_order(n, cents):
+    return f&#x27;ORD-{n}: {cents / 100:.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def describe_order(n, cents):
+    return f&#x27;ORD-{n:05d}: ₹{cents / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="mixed-12" data-split="xfer" data-family="mixed">
+  <header><code class="tid">mixed-12</code><span class="chip">Transfer (mixed)</span><span class="chip chip-mid">Transfer</span></header>
+  <h3><code>invoice_line</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>invoice_line(n, cents, year, month, day)</code> returns one line about an invoice: its identifier, a colon and a space, its price, a space, the word &#x27;on&#x27;, a space, and its date.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Transfer phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, transfer: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, transfer: 0 first try, 3 after retry, 2 failed"><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, transfer: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert invoice_line(7, 123456, 2026, 3, 5) == &#x27;INV-00007: ₹1,234.56 on 05-Mar-2026&#x27;
+assert invoice_line(250, 99, 1999, 12, 31) == &#x27;INV-00250: ₹0.99 on 31-Dec-1999&#x27;
+assert invoice_line(1, 100, 2030, 1, 9) == &#x27;INV-00001: ₹1.00 on 09-Jan-2030&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def invoice_line(n, cents, year, month, day):
+    return f&#x27;INV-{n}: {cents / 100:.2f} on {year}-{month:02d}-{day:02d}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def invoice_line(n, cents, year, month, day):
+    months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
+    return f&#x27;INV-{n:05d}: ₹{cents / 100:,.2f} on {day:02d}-{months[month - 1]}-{year}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="mixed-13" data-split="xfer" data-family="mixed">
+  <header><code class="tid">mixed-13</code><span class="chip">Transfer (mixed)</span><span class="chip chip-mid">Transfer</span></header>
+  <h3><code>refund_note</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>refund_note(n, cents)</code> returns one line about a refund: its identifier, then a colon and a space, then the amount refunded.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Transfer phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, transfer: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, transfer: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, transfer: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert refund_note(4, 2500) == &#x27;REF-00004: -₹25.00&#x27;
+assert refund_note(88, 123456) == &#x27;REF-00088: -₹1,234.56&#x27;
+assert refund_note(12345, 1) == &#x27;REF-12345: -₹0.01&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def refund_note(n, cents):
+    return f&#x27;REF-{n}: {cents / 100:.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def refund_note(n, cents):
+    return f&#x27;REF-{n:05d}: -₹{cents / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="mixed-14" data-split="xfer" data-family="mixed">
+  <header><code class="tid">mixed-14</code><span class="chip">Transfer (mixed)</span><span class="chip chip-mid">Transfer</span></header>
+  <h3><code>receipt_header</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>receipt_header(n, year, month, day)</code> returns the heading of a receipt: the receipt identifier, a space, a vertical bar, a space, and the date.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Transfer phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, transfer: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, transfer: 0 first try, 4 after retry, 1 failed"><i class="d d2"></i><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, transfer: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert receipt_header(7, 2026, 3, 5) == &#x27;REC-00007 | 05-Mar-2026&#x27;
+assert receipt_header(31, 2027, 12, 25) == &#x27;REC-00031 | 25-Dec-2027&#x27;
+assert receipt_header(20000, 2026, 1, 2) == &#x27;REC-20000 | 02-Jan-2026&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def receipt_header(n, year, month, day):
+    return f&#x27;REC-{n} | {year}-{month:02d}-{day:02d}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def receipt_header(n, year, month, day):
+    months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
+    return f&#x27;REC-{n:05d} | {day:02d}-{months[month - 1]}-{year}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="mixed-15" data-split="xfer" data-family="mixed">
+  <header><code class="tid">mixed-15</code><span class="chip">Transfer (mixed)</span><span class="chip chip-mid">Transfer</span></header>
+  <h3><code>ticket_label</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>ticket_label(s)</code> turns the text of a ticket number into the ticket identifier; the number must be a whole number from 1 to 99999, and anything else is an error.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Transfer phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, transfer: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, transfer: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, transfer: 0 first try, 0 after retry, 5 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>try:
+    ticket_label(&#x27;abc&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid ticket: abc&#x27;, str(e)
+assert ticket_label(&#x27;7&#x27;) == &#x27;TIC-00007&#x27;
+try:
+    ticket_label(&#x27;0&#x27;)
+    assert False, &#x27;did not raise&#x27;
+except ValueError as e:
+    assert str(e) == &#x27;invalid ticket: 0&#x27;, str(e)
+assert ticket_label(&#x27;12345&#x27;) == &#x27;TIC-12345&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def ticket_label(s):
+    n = int(s)
+    if not 1 &lt;= n &lt;= 99999:
+        raise ValueError(&#x27;ticket number out of range&#x27;)
+    return f&#x27;TIC-{n}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def ticket_label(s):
+    try:
+        n = int(s)
+    except ValueError:
+        raise ValueError(f&#x27;invalid ticket: {s}&#x27;) from None
+    if not 1 &lt;= n &lt;= 99999:
+        raise ValueError(f&#x27;invalid ticket: {s}&#x27;)
+    return f&#x27;TIC-{n:05d}&#x27;</code></pre></div></div>
+  </details>
+</article><article class="tcard" id="mixed-16" data-split="xfer" data-family="mixed">
+  <header><code class="tid">mixed-16</code><span class="chip">Transfer (mixed)</span><span class="chip chip-mid">Transfer</span></header>
+  <h3><code>total_line</code></h3>
+  <p class="tlabel">What the model is told</p>
+  <blockquote><code>total_line(cents_list)</code> returns the word &#x27;Total&#x27;, a colon and a space, then the sum of a list of amounts in whole cents as text; an empty list gives zero.</blockquote>
+  <div class="outs"><div class="outgroup"><small>Transfer phase</small><div class="outrow"><span>No memory</span><span class="dotrow" role="img" aria-label="No memory, transfer: 0 first try, 1 after retry, 4 failed"><i class="d d0"></i><i class="d d0"></i><i class="d d0"></i><i class="d d2"></i><i class="d d0"></i></span></div><div class="outrow"><span>Lucifer</span><span class="dotrow" role="img" aria-label="Lucifer, transfer: 4 first try, 1 after retry, 0 failed"><i class="d d1"></i><i class="d d1"></i><i class="d d1"></i><i class="d d2"></i><i class="d d1"></i></span></div><div class="outrow"><span>Wrong notes</span><span class="dotrow" role="img" aria-label="Wrong notes, transfer: 0 first try, 3 after retry, 2 failed"><i class="d d0"></i><i class="d d2"></i><i class="d d2"></i><i class="d d2"></i><i class="d d0"></i></span></div></div></div>
+  <details><summary>Hidden tests and the two reference answers</summary>
+    <p class="tlabel">The hidden tests (not shown to the model until one fails)</p><pre class=""><code>assert total_line([100000, 50050]) == &#x27;Total: ₹1,500.50&#x27;
+assert total_line([]) == &#x27;Total: ₹0.00&#x27;
+assert total_line([99]) == &#x27;Total: ₹0.99&#x27;</code></pre>
+    <div class="codepair"><div><p class="tlabel">A plain answer, which fails</p><pre class="bad"><code>def total_line(cents_list):
+    return f&#x27;Total: {sum(cents_list) / 100:.2f}&#x27;</code></pre></div><div><p class="tlabel">The reference answer, which passes</p><pre class="good"><code>def total_line(cents_list):
+    return f&#x27;Total: ₹{sum(cents_list) / 100:,.2f}&#x27;</code></pre></div></div>
+  </details>
+</article></div>
+  </div>
+</section>
+<section class="block"><div class="wrap pager"><a class="card pg" href="method.html"><small>← Previous</small><b>Method</b><span>How the test is built and scored</span></a><a class="card pg pg-next" href="memory.html"><small>Next →</small><b>Memory</b><span>The store, the chain, the audit</span></a></div></section>
+</main>
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div class="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/></svg><span>Lucifer Lab</span></div>
+    <p>Built by Lakshit Mathur. A personal research project, open source.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li><li><a href="results.html">Results</a></li><li><a href="method.html">Method</a></li><li><a href="tasks.html">Tasks</a></li><li><a href="memory.html">Memory</a></li><li><a href="proof.html">Proof</a></li><li><a href="journey.html">Journey</a></li><li><a href="limits.html">Limits</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>

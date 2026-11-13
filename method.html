@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method — Lucifer Lab</title>
+<meta name="description" content="How Lucifer Lab tests AI memory fairly: three conditions, four phases, hidden-convention tasks, exact prompts, retrieval, sandbox, paired bootstrap and the three promotion gates.">
+<meta name="theme-color" content="#0d0c11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Method — Lucifer Lab">
+<meta property="og:description" content="How Lucifer Lab tests AI memory fairly: three conditions, four phases, hidden-convention tasks, exact prompts, retrieval, sandbox, paired bootstrap and the three promotion gates.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="method">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Lucifer Lab, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/><circle cx="19" cy="19" r="2" fill="currentColor" opacity=".6"/></svg>
+      <span>Lucifer Lab</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="results.html">Results</a></li>
+      <li><a href="method.html" aria-current="page">Method</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="memory.html">Memory</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="limits.html">Limits</a></li>
+    </ul>
+    <a class="btn btn-light nav-cta" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View code</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
+<main id="main">
+<section class="phero">
+  <div class="sky" aria-hidden="true"><div class="sky-glow" data-depth="14"></div><div class="orbs"><i class="orb o1" data-depth="30"></i><i class="orb o3" data-depth="40"></i></div></div>
+  <div class="wrap phero-in">
+    <p class="crumbs"><a href="index.html">Lucifer Lab</a><span>/</span><span>Method</span></p>
+    <p class="kicker-pill">Method</p>
+    <h1 data-split>How the test is built, <em>and why it is fair.</em></h1>
+    <p class="lede">Three conditions, four phases and an exam built so that only learning can pass it. Everything here is taken from the code that ran, including the exact prompts.</p>
+    <nav class="chips-nav" aria-label="On this page"><a href="#question">Question</a><a href="#conditions">Conditions</a><a href="#phases">Phases</a><a href="#exam">The exam</a><a href="#solve">One task</a><a href="#prompts">Prompts</a><a href="#retrieval">Retrieval</a><a href="#referee">Referee</a><a href="#stats">Statistics</a><a href="#controls">Controls</a><a href="#infra">Infrastructure</a></nav>
+  </div>
+</section>
+<section class="block" id="question">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>The question</h2></div>
+<div class="prose reveal"><p>The one claim: <strong>an ordinary open-weight language model, given persistent memory of its own earlier attempts and a feedback signal, solves later, related tasks at a higher rate than the same model without them.</strong> A “no” would have been a valid result and would have been published. Everything else (other mechanisms, training, bigger systems) waits until this has a measured answer.</p></div>
+  </div>
+</section>
+<section class="block block-alt" id="conditions">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Three ways to prepare</h2><p>Same model, same exam. The only thing that differs is what the model may remember.</p></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:640px"><thead><tr><th></th><th>Writes lessons</th><th>Reads at evaluation</th><th>What it is for</th></tr></thead><tbody><tr><td><b>A · No memory</b></td><td>no</td><td>nothing</td><td>The honest starting line.</td></tr><tr><td><b>B · Lucifer</b></td><td>yes, in the experience phase</td><td>the 3 most relevant lessons</td><td>The thing being tested.</td></tr><tr><td><b>C · Wrong notes</b></td><td>yes, the same way</td><td>the 3 least relevant lessons</td><td>The control that matters most. If B beat A but not C, the gain would come from a longer prompt, not from learning.</td></tr></tbody></table></div><div class="prose reveal"><p>All three get the same model, the same prompts, the same tasks in the same order within a seed, and the same single retry. Memory is built fresh for every seed and condition, so nothing leaks between runs.</p></div>
+  </div>
+</section>
+<section class="block" id="phases">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Four phases of a run</h2><p>Every condition and seed goes through the same four phases with a fresh memory.</p></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:640px"><thead><tr><th>Phase</th><th>Tasks</th><th>Per condition and seed</th><th>Memory</th></tr></thead><tbody><tr><td><b>1 · Experience</b></td><td>12, in a seeded random order</td><td>12 attempts</td><td>Written to (Lucifer and Wrong notes)</td></tr><tr><td><b>2 · Similar</b></td><td>12 new tasks, same convention as an experience task</td><td>12</td><td>Read-only</td></tr><tr><td><b>3 · Transfer</b></td><td>6 new tasks that combine conventions</td><td>6</td><td>Read-only</td></tr><tr><td><b>4 · Replay</b></td><td>the 12 experience tasks again</td><td>12</td><td>Read-only</td></tr></tbody></table></div><div class="prose reveal"><p>That is 42 task attempts per condition and seed. Over 5 seeds and 3 conditions: 42 × 5 × 3 = <strong>630 recorded attempts</strong>. The evaluation order is shuffled once per seed and is the same for all three conditions. Learning happens only in phase 1; in phases 2 to 4 memory is frozen, so nothing can be learned from the exam itself.</p></div>
+  </div>
+</section>
+<section class="block block-alt" id="exam">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>The exam</h2><p>Hidden conventions only feedback can reveal.</p></div>
+<div class="grid-2">
+<article class="card reveal"><h3>Why the conventions are hidden</h3><p>The first exam used fully specified tasks and strong models scored 96 to 100% with no memory, so it could show nothing. Memory can only help where the model cannot know something up front but can learn it from feedback, like a house format or an exact error message. So each convention task gives a natural spec that leaves the convention out, and only the failing test reveals it.</p></article>
+<article class="card reveal"><h3>What “hidden” looks like</h3><p>The spec for <code>order_id</code> is just “returns the identifier of order number n”. The tests expect <code>'ORD-00007'</code>. Nothing in the spec says the prefix or the padding. A test (<code>test_convention_tasks_hide_their_convention_from_the_spec</code>) checks that no convention task leaks its convention into the spec.</p><p class="foot"><a href="tasks.html">Browse all 30 tasks →</a></p></article>
+</div><div class="table-wrap reveal"><table class="dt" style="min-width:760px"><thead><tr><th>Family</th><th>Convention</th><th>Experience</th><th>Similar</th><th>Transfer</th></tr></thead><tbody><tr><td>Identifiers</td><td><code>KIND-00007</code>: first three letters of the kind in capitals, a hyphen, five digits</td><td>3</td><td>3</td><td>in mixed tasks</td></tr><tr><td>Prices</td><td><code>₹1,234.56</code>: whole cents, rupee sign, separators, two decimals; refunds <code>-₹25.00</code></td><td>3</td><td>3</td><td>in mixed tasks</td></tr><tr><td>Dates</td><td><code>05-Mar-2026</code>: two-digit day, three-letter month, four-digit year</td><td>3</td><td>3</td><td>in mixed tasks</td></tr><tr><td>Error messages</td><td><code>ValueError('invalid age: abc')</code>: “invalid”, the noun, a colon, the input as given</td><td>3</td><td>3</td><td>in mixed tasks</td></tr><tr><td>Mixed (transfer)</td><td>one line combining two or three of the above, or a new prefix</td><td>–</td><td>–</td><td>6</td></tr></tbody></table></div><div class="prose reveal"><p>This run used the 30 <em>convention</em> tasks (12 experience, 12 similar, 6 transfer). The lab also holds 50 older <em>pitfall</em> tasks (fully specified, with traps like off-by-one ranges). They were used to build and calibrate the harness and are not part of this result.</p></div>
+  </div>
+</section>
+<section class="block" id="solve">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>One task, step by step</h2><p>What happens every time the model is asked to solve a task. This is the <code>_solve</code> function in <code>experiment.py</code>.</p></div>
+<ol class="pipe reveal">
+<li><b>retrieve_memory</b><span>Lucifer: the top 3 lessons for this task. Wrong notes: the 3 least relevant. No memory: none.</span></li>
+<li><b>build_prompt</b><span>If there are lessons, they are placed first under a short header, then the task.</span></li>
+<li><b>attempt 1</b><span>The model writes a function (seeded, so the run can be repeated). The sandbox runs the hidden tests in a separate process.</span></li>
+<li><b>attempt 2, only if attempt 1 failed</b><span>The previous code and the failing test's message are appended. Every condition gets exactly this one retry.</span></li>
+<li><b>memory.write, experience phase only</b><span>A failed first try writes a failure lesson. A failure fixed on the retry also writes a fix lesson.</span></li>
+<li><b>one row is recorded</b><span>First-try pass, pass after retry, attempts, tokens, time, which lessons were shown. Plus a trace of every step.</span></li>
+</ol>
+  </div>
+</section>
+<section class="block block-alt" id="prompts">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>The exact prompts</h2></div>
+<div class="grid-2">
+<article class="card reveal"><h3>The task prompt</h3><pre class=""><code>Write a Python function `order_id`.
+
+`order_id(n)` returns the identifier of order number n.
+
+Reply with the complete function in one ```python code block and nothing else.</code></pre></article>
+<article class="card reveal"><h3>With lessons from memory</h3><pre class=""><code>Notes from earlier tasks (they may or may not apply to this one):
+- &lt;lesson 1&gt;
+- &lt;lesson 2&gt;
+- &lt;lesson 3&gt;
+
+&lt;the task prompt above&gt;</code></pre></article>
+<article class="card reveal"><h3>The retry prompt</h3><pre class=""><code>&lt;the prompt above&gt;
+
+Your previous attempt failed.
+```python
+&lt;the previous code&gt;
+```
+&lt;the failing test&#x27;s message&gt;
+Reply with the corrected function in one ```python code block.</code></pre></article>
+<article class="card reveal"><h3>The two kinds of lesson</h3><pre class=""><code>failure:  A first attempt at &#x27;&lt;function&gt;&#x27; failed.
+          The spec said: &lt;spec&gt; &lt;the failing test&#x27;s message&gt;
+
+fix:      For &#x27;&lt;function&gt;&#x27; (&lt;spec&gt;) this version passed after a
+          failed first attempt:
+          &lt;the passing code, first 500 characters&gt;</code></pre></article>
+</div>
+<div class="prose reveal"><p>These are the exact templates from <code>src/lucifer/agent.py</code>. Lessons are plain text; the model is told they “may or may not apply”.</p></div>
+  </div>
+</section>
+<section class="block" id="retrieval">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>How lessons are found</h2></div>
+<div class="prose reveal"><p>Lucifer picks lessons with plain <strong>TF-IDF cosine similarity over words</strong>: no neural model, no download. The query is the task's spec plus its function name; each lesson is a document; stop words are dropped. Lessons scoring below <code>0.08</code> are not shown, and at most <strong>k = 3</strong> are. Ties go to the newer lesson.</p>
+<p>The control reverses the ranking: Wrong notes shows the three lessons that match the task <em>least</em>. Random picks were tried first and were often relevant by luck in a small memory, which would have blurred the comparison. Simple word matching was as good as anything tried (word pairs, stemming); semantic retrieval is listed as future work.</p></div>
+<div class="grid-2"><article class="card reveal"><h3>Retrieval in one function</h3><pre class=""><code>def relevant(query, lessons, k=3, min_score=0.08):
+    # idf = log((n + 1) / (docs_with_word + 1)) + 1
+    # score = cosine(tfidf(query), tfidf(lesson))
+    # sort by (-score, -version); keep score &gt;= min_score
+    return top_k_lessons</code></pre></article><article class="card reveal"><h3>The control, in one line</h3><pre class=""><code>def least_relevant(query, lessons, k=3):
+    ranked = relevant(query, lessons, k=len(lessons), min_score=-1.0)
+    return ranked[::-1][:k]   # the k worst matches</code></pre></article></div>
+  </div>
+</section>
+<section class="block block-alt" id="referee">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>The referee</h2><p>How an answer is marked.</p></div>
+<div class="prose reveal"><p>Model code is run by <code>SandboxExecutor</code> in a <strong>separate Python process</strong> in a throw-away folder with an empty environment, a 5-second CPU limit and a 1 MB file limit (8 seconds wall time). The candidate is compiled once, then each hidden check is executed in turn. The first failing check is reported to the model as <code>this check failed: &lt;the assert&gt; (&lt;the error&gt;)</code>, at most 400 characters. Code is taken from the first fenced block of the reply.</p>
+<p>This is hygiene, <strong>not a security boundary</strong>: model code could still reach the network or files. These tasks are tiny and the run was on a throw-away CI runner. Anything at larger scale needs a container.</p></div>
+  </div>
+</section>
+<section class="block" id="stats">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Statistics and the three gates</h2></div>
+<div class="prose reveal"><p>The unit of analysis is the <strong>task</strong>, not the attempt. For each of the 18 primary tasks the first-try result is averaged over its seeds, giving one number per task and condition. The effect is the mean over tasks of (Lucifer − baseline). The interval comes from a <strong>paired bootstrap</strong>: resample the 18 task differences with replacement 10,000 times and take the 2.5th and 97.5th percentiles. Resampling tasks (not attempts) is the cautious choice: seeds of the same task are not independent evidence.</p>
+<p>The result is +0.50 with a 95% interval of +0.30 to +0.70. You can <a href="proof.html#recompute">run this bootstrap in your own browser</a> on the published rows.</p></div>
+<div class="grid-3">
+<article class="card reveal"><h3>Gate 1 · Improvement</h3><p>Both intervals, (Lucifer − baseline) and (Lucifer − wrong notes), above zero. “Hurts” is declared if the baseline comparison sits entirely below zero.</p></article>
+<article class="card reveal"><h3>Gate 2 · Retention</h3><p>Tasks the baseline solves at least 80% of the time on half of the seeds are picked; Lucifer may lose at most 5 points on them on the <em>other</em> half. Picking and measuring on the same runs fakes “forgetting” (regression to the mean), a bug the dashboard exposed.</p></article>
+<article class="card reveal"><h3>Gate 3 · Auditability</h3><p>The hash chain verifies, rolling back to the middle and forward again reproduces the same history on a copy, and every lesson has provenance (task, run, seed, version).</p></article>
+</div>
+  </div>
+</section>
+<section class="block block-alt" id="controls">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Fairness controls</h2><p>Each one is enforced by an automated test in the repository.</p></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:760px"><thead><tr><th>Control</th><th>How it is done</th><th>Where it is tested</th></tr></thead><tbody><tr><td>Same exam for all conditions</td><td>One shuffled evaluation order per seed, shared by all three</td><td><code>test_every_condition_sees_the_same_tasks_in_the_same_order</code></td></tr><tr><td>Baseline never touches memory</td><td>No store is created for it</td><td><code>test_baseline_never_reads_or_writes_memory</code></td></tr><tr><td>No learning from the exam</td><td>Memory is read-only after the experience phase</td><td><code>test_memory_is_frozen_during_evaluation</code></td></tr><tr><td>Repeatable</td><td>Seeds are explicit; model and tool versions are pinned</td><td><code>test_same_inputs_give_the_same_results</code></td></tr><tr><td>Tasks can tell right from wrong</td><td>Every task has a reference answer that passes and a plausible naive answer that fails</td><td><code>test_reference_passes_and_naive_fails</code></td></tr><tr><td>Seeds can be merged safely</td><td>Overlapping seeds, or runs of different settings, are refused</td><td><code>test_overlapping_seeds_are_refused</code>, <code>test_runs_of_different_experiments_are_refused</code></td></tr></tbody></table></div>
+  </div>
+</section>
+<section class="block" id="infra">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Where it ran</h2></div>
+<div class="prose reveal"><p>Nothing heavy runs on a laptop. The experiment is a GitHub Actions workflow (<code>experiment.yml</code>): one parallel job per seed on a CPU runner (4 vCPU, no GPU), each installing a pinned Ollama and pulling the model, then a merge job that joins the seeds, runs the report and the gates, and optionally commits the result files. The run behind this site is <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/actions/runs/43163827087" rel="noopener">workflow run 43163827087</a>; the published files are in commit <code>1a88d19</code>.</p></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:420px"><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>Model</td><td><code>qwen2.5-coder:14b</code> (via Ollama, backend <code>ollama:qwen2.5-coder:14b</code>)</td></tr><tr><td>Temperature</td><td>0.7</td></tr><tr><td>Seeds</td><td>0, 1, 2, 3, 4</td></tr><tr><td>Lessons shown per task (k)</td><td>3</td></tr><tr><td>Retries</td><td>1</td></tr><tr><td>Tasks</td><td>30 convention tasks</td></tr><tr><td>Recorded attempts</td><td>630</td></tr></tbody></table></div>
+  </div>
+</section>
+<section class="block"><div class="wrap pager"><a class="card pg" href="results.html"><small>← Previous</small><b>Results</b><span>Every number, with counts</span></a><a class="card pg pg-next" href="tasks.html"><small>Next →</small><b>Tasks</b><span>All 30 tasks, hidden tests and outcomes</span></a></div></section>
+</main>
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div class="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/></svg><span>Lucifer Lab</span></div>
+    <p>Built by Lakshit Mathur. A personal research project, open source.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li><li><a href="results.html">Results</a></li><li><a href="method.html">Method</a></li><li><a href="tasks.html">Tasks</a></li><li><a href="memory.html">Memory</a></li><li><a href="proof.html">Proof</a></li><li><a href="journey.html">Journey</a></li><li><a href="limits.html">Limits</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limits and next steps — Lucifer Lab</title>
+<meta name="description" content="What the Lucifer Lab Version 1 result does not show: the baseline, weak transfer, small sample, unfair tasks and more. Plus the power study, threats to validity and how developers can contribute.">
+<meta name="theme-color" content="#0d0c11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Limits and next steps — Lucifer Lab">
+<meta property="og:description" content="What the Lucifer Lab Version 1 result does not show: the baseline, weak transfer, small sample, unfair tasks and more. Plus the power study, threats to validity and how developers can contribute.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="limits">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Lucifer Lab, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/><circle cx="19" cy="19" r="2" fill="currentColor" opacity=".6"/></svg>
+      <span>Lucifer Lab</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="results.html">Results</a></li>
+      <li><a href="method.html">Method</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="memory.html">Memory</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="limits.html" aria-current="page">Limits</a></li>
+    </ul>
+    <a class="btn btn-light nav-cta" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View code</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
+<main id="main">
+<section class="phero">
+  <div class="sky" aria-hidden="true"><div class="sky-glow" data-depth="14"></div><div class="orbs"><i class="orb o1" data-depth="30"></i><i class="orb o3" data-depth="40"></i></div></div>
+  <div class="wrap phero-in">
+    <p class="crumbs"><a href="index.html">Lucifer Lab</a><span>/</span><span>Limits</span></p>
+    <p class="kicker-pill">Limits and next steps</p>
+    <h1 data-split>What this does <em>not</em> show, and how to help.</h1>
+    <p class="lede">Every claim on this site has a limit. They are written down here with the evidence, together with the ways a developer can make the next result harder to dismiss.</p>
+    <nav class="chips-nav" aria-label="On this page"><a href="#limits">Limits</a><a href="#power">Power</a><a href="#threats">Threats</a><a href="#conclusions">What would change it</a><a href="#help">Contribute</a></nav>
+  </div>
+</section>
+<section class="block" id="limits">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>What this result does not show</h2><p>A “no effect” result would have been published too. These are the reasons to read this one as a first look, not proof, each with what would settle it.</p></div>
+<div class="limits-list"><article class="card limit reveal"><span class="num">1</span><h3>The baseline is zero by design</h3><p>The conventions are hidden, so No memory solved 0 of 210 attempts first try. After one retry it reaches 52%. The gain is mostly skipping a failed first try, not solving something that was otherwise unsolvable.</p><p class="fix"><b>What would settle it</b> Report first-try and after-retry side by side (done), and add tasks where the baseline sits in the middle.</p></article><article class="card limit reveal"><span class="num">2</span><h3>Transfer is weak</h3><p>On similar tasks Lucifer got 67%; on tasks that combine conventions, 17%. It helps most when a new task is close to an old one.</p><p class="fix"><b>What would settle it</b> A stronger transfer test with new conventions, not only combinations of seen ones.</p></article><article class="card limit reveal"><span class="num">3</span><h3>The lesson contains the answer</h3><p>In these tasks a lesson literally includes the failing test, so the model is using a pasted correct example. Replay at 98% is memorisation. This is real but modest learning.</p><p class="fix"><b>What would settle it</b> Tasks where the lesson must be abstracted, not copied.</p></article><article class="card limit reveal"><span class="num">4</span><h3>One model, 18 scored tasks</h3><p>One 14B coder model, 12 similar and 6 transfer tasks, 5 seeds, written by the author. The interval is wide for a reason.</p><p class="fix"><b>What would settle it</b> A second model, and at least about 48 scored tasks (see the power table).</p></article><article class="card limit reveal"><span class="num">5</span><h3>Retention is undecided</h3><p>Because the baseline masters no task, gate 2 has nothing to test and stays inconclusive. The overall verdict is therefore “not all gates passed”.</p><p class="fix"><b>What would settle it</b> Tasks the baseline already solves often, so forgetting can actually be measured.</p></article><article class="card limit reveal"><span class="num">6</span><h3>Some tasks may be unfair</h3><p>Lucifer never solved <code>shipment_id</code> or <code>ticket_id</code> first try (0 of 5 each), although all seeds passed after a retry. The lessons show <code>ORD</code>, <code>INV</code> and <code>CUS</code>; a model may reasonably guess <code>SHP</code> or <code>TKT</code>. This reading is untested.</p><p class="fix"><b>What would settle it</b> Read the traces for those tasks; fix or replace any task whose convention a lesson cannot disambiguate.</p></article><article class="card limit reveal"><span class="num">7</span><h3>Wrong notes leak a little</h3><p>In the experience phase, Wrong notes solved 7 of 60 first try against 0 for No memory. Irrelevant lessons can still carry hints early on. In the primary phases it solved 0 of 90.</p><p class="fix"><b>What would settle it</b> Keep the control; consider a second control with lessons from a different domain.</p></article><article class="card limit reveal"><span class="num">8</span><h3>A side run, not merged</h3><p>An earlier hosted run on another model (one seed) pointed the same way, +0.44, but its other seeds hit a free-tier daily token cap. It is not part of the result.</p><p class="fix"><b>What would settle it</b> Re-run on a pinned model with all seeds.</p></article></div>
+  </div>
+</section>
+<section class="block block-alt" id="power">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Why 18 tasks is thin</h2><p>The power study, measured on simulated agents.</p></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:640px"><thead><tr><th>Similar + transfer tasks</th><th>Gate 1 passed, real +20 pt effect</th><th>Gate 1 passed, no effect</th></tr></thead><tbody><tr><td>12 (first 24-task set)</td><td>19 of 60 (32%)</td><td>0 of 60</td></tr><tr><td>24</td><td>43 of 60 (72%)</td><td>1 of 60</td></tr><tr><td>26 (the 50-task pitfall set)</td><td>32 of 60 (53%)</td><td>1 of 60</td></tr><tr class="hot"><td><b>18 (this run)</b></td><td>not measured; between the 12 and 24 rows</td><td>–</td></tr><tr><td>48</td><td>59 of 60 (98%)</td><td>3 of 60</td></tr><tr><td>52</td><td>59 of 60 (98%)</td><td>0 of 60</td></tr><tr><td>72</td><td>60 of 60</td><td>1 of 60</td></tr></tbody></table></div><div class="prose reveal"><p>Measured on simulated agents with a known +20 point effect, 5 seeds, 60 simulated experiments per row. With 18 primary tasks, a real effect of that size is detected only some of the time, so a “no effect” from a set this small would have been weak evidence, and a “yes” is a first look. Even 60 runs leave about ±6 points of noise on these percentages. Smaller true effects need more tasks; that is not measured yet.</p></div>
+  </div>
+</section>
+<section class="block" id="threats">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Threats to validity</h2><p>Things that could make any result here misleading.</p></div>
+<div class="table-wrap reveal"><table class="dt" style="min-width:700px"><thead><tr><th>Threat</th><th>How it could mislead</th><th>Guard so far</th></tr></thead><tbody><tr><td>Memorisation by the base model</td><td>The model may have seen similar tasks</td><td>A replay phase; fresh task families still needed</td></tr><tr><td>Near-duplicate leakage</td><td>A similar task may differ only by name</td><td>Similar tasks differ in function, not just names</td></tr><tr><td>Prompt length</td><td>More text alone could change behaviour</td><td>The Wrong notes control</td></tr><tr><td>Noise</td><td>Few seeds, temperature 0.7</td><td>Bootstrap over tasks; intervals, not just means</td></tr><tr><td>Model drift</td><td>Hosted models change under one name</td><td>Pinned model and tool versions on runners</td></tr><tr><td>Author-written tasks</td><td>The exam and its answer key come from the same person</td><td>Open tasks and tests; external tasks wanted</td></tr><tr><td>Code execution</td><td>Model code runs on the runner</td><td>Separate process with limits; not a security boundary</td></tr></tbody></table></div>
+  </div>
+</section>
+<section class="block block-alt" id="conclusions">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>What would change the conclusion</h2></div>
+<div class="grid-2">
+<article class="card reveal"><h3>What would strengthen the claim</h3><ul class="bul"><li>The gain holds on a second, different model.</li><li>It holds on a held-out task family never seen while designing.</li><li>It holds with 48 or more scored tasks and a tighter interval.</li><li>Transfer improves with a better-built test.</li></ul></article>
+<article class="card reveal"><h3>What would weaken it</h3><ul class="bul"><li>The gain disappears on a pinned larger model that already fixes conventions.</li><li>Fixing the unfair tasks removes most of the effect.</li><li>A harder control, with lessons from another domain, matches Lucifer.</li><li>The interval crosses zero as tasks are added.</li></ul></article>
+</div>
+<div class="prose reveal"><p>If the next run shows no effect, it gets published the same way. The gates were fixed before the run, and the code and rows are open so anyone can recompute them.</p></div>
+  </div>
+</section>
+<section class="block" id="help">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Help wanted</h2><p>Open source contributions that would make this stronger.</p></div>
+<div class="prose reveal"><p>This is a small open project and the most useful help is scrutiny. Concrete ways in, each a self-contained pull request:</p></div>
+<div class="grid-3">
+<article class="card reveal"><h3>Add tasks</h3><p>New hidden conventions, not renamed copies. Each task needs hidden tests, a reference answer that passes and a naive answer that fails. The existing test <code>test_reference_passes_and_naive_fails</code> checks it. Work in <code>src/lucifer/tasks.py</code>.</p></article>
+<article class="card reveal"><h3>Add a model</h3><p>Run the same experiment on a second model and report it unedited. Backends live in <code>src/lucifer/backends/</code>; runs go through the <code>experiment.yml</code> workflow, no GPU needed.</p></article>
+<article class="card reveal"><h3>A held-out family</h3><p>Design a task family before looking at results, then evaluate it once. This tests generalisation instead of memorisation.</p></article>
+<article class="card reveal"><h3>Stronger transfer</h3><p>Conventions that must be abstracted from examples rather than copied, so memory has to do more than paste a test.</p></article>
+<article class="card reveal"><h3>Semantic retrieval</h3><p>Try embeddings against the TF-IDF baseline in <code>retrieval.py</code>, keeping the same control and metric.</p></article>
+<article class="card reveal"><h3>Review the method</h3><p>Read the <a href="method.html">method</a> and the <a href="tasks.html">tasks</a> and tell me where they are weak. Issues with evidence are as welcome as code.</p></article>
+</div>
+<div class="cta-row center reveal"><a class="btn btn-light" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">Open the repository <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues" rel="noopener">Open an issue</a></div>
+  </div>
+</section>
+<section class="block"><div class="wrap pager"><a class="card pg" href="journey.html"><small>← Previous</small><b>Journey</b><span>What was tried, caught and fixed</span></a><a class="card pg pg-next" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener"><small>Next →</small><b>The code</b><span>Open the repository</span></a></div></section>
+</main>
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div class="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/></svg><span>Lucifer Lab</span></div>
+    <p>Built by Lakshit Mathur. A personal research project, open source.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li><li><a href="results.html">Results</a></li><li><a href="method.html">Method</a></li><li><a href="tasks.html">Tasks</a></li><li><a href="memory.html">Memory</a></li><li><a href="proof.html">Proof</a></li><li><a href="journey.html">Journey</a></li><li><a href="limits.html">Limits</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>

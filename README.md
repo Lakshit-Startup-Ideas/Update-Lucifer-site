@@ -9,7 +9,10 @@ Experiment code and raw results: https://github.com/Lakshit-Startup-Ideas/Lucife
 
 | File | What it is |
 |---|---|
-| `index.html` | the whole page (hero, result, method, milestones, limits, reproduce, FAQ) |
+| `index.html` | the short version: hero, result, method, memory, milestones, limits, reproduce, FAQ, and links to the detail pages |
+| `results.html`, `method.html`, `tasks.html`, `memory.html`, `proof.html`, `journey.html`, `limits.html` | the detail pages. **Generated** by `tools/build.py` from the published run; do not edit by hand |
+| `data/` | the published run (`rows.json`, `audits.json`, `meta.json`, `report.txt`), served so the Proof page can recompute the result in the browser |
+| `tools/build.py` | regenerates the detail pages and `data/` from a checkout of Lucifer-BenchMarks |
 | `styles.css` | all styling, design tokens at the top (`:root`) |
 | `script.js` | reveal on scroll, count-ups, hero depth and tilt, live demo, the 3D memory chain, chart replay, mobile menu (the page reads fine without it) |
 | `favicon.svg`, `robots.txt` | icon, crawler rules |
@@ -23,6 +26,16 @@ No libraries, no build step: CSS 3D transforms plus one small script.
 - Result: the chart replays on demand (Replay button), bars show their counts on hover, and the +0.50 counts up.
 - Memory (`#memory`): a 3D chain of example lessons. Drag or use the arrow keys to turn it; add a lesson, tamper with lesson 2 (the check fails from that point on), roll back (archived, not erased) or reset. The fingerprint is a toy hash for illustration, and the lessons are examples, not real data.
 - Cards lean toward the pointer on devices with a mouse. With `prefers-reduced-motion`, everything is static and nothing is hidden.
+
+## Updating the numbers
+
+The detail pages are static HTML, generated so that no figure is typed by hand. After a new run is published in the Lucifer-BenchMarks repository:
+
+```bash
+python3 tools/build.py ../lucifer-lab   # path to your Lucifer-BenchMarks checkout
+```
+
+This rewrites the seven detail pages and `data/`, reading the task text from `src/lucifer/tasks.py` and the figures from `results/published/qwen14b-convention/`. If the run folder name changes, edit `RUN` and the run id and commit at the top of `tools/build.py`. The home page (`index.html`) is hand-written: update the figures listed below there.
 
 ## Run it locally
 

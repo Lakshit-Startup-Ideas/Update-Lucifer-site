@@ -28,13 +28,13 @@
       <span>Lucifer Lab</span>
     </a>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#result">Result</a></li>
-      <li><a href="#method">Method</a></li>
-      <li><a href="#memory">Memory</a></li>
-      <li><a href="#milestones">Milestones</a></li>
-      <li><a href="#limits">Limits</a></li>
-      <li><a href="#reproduce">Reproduce</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="results.html">Results</a></li>
+      <li><a href="method.html">Method</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="memory.html">Memory</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="limits.html">Limits</a></li>
     </ul>
     <a class="btn btn-light nav-cta" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">View code</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
@@ -125,6 +125,26 @@
   </div>
 </section>
 
+<!-- EXPLORE -->
+<section class="section" id="explore">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Go deeper</p>
+      <h2>The short version is on this page. <em>The evidence is on these.</em></h2>
+      <p>Seven pages that show everything in detail, with the counts, the exact prompts, all thirty tasks, and a way to recompute the result yourself.</p>
+    </div>
+    <div class="explore">
+      <a class="card reveal wide" href="proof.html"><b>Proof of concept</b><span>Recompute the headline and the bootstrap interval live in your browser from the raw rows, then follow one lesson from a failed attempt to a first-try pass.</span><em>Open →</em></a>
+      <a class="card reveal wide" href="results.html"><b>Results</b><span>Every number with its count: by phase, convention, task and seed; the retry effect, cost, retrieval and the three gates.</span><em>Open →</em></a>
+      <a class="card reveal" href="method.html"><b>Method</b><span>Conditions, phases, exact prompts, retrieval, the referee and the statistics.</span><em>Open →</em></a>
+      <a class="card reveal" href="tasks.html"><b>Tasks</b><span>All 30 tasks, their hidden tests, and what each condition did on every seed.</span><em>Open →</em></a>
+      <a class="card reveal" href="memory.html"><b>Memory</b><span>The hash chain, rollback and the audit, with a 3D chain to try and break.</span><em>Open →</em></a>
+      <a class="card reveal" href="journey.html"><b>Journey</b><span>The timeline, calibration, and the bugs found and fixed on the way.</span><em>Open →</em></a>
+      <a class="card reveal wide" href="limits.html"><b>Limits and how to help</b><span>What this does not show, the power study, threats to validity, and open-source ways to contribute.</span><em>Open →</em></a>
+    </div>
+  </div>
+</section>
+
 <!-- RESULT -->
 <section class="section" id="result">
   <div class="wrap">
@@ -132,6 +152,7 @@
       <p class="kicker">The result</p>
       <h2>On hidden house conventions, memory lifted first-try success by <em>fifty points.</em></h2>
       <p>Model <code>qwen2.5-coder:14b</code>, 30 convention tasks (18 scored), 5 seeds, run on GitHub's own servers. First try means the very first answer passed every hidden test, with no retry.</p>
+      <a class="more" href="results.html">Every number, with counts →</a>
     </div>
 
     <div class="grid-result">
@@ -238,6 +259,7 @@
       <p class="kicker">The method</p>
       <h2>Same model, same exam, three ways to prepare.</h2>
       <p>Everything is identical except what the model is allowed to remember. Hidden tests mark every answer, and a failed first try gets exactly one retry with the test output.</p>
+      <a class="more" href="method.html">The full method →</a>
     </div>
 
     <div class="grid-3">
@@ -288,6 +310,7 @@
       <p class="kicker">The memory</p>
       <h2>A chain of lessons you can <em>touch, break and roll back.</em></h2>
       <p>Drag the chain to turn it. Edit an old lesson and watch the check fail from that point on. Roll back and the lesson is archived, never erased. This is a small live illustration of the idea, with example lessons.</p>
+      <a class="more" href="memory.html">How the memory works →</a>
     </div>
 
     <div class="mem-grid">
@@ -314,7 +337,7 @@
           <li><b>Archived, not erased</b><span>Rolling back moves lessons aside. Their record stays.</span></li>
           <li><b>Traceable</b><span>Every lesson records which attempt wrote it.</span></li>
         </ul>
-        <p class="foot">Illustration only: example lessons and a toy fingerprint. The real store and its checks are in the repository.</p>
+        <p class="foot">Illustration: example lessons, but the same SHA-256 formula as the real store, computed in your browser.</p>
       </div>
     </div>
   </div>
@@ -326,6 +349,7 @@
     <div class="section-head reveal">
       <p class="kicker">Achievements</p>
       <h2>What Version 1 took to get right.</h2>
+      <a class="more" href="journey.html">The full story →</a>
     </div>
     <ol class="timeline">
       <li class="reveal"><span class="t-dot"></span><div><b>The lab itself</b><p>80 tasks (50 pitfall, 30 hidden-convention) with hidden tests, a sandboxed runner, hash-chained memory with rollback, three conditions, a paired bootstrap and three gates. 125 tests pass.</p></div></li>
@@ -360,6 +384,7 @@
       <p class="kicker">Honest limits</p>
       <h2>What this result does <em>not</em> show.</h2>
       <p>A "no effect" result would have been published too. These are the reasons to read this one as a first look, not proof.</p>
+      <a class="more" href="limits.html">Limits in detail, and how to help →</a>
     </div>
     <div class="grid-3">
       <article class="card reveal"><h3>The baseline is zero by design</h3><p>The conventions are hidden, so no model can pass first try without learning them. The gain is mostly skipping the failed first try. After one retry, no memory already reaches 52%.</p></article>
@@ -379,6 +404,7 @@
       <p class="kicker">Reproduce it</p>
       <h2>Open code, and a run you can start yourself.</h2>
       <p>The experiment runs as a GitHub Actions workflow, so no local models and no GPU are needed. Results land in the repository with the report and raw rows.</p>
+      <a class="more" href="proof.html#reproduce">Reproduce and verify →</a>
     </div>
     <div class="grid-2">
       <article class="card reveal">
@@ -444,8 +470,14 @@ publish   true</code></pre>
     <p>Built by Lakshit Mathur. A personal research project, open source.</p>
     <ul>
       <li><a href="#result">Result</a></li>
-      <li><a href="#method">Method</a></li>
-      <li><a href="#limits">Limits</a></li>
+      <li><a href="results.html">Results (full)</a></li>
+      <li><a href="method.html">Method</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="memory.html">Memory</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="limits.html">Limits</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener">GitHub</a></li>
     </ul>
   </div>
