@@ -1,0 +1,25 @@
+name: Milestones are append-only
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  append-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Unit tests for the checker
+        run: cd tools && python3 -m unittest test_check_append_only
+      - name: No published milestone was edited or removed
+        run: |
+          BASE="${{ github.event.pull_request.base.sha || github.event.before }}"
+          if [ -z "$BASE" ] || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then BASE=HEAD; fi
+          python3 tools/check_append_only.py --base "$BASE"

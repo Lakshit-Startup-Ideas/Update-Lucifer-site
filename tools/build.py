@@ -79,7 +79,8 @@ def p2(rs):
 
 PRIMARY = ("similar", "transfer")
 NAV = [("results", "Results"), ("method", "Method"), ("tasks", "Tasks"), ("memory", "Memory"), ("proof", "Proof"), ("journey", "Journey"), ("limits", "Limits")]
-PAGES = {s: n for s, n in NAV}
+EXTRA_NAV = [("milestones", "Milestones")]  # top-level pages outside the Previous/Next chain, so no existing page's pager changes
+PAGES = {s: n for s, n in NAV + EXTRA_NAV}
 
 # ---------------------------------------------------------------------------------------------------------------- chrome
 MARK = '<svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c1.2 4.6 3 6.4 7.6 7.6-4.6 1.2-6.4 3-7.6 7.6-1.2-4.6-3-6.4-7.6-7.6C9 8.4 10.8 6.6 12 2Z" fill="currentColor"/><circle cx="19" cy="19" r="2" fill="currentColor" opacity=".6"/></svg>'
@@ -113,7 +114,7 @@ def head(title: str, desc: str, slug: str) -> str:
 
 def nav(slug: str) -> str:
     cur = ' aria-current="page"'
-    links = "\n".join(f'      <li><a href="{s}.html"{cur if s == slug else ""}>{n}</a></li>' for s, n in NAV)
+    links = "\n".join(f'      <li><a href="{s}.html"{cur if s == slug else ""}>{n}</a></li>' for s, n in NAV + EXTRA_NAV)
     return f'''<header class="nav-wrap">
   <nav class="nav" aria-label="Main">
     <a class="brand" href="index.html" aria-label="Lucifer Lab, home">
@@ -133,7 +134,7 @@ def nav(slug: str) -> str:
 
 
 def footer() -> str:
-    pages = "".join(f'<li><a href="{s}.html">{n}</a></li>' for s, n in NAV)
+    pages = "".join(f'<li><a href="{s}.html">{n}</a></li>' for s, n in NAV + EXTRA_NAV)
     return f'''<footer class="footer">
   <div class="wrap foot-in">
     <div class="brand">{MARK_SM}<span>Lucifer Lab</span></div>
@@ -178,6 +179,10 @@ def block(id_: str, title: str, intro: str, inner: str, alt: bool = False) -> st
 
 
 def pager(slug: str) -> str:
+    if slug in dict(EXTRA_NAV):
+        back = f'<a class="card pg" href="limits.html"><small>← Previous</small><b>Limits</b><span>What this does not show, and how to help</span></a>'
+        code = f'<a class="card pg pg-next" href="{REPO}" rel="noopener"><small>Next →</small><b>The code</b><span>Open the repository</span></a>'
+        return f'<section class="block"><div class="wrap pager">{back}{code}</div></section>\n'
     order = [s for s, _ in NAV]
     i = order.index(slug)
     prev = order[i - 1] if i > 0 else None
@@ -817,6 +822,76 @@ def build_limits() -> None:
           [("limits", "Limits"), ("power", "Power"), ("threats", "Threats"), ("conclusions", "What would change it"), ("help", "Contribute")], body)
 
 
+# ------------------------------------------------------------------------------------------------------------- milestones
+def _anchor(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def _verdict(cell: str) -> str:
+    return {"Pass": '<span class="chip chip-ok">Pass</span>', "Fail": '<span class="chip chip-bad">Fail</span>'}.get(cell, e(cell))
+
+
+def _entry(en: dict, last: bool) -> str:
+    status = {"done": ("Done", "chip-ok"), "partly": ("Partly done", "chip-mid"), "blocked": ("Blocked", "chip-bad"), "planned": ("Planned", "chip-mid")}[en["status"]]
+    points = "".join(f"<li>{e(x)}</li>" for x in en["points"])
+    table_html = ""
+    if en.get("table"):
+        t = en["table"]
+        rows = [[_verdict(c) if i else e(c) for i, c in enumerate(r)] for r in t["rows"]]
+        table_html = table([e(h) for h in t["head"]], rows, "dt", 420)
+    not_shown = ""
+    if en["not_shown"]:
+        not_shown = '<details class="ms-not"><summary>What this does not show</summary><ul class="bul">' + "".join(f"<li>{e(x)}</li>" for x in en["not_shown"]) + "</ul></details>"
+    links = ""
+    if en["links"]:
+        links = '<p class="ms-links">' + " ".join(f'<a href="{e(l["href"])}">{e(l["label"])} →</a>' for l in en["links"]) + "</p>"
+    updates = ""
+    if en["updates"]:
+        updates = '<div class="ms-updates"><b>Updates, added later</b><ul class="bul">' + "".join(f'<li><span class="ms-date">{e(u["date"])}</span> {e(u["text"])}</li>' for u in en["updates"]) + "</ul></div>"
+    return f'''      <li class="reveal ms" id="{_anchor(en["id"])}"><span class="t-dot{' t-on' if last else ''}"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">{e(en["date"])}</span><span class="chip">{e(en["label"])}</span><span class="chip {status[1]}">{status[0]}</span></div>
+          <h3>{e(en["title"])}</h3>
+          <p class="ms-sum">{e(en["summary"])}</p>
+          {"<ul class='bul ms-points'>" + points + "</ul>" if points else ""}
+          {table_html}
+          {not_shown}
+          {links}
+          {updates}
+        </article>
+      </li>'''
+
+
+def build_milestones() -> None:
+    """Renders data/milestones.json, the append-only log. Refuses to build if anything published was edited or removed."""
+    sys.path.insert(0, str(SITE / "tools"))
+    from check_append_only import check, load_base  # noqa: E402
+
+    log = json.loads((SITE / "data" / "milestones.json").read_text())
+    problems = check(load_base("HEAD"), log)
+    if problems:
+        raise SystemExit("milestones.json is not append-only:\n  " + "\n  ".join(problems))
+    blocks = ""
+    for i, ver in enumerate(log["versions"]):
+        items = [en for en in log["entries"] if en["version"] == ver["id"]]
+        lis = "\n".join(_entry(en, k == len(items) - 1) for k, en in enumerate(items))
+        still = ""
+        if ver.get("open_items"):
+            still = '<div class="callout warn reveal"><b>Still open in this version</b><ul class="bul">' + "".join(f"<li>{e(x)}</li>" for x in ver["open_items"]) + "</ul></div>"
+        more = f'<p><a class="more" href="{e(ver["page"])}">The headline result of this version →</a></p>' if ver.get("page") else ""
+        inner = f'''<ol class="timeline wide ms-list">
+{lis}
+    </ol>
+    {still}'''
+        blocks += block(_anchor(ver["id"]), e(ver["title"]), e(ver["blurb"]) + more, inner, alt=bool(i % 2))
+    rule = f'''<div class="prose reveal"><p><b>How this page works.</b> {e(log["rule"])} The page is generated from <a href="data/milestones.json">data/milestones.json</a>, and a check refuses any change that edits or removes a published entry. Later facts (for example a timestamp that finally confirms) are added as dated updates under the entry they belong to.</p></div>'''
+    body = block("how", "How to read this", "", rule) + blocks
+    toc = [("how", "How it works")] + [(_anchor(v["id"]), v["id"].replace("V", "Version ")) for v in log["versions"]] + [("v1-1-proof", "Proof of existence")]
+    write("milestones", "Milestones", "Every version and milestone of the Lucifer Lab research, in order: Version 1, then Version 1.1 milestones M1 to M8, with results, limits and proof hashes. Append-only.",
+          "Version history", "Every version, every milestone, <em>nothing removed.</em>",
+          "Version 1 first, then each Version 1.1 milestone, each with what it showed, what it did not, and its pass or fail. New entries are added at the end; published ones are never edited.", toc, body)
+
+
 def copy_data() -> None:
     d = SITE / "data"
     d.mkdir(exist_ok=True)
@@ -833,3 +908,4 @@ if __name__ == "__main__":
     build_proof()
     build_journey()
     build_limits()
+    build_milestones()

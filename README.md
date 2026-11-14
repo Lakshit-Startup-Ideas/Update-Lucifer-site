@@ -11,6 +11,10 @@ Experiment code and raw results: https://github.com/Lakshit-Startup-Ideas/Lucife
 |---|---|
 | `index.html` | the short version: hero, result, method, memory, milestones, limits, reproduce, FAQ, and links to the detail pages |
 | `results.html`, `method.html`, `tasks.html`, `memory.html`, `proof.html`, `journey.html`, `limits.html` | the detail pages. **Generated** by `tools/build.py` from the published run; do not edit by hand |
+| `milestones.html` | the version history: Version 1, then each Version 1.1 milestone. **Generated** from `data/milestones.json`; entries are append-only |
+| `data/milestones.json` | the append-only milestone log (never edit or remove an entry; add a dated item to its `updates` list instead) |
+| `data/proof/` | the proof-of-existence manifests and OpenTimestamps stamps (hashes only), linked from the Milestones page |
+| `tools/check_append_only.py` | fails if any published milestone entry was edited or removed (`python3 tools/test_check_append_only.py`-style tests in `tools/`) |
 | `data/` | the published run (`rows.json`, `audits.json`, `meta.json`, `report.txt`), served so the Proof page can recompute the result in the browser |
 | `tools/build.py` | regenerates the detail pages and `data/` from a checkout of Lucifer-BenchMarks |
 | `styles.css` | all styling, design tokens at the top (`:root`) |
@@ -36,6 +40,12 @@ python3 tools/build.py ../lucifer-lab   # path to your Lucifer-BenchMarks checko
 ```
 
 This rewrites the seven detail pages and `data/`, reading the task text from `src/lucifer/tasks.py` and the figures from `results/published/qwen14b-convention/`. If the run folder name changes, edit `RUN` and the run id and commit at the top of `tools/build.py`. The home page (`index.html`) is hand-written: update the figures listed below there.
+
+## Adding a milestone (append-only)
+
+1. Append a new object to `entries` in `data/milestones.json` (and a new block to `versions` if it starts a new version). Never edit or delete an existing entry; to record a later fact, append `{"date": ..., "text": ...}` to that entry's `updates`.
+2. `python3 tools/check_append_only.py` compares the file with the last commit and fails on any edit or removal. `python3 tools/build.py ../lucifer-lab` runs the same check before writing `milestones.html`, so a bad edit cannot be published by accident.
+3. Commit the JSON and the regenerated page together.
 
 ## Run it locally
 

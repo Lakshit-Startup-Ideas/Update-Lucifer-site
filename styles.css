@@ -735,3 +735,26 @@ a.card:hover { border-color: rgba(240,185,168,.5); }
 /* long identifiers (test names, paths) wrap instead of widening the page */
 :not(pre) > code { overflow-wrap: anywhere; }
 .card, .callout, .prose, .kpi, .v-card { overflow-wrap: break-word; }
+
+/* ---- Milestones page (append-only log) ---- */
+.ms-list { max-width: 860px; }
+.ms-card { padding: 24px 26px; }
+.ms-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 12px; }
+.ms-date { font: 500 12.5px var(--mono); color: var(--faint); letter-spacing: .02em; }
+.ms-card h3 { font-size: 19px; margin-bottom: 8px; }
+.ms-sum { color: var(--text) !important; font-size: 16px !important; }
+.ms-points { margin-top: 14px; overflow-wrap: anywhere; }
+.ms-card .table-wrap { margin-top: 16px; }
+.ms-not { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+.ms-not summary { cursor: pointer; font: 500 14px var(--mono); color: var(--peach); list-style: none; }
+.ms-not summary::-webkit-details-marker { display: none; }
+.ms-not summary::before { content: "+ "; }
+.ms-not[open] summary::before { content: "– "; }
+.ms-not .bul { margin-top: 10px; overflow-wrap: anywhere; }
+.ms-links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; }
+.ms-links a { color: var(--peach); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(240,185,168,.4); }
+.ms-updates { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 14px; }
+.ms-updates > b { font-weight: 500; color: var(--cream); }
+.ms-updates .bul { margin-top: 8px; }
+.ms-card li::marker { color: var(--peach); }
+@media (max-width: 760px) { .ms-card { padding: 20px 18px; } .ms-list { padding-left: 30px; } .ms-list .t-dot { left: -30px; } }

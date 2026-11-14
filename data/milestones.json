@@ -1,0 +1,683 @@
+{
+ "schema": 1,
+ "rule": "Append-only. Entries are never edited or removed; later facts are added to an entry's 'updates' list.",
+ "versions": [
+  {
+   "id": "V1",
+   "title": "Version 1 · Does memory help a model solve later tasks?",
+   "blurb": "A frozen model, a memory of its own mistakes, and a controlled test. Closed on 12 November 2026 with a first real result.",
+   "open_items": [],
+   "page": "index.html#result"
+  },
+  {
+   "id": "V1.1",
+   "title": "Version 1.1 · Research log: learning, forgetting, review and tools",
+   "blurb": "A simulation-only research log of eight milestones. Small learners we wrote ourselves, no language model, pre-registered hypotheses, failures kept. The code is open source, in the v1.1/ folder of the Lucifer-BenchMarks repository.",
+   "open_items": [
+    "Put the original architecture and USP documents in place and complete the map from the original ideas to V1.1.",
+    "Test the ideas with a language model in the loop on the V1 task bank, on a hosted or runner GPU.",
+    "Test an attacker who optimises against the reviewers, and add noise or clipping to shared rule vectors.",
+    "Run the CI workflow on GitHub, then decide what becomes public.",
+    "A variant for the newest MCP revision, and a real browser behind the policy layer."
+   ],
+   "page": "milestones.html#v1-1-m8"
+  }
+ ],
+ "entries": [
+  {
+   "id": "v1-lab",
+   "version": "V1",
+   "label": "Lab",
+   "date": "2026-11-11",
+   "title": "The lab itself",
+   "status": "done",
+   "summary": "80 tasks (50 pitfall, 30 hidden-convention) with hidden tests, a sandboxed runner, hash-chained memory with rollback, three conditions, a paired bootstrap and three gates. 125 tests pass.",
+   "points": [
+    "Three conditions on the same model: no memory, Lucifer (relevant lessons) and wrong notes (the least relevant lessons).",
+    "Every result is computed from raw rows; nothing is typed in by hand."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "Method",
+     "href": "method.html"
+    },
+    {
+     "label": "Memory",
+     "href": "memory.html"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1-calibration",
+   "version": "V1",
+   "label": "Calibration",
+   "date": "2026-11-11",
+   "title": "A useless first exam, caught early",
+   "status": "done",
+   "summary": "Strong models scored 96–100% with no memory, so that exam could never show an effect. Calibration said so before any claim was made.",
+   "points": [
+    "A second, harder task set with hidden conventions was written, then calibrated on three model sizes to pick one that can learn from feedback."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "Journey",
+     "href": "journey.html"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1-bug",
+   "version": "V1",
+   "label": "Scoring bug",
+   "date": "2026-11-11",
+   "title": "A scoring bug found by the dashboard",
+   "status": "done",
+   "summary": "The retention check mistook luck for forgetting (regression to the mean). The dashboard exposed it and the gate's selection was fixed.",
+   "points": [
+    "Tasks are now chosen on half the seeds and measured on the other half."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "Journey",
+     "href": "journey.html"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1-ci",
+   "version": "V1",
+   "label": "CI/CD",
+   "date": "2026-11-12",
+   "title": "Everything moved onto CI/CD",
+   "status": "done",
+   "summary": "Experiments now run on GitHub Actions: one job per seed, a merge step, gates in the job summary, and published results committed automatically.",
+   "points": [],
+   "not_shown": [],
+   "links": [],
+   "updates": []
+  },
+  {
+   "id": "v1-result",
+   "version": "V1",
+   "label": "First real result",
+   "date": "2026-11-12",
+   "title": "First real result · Version 1 closed",
+   "status": "done",
+   "summary": "+50 points first-try success over no memory and over wrong notes, interval +30 to +70, on 5 seeds. Published with every caveat.",
+   "points": [
+    "Model qwen2.5-coder:14b, 30 convention tasks (18 scored), 5 seeds, 630 task runs (1,115 model calls counting retries).",
+    "First try on similar and transfer tasks: Lucifer 50% (similar 67%, transfer 17%), no memory 0%, wrong notes 0%.",
+    "Gate 1 (improvement) pass, gate 2 (retention) inconclusive because the baseline masters nothing, gate 3 (auditability) pass."
+   ],
+   "not_shown": [
+    "One model, 18 scored tasks, tasks written by the author. This is a first look, not proof."
+   ],
+   "links": [
+    {
+     "label": "Results",
+     "href": "results.html"
+    },
+    {
+     "label": "Proof (recompute it)",
+     "href": "proof.html"
+    },
+    {
+     "label": "Limits",
+     "href": "limits.html"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1-site",
+   "version": "V1",
+   "label": "Site and proof",
+   "date": "2026-11-13",
+   "title": "This site, with a live recompute",
+   "status": "done",
+   "summary": "Seven detail pages generated from the published rows, a 3D memory chain that uses the real hash formula, and a Proof page that recomputes the headline and its interval in your browser.",
+   "points": [],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "Proof",
+     "href": "proof.html"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1-review",
+   "version": "V1",
+   "label": "External review",
+   "date": "2026-11-13",
+   "title": "Wording corrected after an outside review",
+   "status": "done",
+   "summary": "Counts relabelled (630 task runs, 1,115 model calls), absolute claims softened, hash-chain limits stated, stale documentation fixed.",
+   "points": [
+    "A hash chain detects edits when it is checked. It does not prevent them."
+   ],
+   "not_shown": [],
+   "links": [],
+   "updates": []
+  },
+  {
+   "id": "v1.1-m1",
+   "version": "V1.1",
+   "label": "M1",
+   "date": "2026-11-14",
+   "title": "M1 · Read V1 properly and set the rules",
+   "status": "partly",
+   "summary": "V1 was inspected from its code and tests before anything was built, and a rule was fixed for everything after: write the hypotheses and failure conditions first, commit them, then run.",
+   "points": [
+    "V1 is retrieval into a frozen model: its learning step writes text, no weights change. V1's 125 tests pass on a fresh run.",
+    "Four weaknesses in V1's memory hash were found and checked by experiment: run id and seed were not covered by the hash, field boundaries could collide, a fully rewritten chain cannot be detected without an outside copy of the head, and the provenance check only tested for non-empty values.",
+    "A version 2 hash (every field, length-prefixed, anchor check) fixes them, and V1's own formula is kept so V1 data stays verifiable.",
+    "Every later milestone was pre-registered before its code ran. Changes after seeing results are logged as amendments with the reason."
+   ],
+   "not_shown": [
+    "The literature review is not done: no reference was read, including the Gupta, Jin and Homma book.",
+    "The map from the original Lucifer ideas to V1.1 is not done: the original architecture and USP documents were not available, so nothing here is derived from them.",
+    "No formal mathematics beyond the small models in M2 to M5."
+   ],
+   "links": [
+    {
+     "label": "V1 hash findings",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/V1-HASH-FINDINGS.md"
+    },
+    {
+     "label": "M2 pre-registration (first of eight)",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M2-PREREGISTRATION.md"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.1-m2",
+   "version": "V1.1",
+   "label": "M2",
+   "date": "2026-11-14",
+   "title": "M2 · Does growing a network help?",
+   "status": "done",
+   "summary": "A small recurrent network that can grow or be pruned, compared with a fixed network of the same final size. 20 seeds. The answer is no.",
+   "points": [
+    "Safe growth (new units cannot affect old ones) keeps earlier tasks exactly (error change 8e-17) but ends far worse than a fixed network of equal size: error 0.417 against 0.068.",
+    "Growth that rewires everything is as capable but wipes the old readouts: earlier-task error went from 0.04 to 195.",
+    "Growth saved no compute, and pruning by importance was no better than random pruning.",
+    "The first run was uninformative (every network failed because the task was too hard); it was kept, the fix was logged as an amendment, and the task difficulty was set using fixed networks only."
+   ],
+   "not_shown": [
+    "A toy simulation. It does not say dynamic networks cannot work, only that this design gave no benefit and was not adopted."
+   ],
+   "links": [
+    {
+     "label": "Pre-registration",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M2-PREREGISTRATION.md"
+    },
+    {
+     "label": "Results",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M2-RESULTS.md"
+    }
+   ],
+   "updates": [],
+   "table": {
+    "head": [
+     "Check",
+     "Verdict",
+     "Evidence"
+    ],
+    "rows": [
+     [
+      "Safe growth keeps old tasks",
+      "Pass",
+      "change 8e-17"
+     ],
+     [
+      "Rewiring growth forgets",
+      "Pass",
+      "0.04 → 195"
+     ],
+     [
+      "Safe growth matches a fixed net of equal size",
+      "Fail",
+      "0.417 vs 0.068"
+     ],
+     [
+      "Growth saves compute",
+      "Fail",
+      "same size at the end"
+     ],
+     [
+      "Growth beats the small fixed net",
+      "Pass",
+      "0.417 vs 0.598"
+     ],
+     [
+      "Importance pruning beats random",
+      "Fail",
+      "no difference"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "v1.1-m3",
+   "version": "V1.1",
+   "label": "M3",
+   "date": "2026-11-14",
+   "title": "M3 · A hybrid executive: what each part is worth",
+   "status": "done",
+   "summary": "Four separable mechanisms (a protected goal slot, a failure monitor, learned reliability estimates, cost-aware choice) in a designed world, each removed in turn.",
+   "points": [
+    "In the combined world the executive completed 0.79 more episodes than a plain router.",
+    "Each part helped only where its failure mode exists: protected goals under interruptions (+0.77), the monitor under failures (+0.24), learned estimates after drift (+0.28).",
+    "Overhead is real: 4 to 6 control steps per episode; in a world where nothing can fail the executive adds 4.2 steps and 0.21 extra cost for zero gain.",
+    "Two of three registered checks failed: my 'benign' world still had 3% failures, and cost-aware choice saved 0.40 cost units against the 0.5 I had registered."
+   ],
+   "not_shown": [
+    "The world and the executive were both written by us, so effect sizes follow our parameters. This does not show planning or reasoning."
+   ],
+   "links": [
+    {
+     "label": "Pre-registration",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M3-PREREGISTRATION.md"
+    },
+    {
+     "label": "Results",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M3-RESULTS.md"
+    }
+   ],
+   "updates": [],
+   "table": {
+    "head": [
+     "Check",
+     "Verdict",
+     "Evidence"
+    ],
+    "rows": [
+     [
+      "Executive helps where needed",
+      "Pass",
+      "+0.794"
+     ],
+     [
+      "No gain in a benign world",
+      "Fail",
+      "+0.104 (3% failures remained)"
+     ],
+     [
+      "Each part helps only where needed",
+      "Fail",
+      "2 of 8 sub-checks missed"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "v1.1-m4",
+   "version": "V1.1",
+   "label": "M4",
+   "date": "2026-11-14",
+   "title": "M4 · Learning from experience, and forgetting",
+   "status": "done",
+   "summary": "Retrieval, parameter adaptation and two protections against forgetting on one stream of 12 contexts, 30 seeds. The log of experience is kept separate from learning.",
+   "points": [
+    "Forgetting is real: the plain learner forgot 0.159 of what it had learned.",
+    "A consolidation anchor (a pull toward the previous weights) cut forgetting from 0.159 to 0.021 with no raw experience stored, at a cost of 0.014 accuracy.",
+    "Replay of a 100-example buffer made forgetting slightly worse; it needed 300 to 960 stored examples to help, which conflicts with keeping raw experience local.",
+    "Logging an experience does not change the model; replaying the learning log reproduces training exactly; deleting a record does not unlearn it, rebuilding from a checkpoint without it does.",
+    "The registered check that experience speeds up learning new contexts failed on its first-10-examples measure (see M8 for a different measure)."
+   ],
+   "not_shown": [
+    "A small simulated learner. Nothing about language models."
+   ],
+   "links": [
+    {
+     "label": "Pre-registration",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M4-PREREGISTRATION.md"
+    },
+    {
+     "label": "Results",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M4-RESULTS.md"
+    }
+   ],
+   "updates": [],
+   "table": {
+    "head": [
+     "Check",
+     "Verdict",
+     "Evidence"
+    ],
+    "rows": [
+     [
+      "Parameters adapt beyond retrieval",
+      "Fail",
+      "no first-10 speed-up"
+     ],
+     [
+      "Replay (100) protects",
+      "Fail",
+      "−0.023"
+     ],
+     [
+      "Anchor protects, no stored experience",
+      "Pass",
+      "0.159 → 0.021"
+     ],
+     [
+      "Logging ≠ learning; unlearning needs retraining",
+      "Pass",
+      "9 tests"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "v1.1-m5",
+   "version": "V1.1",
+   "label": "M5",
+   "date": "2026-11-14",
+   "title": "M5 · A parent and independent children",
+   "status": "done",
+   "summary": "An in-process parent coordinator and children that each keep their own raw data. The parent receives only metadata: hashes, names, numbers.",
+   "points": [
+    "Registration, message authentication, replay protection, a strict allow-list of fields, anchored audits of each child's history, and checkpoint integrity: 31 tests, 6 of 6 deliberate breakages caught.",
+    "When two tenants' rules conflict, a model per tenant beat one shared model by 0.147; when the rules agree, sharing gained only 0.009 (the registered 0.02 was missed).",
+    "A written threat model lists what is not covered: real key management, transport security, covert channels and inference from parameters."
+   ],
+   "not_shown": [
+    "A prototype in one process. It is not evidence that a deployed system is secure."
+   ],
+   "links": [
+    {
+     "label": "Pre-registration",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M5-PREREGISTRATION.md"
+    },
+    {
+     "label": "Threat model",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M5-THREAT-MODEL.md"
+    },
+    {
+     "label": "Results",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M5-RESULTS.md"
+    }
+   ],
+   "updates": [],
+   "table": {
+    "head": [
+     "Check",
+     "Verdict",
+     "Evidence"
+    ],
+    "rows": [
+     [
+      "Nine protocol properties",
+      "Pass",
+      "31 tests"
+     ],
+     [
+      "Personal beats shared when rules conflict",
+      "Pass",
+      "+0.147"
+     ],
+     [
+      "Sharing helps when rules agree",
+      "Fail",
+      "+0.009 < 0.02"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "v1.1-m6",
+   "version": "V1.1",
+   "label": "M6",
+   "date": "2026-11-14",
+   "title": "M6 · Reviewing knowledge before it is shared",
+   "status": "done",
+   "summary": "A package is the decision rule one child learned for one context. Review combines metadata checks with evaluation by other children on their own private data; promotions are versioned and reversible.",
+   "points": [
+    "Valid metadata proves nothing about benefit: all 180 poisoned packages passed the metadata checks. The full review accepted none of them (0 of 180, which bounds the true rate only to about 1.7%).",
+    "It also blocked 28% of honest, useful packages (72% accepted; the registered target was 80%), and blocked all tenant-specific ones.",
+    "A poor tenant gained 0.109 accuracy on the contexts where knowledge agreed; blindly adopting everything lost 0.10 to 0.15.",
+    "Promotion and rollback are entries on a hash chain; rolling back restores the exact earlier state and keeps the archived entries."
+   ],
+   "not_shown": [
+    "Not tested: an attacker who optimises against the reviewers' data, colluding reviewers, and whether a shared rule vector leaks information about the data it came from."
+   ],
+   "links": [
+    {
+     "label": "Pre-registration",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M6-PREREGISTRATION.md"
+    },
+    {
+     "label": "Results",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M6-RESULTS.md"
+    }
+   ],
+   "updates": [],
+   "table": {
+    "head": [
+     "Check",
+     "Verdict",
+     "Evidence"
+    ],
+    "rows": [
+     [
+      "Review blocks poison; metadata alone fails",
+      "Pass",
+      "0/180 vs 180/180"
+     ],
+     [
+      "Review lets agreeing knowledge through",
+      "Fail",
+      "72% < 80%"
+     ],
+     [
+      "Tenant-specific knowledge not shared",
+      "Pass",
+      "0/180"
+     ],
+     [
+      "Transfer to a poor tenant",
+      "Pass",
+      "+0.109"
+     ],
+     [
+      "Versioning, rollback, tamper evidence",
+      "Pass",
+      "23 tests"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "v1.1-m7",
+   "version": "V1.1",
+   "label": "M7",
+   "date": "2026-11-14",
+   "title": "M7 · Own tool engine, with MCP and A2A on top",
+   "status": "done",
+   "summary": "A tool engine that denies by default, validates input and output, rate-limits, times out, requires one-time approvals for external effects and audits every call without storing raw data.",
+   "points": [
+    "The MCP adapter was checked against the current specification first: the newest revision (2026-07-28) removed the old handshake. The adapter speaks the earlier handshake era and was tested against the official Python client in two modes, which listed, called and received tool errors correctly. The newest revision is not supported and not claimed.",
+    "A runtime with retries, back-off and crash recovery that never repeats finished work; an in-process model of the agent-to-agent task lifecycle; a browser policy layer that refuses look-alike addresses, never fills passwords or card numbers, and needs a one-time approval to submit.",
+    "193 tests; 21 of 22 deliberate breakages caught (the 22nd changes nothing, by construction)."
+   ],
+   "not_shown": [
+    "The A2A part is a model, not the wire protocol. The browser layer ran against a fake browser. Tool code is not sandboxed."
+   ],
+   "links": [
+    {
+     "label": "Pre-registration",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M7-PREREGISTRATION.md"
+    },
+    {
+     "label": "Results",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M7-RESULTS.md"
+    }
+   ],
+   "updates": [],
+   "table": {
+    "head": [
+     "Group",
+     "Verdict"
+    ],
+    "rows": [
+     [
+      "Tool engine",
+      "Pass"
+     ],
+     [
+      "MCP adapter + official client (handshake era)",
+      "Pass"
+     ],
+     [
+      "MCP 2026-07-28",
+      "Not supported"
+     ],
+     [
+      "Runtime and recovery",
+      "Pass"
+     ],
+     [
+      "A2A lifecycle (model)",
+      "Pass"
+     ],
+     [
+      "Browser policy (fake driver)",
+      "Pass"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "v1.1-m8",
+   "version": "V1.1",
+   "label": "M8",
+   "date": "2026-11-14",
+   "title": "M8 · Everything rerun, two gaps closed, one report",
+   "status": "done",
+   "summary": "Two hypotheses nobody had tested (maturation and unseen task families) were tested, and every experiment was rerun from scratch to confirm the verdicts.",
+   "points": [
+    "Maturation (less plasticity, more consolidation with age) halved forgetting but lost 0.027 accuracy, outside the registered tolerance: failed.",
+    "Experience helped on new contexts of the same family (+0.065) but was not shown safe on a different family (−0.022, interval touching zero): failed as registered.",
+    "Everything reran in 67 seconds: all 23 verdict flags identical and no numeric difference. Measured overhead: the tool engine adds about 176 microseconds per call; an audit entry costs 2.65 microseconds.",
+    "Scoreboard: 21 registered threshold hypotheses, 10 passed and 11 failed, with no threshold ever moved; every property check passed."
+   ],
+   "not_shown": [
+    "No language model was involved anywhere in V1.1. V1's retrieval result remains the only real-model evidence."
+   ],
+   "links": [
+    {
+     "label": "Pre-registration",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M8-PREREGISTRATION.md"
+    },
+    {
+     "label": "Results",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M8-RESULTS.md"
+    },
+    {
+     "label": "Technical report",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/TECHNICAL-REPORT.md"
+    },
+    {
+     "label": "README",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md"
+    }
+   ],
+   "updates": [],
+   "table": {
+    "head": [
+     "Milestone",
+     "Passed",
+     "Failed"
+    ],
+    "rows": [
+     [
+      "M2 topology",
+      "3",
+      "3"
+     ],
+     [
+      "M3 executive",
+      "1",
+      "2"
+     ],
+     [
+      "M4 learning",
+      "1",
+      "2"
+     ],
+     [
+      "M5 distributed",
+      "1",
+      "1"
+     ],
+     [
+      "M6 review",
+      "3",
+      "1"
+     ],
+     [
+      "M8 maturation, families",
+      "1",
+      "2"
+     ],
+     [
+      "Total",
+      "10",
+      "11"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "v1.1-proof",
+   "version": "V1.1",
+   "label": "Proof",
+   "date": "2026-11-14",
+   "title": "Proof of existence",
+   "status": "done",
+   "summary": "Two manifests list the SHA-256 of every file: V1 (56 files, commit fe08665) and the finished V1.1 work (89 files, commit ce5ed13). Each manifest's own hash was submitted to OpenTimestamps.",
+   "points": [
+    "V1 manifest root: 9cbfd13f6f69466421062a2a7e636dd54d4cc0cc0f97be17632741c9fc163bc2 (file SHA-256 ac3c4ffcde6e9c152acb52fbeb48495898d8e71bd4e8facc2e773dccc4d37827).",
+    "V1.1 manifest root: 47876d17f55587caaa159ef0b82b739f35863efd24d7a41aac27e25f41d2efe2 (file SHA-256 f85c2af4a038f227bb34bf3119c15ad9e14b81ab1727a0fca135f76ef4edd35e).",
+    "Status at publication: both stamps are pending a Bitcoin confirmation (hours). When they confirm, an update is appended below; nothing here is edited.",
+    "To check: put the manifest and its .ots file in one folder and run ots verify on the .ots file."
+   ],
+   "not_shown": [
+    "A timestamp shows a file existed by a date. It does not show who wrote it, and it is not a patent or a copyright registration. The code and raw results are in the v1.1/ folder of the open-source Lucifer-BenchMarks repository, with their full commit history; both manifests verify against that repository."
+   ],
+   "links": [
+    {
+     "label": "V1 manifest",
+     "href": "data/proof/manifest-v1-fe08665.json"
+    },
+    {
+     "label": "V1 stamp (.ots)",
+     "href": "data/proof/manifest-v1-fe08665.json.ots"
+    },
+    {
+     "label": "V1.1 manifest",
+     "href": "data/proof/manifest-v11-ce5ed13.json"
+    },
+    {
+     "label": "V1.1 stamp (.ots)",
+     "href": "data/proof/manifest-v11-ce5ed13.json.ots"
+    },
+    {
+     "label": "How to verify",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md#proof-of-existence"
+    }
+   ],
+   "updates": []
+  }
+ ]
+}
