@@ -908,8 +908,8 @@ def build_milestones() -> None:
         return ("Goals · " if planned_only else "") + v["id"].replace("V", "Version ")
     toc = [("how", "How it works"), ("achievements", "Achievements")] + [(_anchor(v["id"]), chip(v)) for v in log["versions"] if v["id"] != "V1.2"] + [("v1-1-proof", "Proof of existence")] + [(_anchor(v["id"]), chip(v)) for v in log["versions"] if v["id"] == "V1.2"]
     write("milestones", "Milestones", "Every version and milestone of the Lucifer Lab research, in order: Version 1, then Version 1.1 milestones M1 to M8, with results, limits and proof hashes. Append-only.",
-          "Version history", "Every version, every milestone, <em>nothing removed.</em>",
-          "Achievements first, then Version 1, each Version 1.1 milestone with what it showed, what it did not and its pass or fail, and finally the goals for Version 1.2. New entries are added at the end; published ones are never edited.", toc, body)
+          "Version history", "Milestones, achievements and <em>what comes next.</em>",
+          "Every version in order: what was built, what each result showed and did not show, and the goals for Version 1.2. New entries are added at the end, and published ones are not edited.", toc, body)
 
 
 def copy_data() -> None:
