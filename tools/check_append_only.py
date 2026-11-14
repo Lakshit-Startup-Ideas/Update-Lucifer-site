@@ -7,6 +7,7 @@ Rules, checked against the version of the file at the base ref:
   - the "schema" and "rule" fields are unchanged;
   - every earlier version and entry is still there, in the same order, byte-for-byte equal, except that an entry's "updates" list may be extended
     (earlier updates unchanged and in order);
+  - the optional "achievements" list is append-only in the same way (earlier items unchanged, in order);
   - new versions and entries may only be added at the end;
   - ids are unique and every entry belongs to a declared version.
 An edit or a removal of anything published is a failure. Exit code 1 on any problem.
@@ -46,6 +47,9 @@ def check(previous: dict | None, current: dict) -> list[str]:
     old_v, new_v = previous.get("versions", []), current.get("versions", [])
     if new_v[:len(old_v)] != old_v:
         problems.append("an earlier version block was edited, reordered or removed")
+    old_a, new_a = previous.get("achievements", []), current.get("achievements", [])
+    if new_a[:len(old_a)] != old_a:
+        problems.append("an earlier achievement was edited, reordered or removed")
     old_e, new_e = previous.get("entries", []), current.get("entries", [])
     if len(new_e) < len(old_e):
         problems.append(f"{len(old_e) - len(new_e)} entries removed")

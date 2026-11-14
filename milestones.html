@@ -48,14 +48,20 @@
     <p class="crumbs"><a href="index.html">Lucifer Lab</a><span>/</span><span>Milestones</span></p>
     <p class="kicker-pill">Version history</p>
     <h1 data-split>Every version, every milestone, <em>nothing removed.</em></h1>
-    <p class="lede">Version 1 first, then each Version 1.1 milestone, each with what it showed, what it did not, and its pass or fail. New entries are added at the end; published ones are never edited.</p>
-    <nav class="chips-nav" aria-label="On this page"><a href="#how">How it works</a><a href="#v1">Version 1</a><a href="#v1-1">Version 1.1</a><a href="#v1-1-proof">Proof of existence</a></nav>
+    <p class="lede">Achievements first, then Version 1, each Version 1.1 milestone with what it showed, what it did not and its pass or fail, and finally the goals for Version 1.2. New entries are added at the end; published ones are never edited.</p>
+    <nav class="chips-nav" aria-label="On this page"><a href="#how">How it works</a><a href="#achievements">Achievements</a><a href="#v1">Version 1</a><a href="#v1-1">Version 1.1</a><a href="#v1-1-proof">Proof of existence</a><a href="#v1-2">Goals · Version 1.2</a></nav>
   </div>
 </section>
 <section class="block" id="how">
   <div class="wrap">
     <div class="block-head reveal"><h2>How to read this</h2></div>
-<div class="prose reveal"><p><b>How this page works.</b> Append-only. Entries are never edited or removed; later facts are added to an entry&#x27;s &#x27;updates&#x27; list. The page is generated from <a href="data/milestones.json">data/milestones.json</a>, and a check refuses any change that edits or removes a published entry. Later facts (for example a timestamp that finally confirms) are added as dated updates under the entry they belong to.</p></div>
+<div class="prose reveal"><p><b>How this page works.</b> Append-only. Entries are never edited or removed; later facts are added to an entry&#x27;s &#x27;updates&#x27; list. The page is generated from <a href="data/milestones.json">data/milestones.json</a>, and a check refuses any change that edits or removes a published entry. Later facts (for example a timestamp that finally confirms) are added as dated updates under the entry they belong to. Goals for what comes next are tracked as <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestones" rel="noopener">GitHub milestones</a> in the Benchmarks repository.</p></div>
+  </div>
+</section>
+<section class="block block-alt" id="achievements">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Achievements</h2><p>What has been done, in plain terms. Each one links to its evidence.</p></div>
+<div class="grid-3"><article class="card reveal ach"><span class="ms-date">2026-11-12</span><h3>A first real result, with every caveat</h3><p>Version 1: +50 points first-try success over no memory and over wrong notes (interval +30 to +70), one model, 5 seeds, 630 task runs.</p><p class="ms-links"><a href="results.html">Results →</a></p></article><article class="card reveal ach"><span class="ms-date">2026-11-13</span><h3>A result you can recompute in your browser</h3><p>The Proof page recomputes the headline and its interval from the raw rows, and the 3D memory chain uses the real hash formula.</p><p class="ms-links"><a href="proof.html">Proof →</a></p></article><article class="card reveal ach"><span class="ms-date">2026-11-14</span><h3>Eight milestones, hypotheses written first, failures kept</h3><p>Version 1.1: 21 registered threshold hypotheses, 10 passed and 11 failed, with no threshold moved; every property check passed.</p><p class="ms-links"><a href="#v1-1-m8">V1.1 scoreboard →</a></p></article><article class="card reveal ach"><span class="ms-date">2026-11-14</span><h3>Everything reproduces from scratch</h3><p>202 tests; a fresh rerun of the experiments matched all 23 verdict flags with a maximum numeric difference of 0, in 67 seconds, on the author&#x27;s Mac.</p><p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/TECHNICAL-REPORT.md" rel="noopener">Technical report →</a></p></article><article class="card reveal ach"><span class="ms-date">2026-11-14</span><h3>Interoperates with the official MCP client</h3><p>The tool server was tested against the official Python client in two modes. The newest protocol revision is not supported and not claimed.</p><p class="ms-links"><a href="#v1-1-m7">M7 →</a></p></article><article class="card reveal ach"><span class="ms-date">2026-11-14</span><h3>CI is green on GitHub, Python 3.11 and 3.13</h3><p>Both Version 1&#x27;s own workflow and the new V1.1 workflow passed on the merged pull request.</p><p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/pull/1" rel="noopener">Pull request 1 →</a></p></article><article class="card reveal ach"><span class="ms-date">2026-11-14</span><h3>Open source, with open goals</h3><p>V1.1 is merged into the Benchmarks repository with its full history, and the next ten goals are GitHub issues in an open milestone, with a contributing guide.</p><p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestone/2" rel="noopener">Milestone V1.2 →</a> <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/CONTRIBUTING.md" rel="noopener">Contributing →</a></p></article><article class="card reveal ach"><span class="ms-date">2026-11-14</span><h3>A dated, checkable record of the files</h3><p>Hashes of every file (V1: 56 files, V1.1: 89 files) were submitted for OpenTimestamps and verify against the repository. Bitcoin confirmation is pending; a timestamp shows existence by a date, not authorship.</p><p class="ms-links"><a href="#v1-1-proof">Proof of existence →</a></p></article></div>
   </div>
 </section>
 <section class="block" id="v1">
@@ -163,7 +169,7 @@
           
           <details class="ms-not"><summary>What this does not show</summary><ul class="bul"><li>The literature review is not done: no reference was read, including the Gupta, Jin and Homma book.</li><li>The map from the original Lucifer ideas to V1.1 is not done: the original architecture and USP documents were not available, so nothing here is derived from them.</li><li>No formal mathematics beyond the small models in M2 to M5.</li></ul></details>
           <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/V1-HASH-FINDINGS.md">V1 hash findings →</a> <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M2-PREREGISTRATION.md">M2 pre-registration (first of eight) →</a></p>
-          
+          <div class="ms-updates"><b>Updates, added later</b><ul class="bul"><li><span class="ms-date">2026-11-14</span> Later the same day a partial literature review was added: eleven sources confirmed to exist, none read in full, with a note on where V1.1&#x27;s use differs from each. The map from the original ideas is still not done. <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/LITERATURE.md" rel="noopener">Literature review →</a></li></ul></div>
         </article>
       </li>
       <li class="reveal ms" id="v1-1-m2"><span class="t-dot"></span>
@@ -247,7 +253,7 @@
           <div class="table-wrap reveal"><table class="dt" style="min-width:420px"><thead><tr><th>Milestone</th><th>Passed</th><th>Failed</th></tr></thead><tbody><tr><td>M2 topology</td><td>3</td><td>3</td></tr><tr><td>M3 executive</td><td>1</td><td>2</td></tr><tr><td>M4 learning</td><td>1</td><td>2</td></tr><tr><td>M5 distributed</td><td>1</td><td>1</td></tr><tr><td>M6 review</td><td>3</td><td>1</td></tr><tr><td>M8 maturation, families</td><td>1</td><td>2</td></tr><tr><td>Total</td><td>10</td><td>11</td></tr></tbody></table></div>
           <details class="ms-not"><summary>What this does not show</summary><ul class="bul"><li>No language model was involved anywhere in V1.1. V1&#x27;s retrieval result remains the only real-model evidence.</li></ul></details>
           <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M8-PREREGISTRATION.md">Pre-registration →</a> <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M8-RESULTS.md">Results →</a> <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/TECHNICAL-REPORT.md">Technical report →</a> <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md">README →</a></p>
-          
+          <div class="ms-updates"><b>Updates, added later</b><ul class="bul"><li><span class="ms-date">2026-11-14</span> Merged into the open-source Lucifer-BenchMarks repository under v1.1/, with its full commit history (pull request 1). Version 1&#x27;s CI and the new V1.1 tests are green on Python 3.11 and 3.13. The GitHub milestone for V1.1 is closed; the next goals are tracked in milestone V1.2. <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/pull/1" rel="noopener">Pull request 1 →</a> <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestone/1" rel="noopener">GitHub milestone: V1.1 (closed) →</a> <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestone/2" rel="noopener">GitHub milestone: V1.2 goals →</a></li></ul></div>
         </article>
       </li>
       <li class="reveal ms" id="v1-1-proof"><span class="t-dot t-on"></span>
@@ -259,11 +265,139 @@
           
           <details class="ms-not"><summary>What this does not show</summary><ul class="bul"><li>A timestamp shows a file existed by a date. It does not show who wrote it, and it is not a patent or a copyright registration. The code and raw results are in the v1.1/ folder of the open-source Lucifer-BenchMarks repository, with their full commit history; both manifests verify against that repository.</li></ul></details>
           <p class="ms-links"><a href="data/proof/manifest-v1-fe08665.json">V1 manifest →</a> <a href="data/proof/manifest-v1-fe08665.json.ots">V1 stamp (.ots) →</a> <a href="data/proof/manifest-v11-ce5ed13.json">V1.1 manifest →</a> <a href="data/proof/manifest-v11-ce5ed13.json.ots">V1.1 stamp (.ots) →</a> <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md#proof-of-existence">How to verify →</a></p>
-          
+          <div class="ms-updates"><b>Updates, added later</b><ul class="bul"><li><span class="ms-date">2026-11-14</span> Both manifests verify against the Benchmarks repository (89 and 56 files, 0 mismatches). The OpenTimestamps stamps are still pending a Bitcoin confirmation. <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md#proof-of-existence" rel="noopener">How to verify →</a></li></ul></div>
         </article>
       </li>
     </ol>
     <div class="callout warn reveal"><b>Still open in this version</b><ul class="bul"><li>Put the original architecture and USP documents in place and complete the map from the original ideas to V1.1.</li><li>Test the ideas with a language model in the loop on the V1 task bank, on a hosted or runner GPU.</li><li>Test an attacker who optimises against the reviewers, and add noise or clipping to shared rule vectors.</li><li>Run the CI workflow on GitHub, then decide what becomes public.</li><li>A variant for the newest MCP revision, and a real browser behind the policy layer.</li></ul></div>
+  </div>
+</section>
+<section class="block" id="v1-2">
+  <div class="wrap">
+    <div class="block-head reveal"><h2>Version 1.2 · Goals: validate with a language model</h2><p>The next version. Every V1.1 learning result is a simulation, so these goals test the ideas with a real model, attack the review step and close the gaps V1.1 reported. Nothing here is done yet. Each goal is a GitHub issue with an acceptance test, and each result will be pre-registered before it is run.<p><a class="more" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestone/2" rel="noopener">The GitHub milestone for these goals →</a></p></p></div>
+<ol class="timeline wide ms-list">
+      <li class="reveal ms" id="v1-2-g1"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 1</span><span class="chip chip-mid">Planned</span></div>
+          <h3>Test parameter-level adaptation against V1&#x27;s retrieval with a language model</h3>
+          <p class="ms-sum">On the V1 task bank, compare V1 retrieval, a small adapter or lesson-conditioned fine-tune, and both, on held-out tasks, 5 seeds.</p>
+          <ul class='bul ms-points'><li>Why: every V1.1 learning result is a simulation, and V1&#x27;s retrieval gain is retrieval into a prompt, not learning.</li><li>Acceptance: hypotheses and failure conditions committed before the run, raw rows published, failures reported. Needs a GPU on a hosted service or a CI runner.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/2">GitHub issue #2 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g2"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 2</span><span class="chip chip-mid">Planned</span></div>
+          <h3>Build an adaptive attacker against the review step</h3>
+          <p class="ms-sum">The review blocked 0 of 180 fixed poisoned packages, but that attacker did not adapt to the reviewers&#x27; data.</p>
+          <ul class='bul ms-points'><li>Craft packages optimised against the reviewers&#x27; validation data, then try colluding reviewers.</li><li>Acceptance: attack code and a pre-registered acceptance-rate result, published whether or not the review holds.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/3">GitHub issue #3 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g3"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 3</span><span class="chip chip-mid">Planned</span></div>
+          <h3>Rule-vector privacy: membership inference, clipping and noise</h3>
+          <p class="ms-sum">Shared decision-rule vectors may reveal something about the data they were learned from; no noise or clipping is applied yet.</p>
+          <ul class='bul ms-points'><li>Measure leakage from a shared rule vector, then add clipping or noise and measure the utility cost.</li><li>Acceptance: a pre-registered leakage metric, a utility-versus-privacy table and tests.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/4">GitHub issue #4 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g4"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 4</span><span class="chip chip-mid">Planned</span></div>
+          <h3>Check whether V1 tasks ident-4 and ident-6 are solvable</h3>
+          <p class="ms-sum">Two V1 tasks were never solved first try in any seed (0 of 5) and may be unfair; this was flagged but never tested.</p>
+          <ul class='bul ms-points'><li>Check whether a person can infer the convention from the spec plus one failing-test message.</li><li>Acceptance: a short report; if the tasks are unfair, fix or retire them and note the effect on the V1 numbers. A good first issue.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/5">GitHub issue #5 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g5"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 5</span><span class="chip chip-mid">Planned</span></div>
+          <h3>Scale V1: a second model, at least 48 primary tasks, a held-out task family</h3>
+          <p class="ms-sum">V1 used one model and 18 scored tasks; its own power table says about 48 are needed to detect smaller effects.</p>
+          <ul class='bul ms-points'><li>Add hidden-convention tasks (not renamed copies), run a second model through the existing backends, and design one family before looking at results.</li><li>Acceptance: the same pipeline, published rows, intervals and not only means.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/6">GitHub issue #6 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g6"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 6</span><span class="chip chip-mid">Planned</span></div>
+          <h3>MCP server for the 2026-07-28 revision</h3>
+          <p class="ms-sum">The tool server speaks the earlier handshake era; the newest MCP revision removed the handshake, so modern-only clients cannot use it.</p>
+          <ul class='bul ms-points'><li>Add a modern-era variant that reuses the tool engine.</li><li>Acceptance: the test that documents the current limit is replaced by a passing test against the official client pinned to that revision.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/7">GitHub issue #7 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g7"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 7</span><span class="chip chip-mid">Planned</span></div>
+          <h3>A real browser behind the browser policy layer</h3>
+          <p class="ms-sum">The browser layer is a policy layer tested only against a fake driver.</p>
+          <ul class='bul ms-points'><li>Implement the driver with a real browser as an optional dependency and add an adversarial page corpus (look-alike origins, redirects, hidden fields, prompt-injection text).</li><li>Acceptance: the policy tests pass against the real driver, plus a pre-registered result on the corpus.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/8">GitHub issue #8 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g8"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 8</span><span class="chip chip-mid">Planned</span></div>
+          <h3>Test conditional computation and routing against a fixed network</h3>
+          <p class="ms-sum">The literature review found that most dynamic-network work is data-dependent computation; V1.1 tested growth and pruning, not that.</p>
+          <ul class='bul ms-points'><li>Pre-register a routing or early-exit test against a parameter-matched fixed network.</li><li>Acceptance: pre-registration first, then a published result.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/9">GitHub issue #9 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g9"><span class="t-dot"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 9</span><span class="chip chip-mid">Planned</span></div>
+          <h3>Read the cited sources in full and fill the literature gaps</h3>
+          <p class="ms-sum">The literature review lists eleven sources confirmed to exist but read only at abstract level, and leaves several topics out.</p>
+          <ul class='bul ms-points'><li>Read the sources, correct any claim the text does not support, and add the missing areas with verified citations.</li><li>Acceptance: every entry marked read or not read; no citation without a checked source.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/10">GitHub issue #10 →</a></p>
+          
+        </article>
+      </li>
+      <li class="reveal ms" id="v1-2-g10"><span class="t-dot t-on"></span>
+        <article class="card ms-card">
+          <div class="ms-meta"><span class="ms-date">2026-11-14</span><span class="chip">Goal 10</span><span class="chip chip-mid">Planned</span></div>
+          <h3>Map the original Lucifer ideas to V1.1</h3>
+          <p class="ms-sum">A maintainer task that needs the original architecture and USP documents, which are not in the repository. Nothing will be invented to fill the gap.</p>
+          <ul class='bul ms-points'><li>For each original concept: preserved, implemented, partly implemented, needs formalisation, redesign, deferred, or rejected with a reason.</li><li>Acceptance: a table where each row cites the source document it came from.</li></ul>
+          
+          
+          <p class="ms-links"><a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/11">GitHub issue #11 →</a></p>
+          
+        </article>
+      </li>
+    </ol>
+    
   </div>
 </section>
 <section class="block"><div class="wrap pager"><a class="card pg" href="limits.html"><small>← Previous</small><b>Limits</b><span>What this does not show, and how to help</span></a><a class="card pg pg-next" href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks" rel="noopener"><small>Next →</small><b>The code</b><span>Open the repository</span></a></div></section>

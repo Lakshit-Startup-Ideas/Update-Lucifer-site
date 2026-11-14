@@ -47,6 +47,8 @@ This rewrites the seven detail pages and `data/`, reading the task text from `sr
 2. `python3 tools/check_append_only.py` compares the file with the last commit and fails on any edit or removal. `python3 tools/build.py ../lucifer-lab` runs the same check before writing `milestones.html`, so a bad edit cannot be published by accident.
 3. Commit the JSON and the regenerated page together.
 
+The file also has an append-only `achievements` list (dated cards shown near the top of the page), and an entry's `updates` items may carry a `links` list. A version block may set `page` and `page_label` for its own link (for example a GitHub milestone). Goals for a future version are entries with `"status": "planned"`.
+
 ## Run it locally
 
 ```bash

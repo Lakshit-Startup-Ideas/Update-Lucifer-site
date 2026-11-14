@@ -65,6 +65,23 @@ class AppendOnly(unittest.TestCase):
         problems = check(BASE, bad)
         self.assertTrue(any("missing" in p for p in problems) and any("status" in p for p in problems) and any("not declared" in p for p in problems))
 
+    def test_achievements_are_append_only_too(self):
+        cur = copy.deepcopy(BASE)
+        cur["achievements"] = [{"date": "2026-01-02", "title": "a", "text": "t", "links": []}]
+        self.assertEqual(check(BASE, cur), [])  # first appearance is an addition
+        more = copy.deepcopy(cur)
+        more["achievements"].append({"date": "2026-02-01", "title": "b", "text": "t", "links": []})
+        self.assertEqual(check(cur, more), [])
+        edited = copy.deepcopy(more)
+        edited["achievements"][0]["text"] = "changed"
+        self.assertTrue(any("achievement" in p for p in check(more, edited)))
+        dropped = copy.deepcopy(more)
+        dropped["achievements"] = dropped["achievements"][1:]
+        self.assertTrue(any("achievement" in p for p in check(more, dropped)))
+        gone = copy.deepcopy(more)
+        del gone["achievements"]
+        self.assertTrue(any("achievement" in p for p in check(more, gone)))
+
     def test_the_real_file_passes_against_itself(self):
         current = json.loads((Path(__file__).resolve().parent.parent / "data" / "milestones.json").read_text())
         self.assertEqual(check(current, current), [])

@@ -758,3 +758,8 @@ a.card:hover { border-color: rgba(240,185,168,.5); }
 .ms-updates .bul { margin-top: 8px; }
 .ms-card li::marker { color: var(--peach); }
 @media (max-width: 760px) { .ms-card { padding: 20px 18px; } .ms-list { padding-left: 30px; } .ms-list .t-dot { left: -30px; } }
+
+/* ---- Achievements cards ---- */
+.ach .ms-date { display: block; margin-bottom: 10px; }
+.ach h3 { font-size: 17px; margin-bottom: 8px; }
+.ach p { font-size: 14.5px; }

@@ -21,6 +21,14 @@
     "A variant for the newest MCP revision, and a real browser behind the policy layer."
    ],
    "page": "milestones.html#v1-1-m8"
+  },
+  {
+   "id": "V1.2",
+   "title": "Version 1.2 · Goals: validate with a language model",
+   "blurb": "The next version. Every V1.1 learning result is a simulation, so these goals test the ideas with a real model, attack the review step and close the gaps V1.1 reported. Nothing here is done yet. Each goal is a GitHub issue with an acceptance test, and each result will be pre-registered before it is run.",
+   "open_items": [],
+   "page": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestone/2",
+   "page_label": "The GitHub milestone for these goals"
   }
  ],
  "entries": [
@@ -196,7 +204,18 @@
      "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/M2-PREREGISTRATION.md"
     }
    ],
-   "updates": []
+   "updates": [
+    {
+     "date": "2026-11-14",
+     "text": "Later the same day a partial literature review was added: eleven sources confirmed to exist, none read in full, with a note on where V1.1's use differs from each. The map from the original ideas is still not done.",
+     "links": [
+      {
+       "label": "Literature review",
+       "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/LITERATURE.md"
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "v1.1-m2",
@@ -592,7 +611,26 @@
      "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md"
     }
    ],
-   "updates": [],
+   "updates": [
+    {
+     "date": "2026-11-14",
+     "text": "Merged into the open-source Lucifer-BenchMarks repository under v1.1/, with its full commit history (pull request 1). Version 1's CI and the new V1.1 tests are green on Python 3.11 and 3.13. The GitHub milestone for V1.1 is closed; the next goals are tracked in milestone V1.2.",
+     "links": [
+      {
+       "label": "Pull request 1",
+       "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/pull/1"
+      },
+      {
+       "label": "GitHub milestone: V1.1 (closed)",
+       "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestone/1"
+      },
+      {
+       "label": "GitHub milestone: V1.2 goals",
+       "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestone/2"
+      }
+     ]
+    }
+   ],
    "table": {
     "head": [
      "Milestone",
@@ -677,7 +715,322 @@
      "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md#proof-of-existence"
     }
    ],
+   "updates": [
+    {
+     "date": "2026-11-14",
+     "text": "Both manifests verify against the Benchmarks repository (89 and 56 files, 0 mismatches). The OpenTimestamps stamps are still pending a Bitcoin confirmation.",
+     "links": [
+      {
+       "label": "How to verify",
+       "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md#proof-of-existence"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v1.2-g1",
+   "version": "V1.2",
+   "label": "Goal 1",
+   "date": "2026-11-14",
+   "title": "Test parameter-level adaptation against V1's retrieval with a language model",
+   "status": "planned",
+   "summary": "On the V1 task bank, compare V1 retrieval, a small adapter or lesson-conditioned fine-tune, and both, on held-out tasks, 5 seeds.",
+   "points": [
+    "Why: every V1.1 learning result is a simulation, and V1's retrieval gain is retrieval into a prompt, not learning.",
+    "Acceptance: hypotheses and failure conditions committed before the run, raw rows published, failures reported. Needs a GPU on a hosted service or a CI runner."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #2",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/2"
+    }
+   ],
    "updates": []
+  },
+  {
+   "id": "v1.2-g2",
+   "version": "V1.2",
+   "label": "Goal 2",
+   "date": "2026-11-14",
+   "title": "Build an adaptive attacker against the review step",
+   "status": "planned",
+   "summary": "The review blocked 0 of 180 fixed poisoned packages, but that attacker did not adapt to the reviewers' data.",
+   "points": [
+    "Craft packages optimised against the reviewers' validation data, then try colluding reviewers.",
+    "Acceptance: attack code and a pre-registered acceptance-rate result, published whether or not the review holds."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #3",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/3"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.2-g3",
+   "version": "V1.2",
+   "label": "Goal 3",
+   "date": "2026-11-14",
+   "title": "Rule-vector privacy: membership inference, clipping and noise",
+   "status": "planned",
+   "summary": "Shared decision-rule vectors may reveal something about the data they were learned from; no noise or clipping is applied yet.",
+   "points": [
+    "Measure leakage from a shared rule vector, then add clipping or noise and measure the utility cost.",
+    "Acceptance: a pre-registered leakage metric, a utility-versus-privacy table and tests."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #4",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/4"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.2-g4",
+   "version": "V1.2",
+   "label": "Goal 4",
+   "date": "2026-11-14",
+   "title": "Check whether V1 tasks ident-4 and ident-6 are solvable",
+   "status": "planned",
+   "summary": "Two V1 tasks were never solved first try in any seed (0 of 5) and may be unfair; this was flagged but never tested.",
+   "points": [
+    "Check whether a person can infer the convention from the spec plus one failing-test message.",
+    "Acceptance: a short report; if the tasks are unfair, fix or retire them and note the effect on the V1 numbers. A good first issue."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #5",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/5"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.2-g5",
+   "version": "V1.2",
+   "label": "Goal 5",
+   "date": "2026-11-14",
+   "title": "Scale V1: a second model, at least 48 primary tasks, a held-out task family",
+   "status": "planned",
+   "summary": "V1 used one model and 18 scored tasks; its own power table says about 48 are needed to detect smaller effects.",
+   "points": [
+    "Add hidden-convention tasks (not renamed copies), run a second model through the existing backends, and design one family before looking at results.",
+    "Acceptance: the same pipeline, published rows, intervals and not only means."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #6",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/6"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.2-g6",
+   "version": "V1.2",
+   "label": "Goal 6",
+   "date": "2026-11-14",
+   "title": "MCP server for the 2026-07-28 revision",
+   "status": "planned",
+   "summary": "The tool server speaks the earlier handshake era; the newest MCP revision removed the handshake, so modern-only clients cannot use it.",
+   "points": [
+    "Add a modern-era variant that reuses the tool engine.",
+    "Acceptance: the test that documents the current limit is replaced by a passing test against the official client pinned to that revision."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #7",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/7"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.2-g7",
+   "version": "V1.2",
+   "label": "Goal 7",
+   "date": "2026-11-14",
+   "title": "A real browser behind the browser policy layer",
+   "status": "planned",
+   "summary": "The browser layer is a policy layer tested only against a fake driver.",
+   "points": [
+    "Implement the driver with a real browser as an optional dependency and add an adversarial page corpus (look-alike origins, redirects, hidden fields, prompt-injection text).",
+    "Acceptance: the policy tests pass against the real driver, plus a pre-registered result on the corpus."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #8",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/8"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.2-g8",
+   "version": "V1.2",
+   "label": "Goal 8",
+   "date": "2026-11-14",
+   "title": "Test conditional computation and routing against a fixed network",
+   "status": "planned",
+   "summary": "The literature review found that most dynamic-network work is data-dependent computation; V1.1 tested growth and pruning, not that.",
+   "points": [
+    "Pre-register a routing or early-exit test against a parameter-matched fixed network.",
+    "Acceptance: pre-registration first, then a published result."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #9",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/9"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.2-g9",
+   "version": "V1.2",
+   "label": "Goal 9",
+   "date": "2026-11-14",
+   "title": "Read the cited sources in full and fill the literature gaps",
+   "status": "planned",
+   "summary": "The literature review lists eleven sources confirmed to exist but read only at abstract level, and leaves several topics out.",
+   "points": [
+    "Read the sources, correct any claim the text does not support, and add the missing areas with verified citations.",
+    "Acceptance: every entry marked read or not read; no citation without a checked source."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #10",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/10"
+    }
+   ],
+   "updates": []
+  },
+  {
+   "id": "v1.2-g10",
+   "version": "V1.2",
+   "label": "Goal 10",
+   "date": "2026-11-14",
+   "title": "Map the original Lucifer ideas to V1.1",
+   "status": "planned",
+   "summary": "A maintainer task that needs the original architecture and USP documents, which are not in the repository. Nothing will be invented to fill the gap.",
+   "points": [
+    "For each original concept: preserved, implemented, partly implemented, needs formalisation, redesign, deferred, or rejected with a reason.",
+    "Acceptance: a table where each row cites the source document it came from."
+   ],
+   "not_shown": [],
+   "links": [
+    {
+     "label": "GitHub issue #11",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/issues/11"
+    }
+   ],
+   "updates": []
+  }
+ ],
+ "achievements": [
+  {
+   "date": "2026-11-12",
+   "title": "A first real result, with every caveat",
+   "text": "Version 1: +50 points first-try success over no memory and over wrong notes (interval +30 to +70), one model, 5 seeds, 630 task runs.",
+   "links": [
+    {
+     "label": "Results",
+     "href": "results.html"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-13",
+   "title": "A result you can recompute in your browser",
+   "text": "The Proof page recomputes the headline and its interval from the raw rows, and the 3D memory chain uses the real hash formula.",
+   "links": [
+    {
+     "label": "Proof",
+     "href": "proof.html"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "title": "Eight milestones, hypotheses written first, failures kept",
+   "text": "Version 1.1: 21 registered threshold hypotheses, 10 passed and 11 failed, with no threshold moved; every property check passed.",
+   "links": [
+    {
+     "label": "V1.1 scoreboard",
+     "href": "#v1-1-m8"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "title": "Everything reproduces from scratch",
+   "text": "202 tests; a fresh rerun of the experiments matched all 23 verdict flags with a maximum numeric difference of 0, in 67 seconds, on the author's Mac.",
+   "links": [
+    {
+     "label": "Technical report",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/docs/TECHNICAL-REPORT.md"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "title": "Interoperates with the official MCP client",
+   "text": "The tool server was tested against the official Python client in two modes. The newest protocol revision is not supported and not claimed.",
+   "links": [
+    {
+     "label": "M7",
+     "href": "#v1-1-m7"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "title": "CI is green on GitHub, Python 3.11 and 3.13",
+   "text": "Both Version 1's own workflow and the new V1.1 workflow passed on the merged pull request.",
+   "links": [
+    {
+     "label": "Pull request 1",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/pull/1"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "title": "Open source, with open goals",
+   "text": "V1.1 is merged into the Benchmarks repository with its full history, and the next ten goals are GitHub issues in an open milestone, with a contributing guide.",
+   "links": [
+    {
+     "label": "Milestone V1.2",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestone/2"
+    },
+    {
+     "label": "Contributing",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/CONTRIBUTING.md"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "title": "A dated, checkable record of the files",
+   "text": "Hashes of every file (V1: 56 files, V1.1: 89 files) were submitted for OpenTimestamps and verify against the repository. Bitcoin confirmation is pending; a timestamp shows existence by a date, not authorship.",
+   "links": [
+    {
+     "label": "Proof of existence",
+     "href": "#v1-1-proof"
+    }
+   ]
   }
  ]
 }

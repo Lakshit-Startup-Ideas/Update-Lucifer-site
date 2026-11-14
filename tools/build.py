@@ -831,6 +831,22 @@ def _verdict(cell: str) -> str:
     return {"Pass": '<span class="chip chip-ok">Pass</span>', "Fail": '<span class="chip chip-bad">Fail</span>'}.get(cell, e(cell))
 
 
+def _href(url: str) -> str:
+    return f'href="{e(url)}"' + (' rel="noopener"' if url.startswith("http") else "")
+
+
+def _update_li(u: dict) -> str:
+    links = "".join(f' <a {_href(l["href"])}>{e(l["label"])} →</a>' for l in u.get("links", []))
+    return f'<li><span class="ms-date">{e(u["date"])}</span> {e(u["text"])}{links}</li>'
+
+
+def _achievement(a: dict) -> str:
+    links = ""
+    if a.get("links"):
+        links = '<p class="ms-links">' + " ".join(f'<a {_href(l["href"])}>{e(l["label"])} →</a>' for l in a["links"]) + "</p>"
+    return f'<article class="card reveal ach"><span class="ms-date">{e(a["date"])}</span><h3>{e(a["title"])}</h3><p>{e(a["text"])}</p>{links}</article>'
+
+
 def _entry(en: dict, last: bool) -> str:
     status = {"done": ("Done", "chip-ok"), "partly": ("Partly done", "chip-mid"), "blocked": ("Blocked", "chip-bad"), "planned": ("Planned", "chip-mid")}[en["status"]]
     points = "".join(f"<li>{e(x)}</li>" for x in en["points"])
@@ -847,7 +863,7 @@ def _entry(en: dict, last: bool) -> str:
         links = '<p class="ms-links">' + " ".join(f'<a href="{e(l["href"])}">{e(l["label"])} →</a>' for l in en["links"]) + "</p>"
     updates = ""
     if en["updates"]:
-        updates = '<div class="ms-updates"><b>Updates, added later</b><ul class="bul">' + "".join(f'<li><span class="ms-date">{e(u["date"])}</span> {e(u["text"])}</li>' for u in en["updates"]) + "</ul></div>"
+        updates = '<div class="ms-updates"><b>Updates, added later</b><ul class="bul">' + "".join(_update_li(u) for u in en["updates"]) + "</ul></div>"
     return f'''      <li class="reveal ms" id="{_anchor(en["id"])}"><span class="t-dot{' t-on' if last else ''}"></span>
         <article class="card ms-card">
           <div class="ms-meta"><span class="ms-date">{e(en["date"])}</span><span class="chip">{e(en["label"])}</span><span class="chip {status[1]}">{status[0]}</span></div>
@@ -878,18 +894,22 @@ def build_milestones() -> None:
         still = ""
         if ver.get("open_items"):
             still = '<div class="callout warn reveal"><b>Still open in this version</b><ul class="bul">' + "".join(f"<li>{e(x)}</li>" for x in ver["open_items"]) + "</ul></div>"
-        more = f'<p><a class="more" href="{e(ver["page"])}">The headline result of this version →</a></p>' if ver.get("page") else ""
+        more = f'<p><a class="more" {_href(ver["page"])}>{e(ver.get("page_label", "The headline result of this version"))} →</a></p>' if ver.get("page") else ""
         inner = f'''<ol class="timeline wide ms-list">
 {lis}
     </ol>
     {still}'''
         blocks += block(_anchor(ver["id"]), e(ver["title"]), e(ver["blurb"]) + more, inner, alt=bool(i % 2))
-    rule = f'''<div class="prose reveal"><p><b>How this page works.</b> {e(log["rule"])} The page is generated from <a href="data/milestones.json">data/milestones.json</a>, and a check refuses any change that edits or removes a published entry. Later facts (for example a timestamp that finally confirms) are added as dated updates under the entry they belong to.</p></div>'''
-    body = block("how", "How to read this", "", rule) + blocks
-    toc = [("how", "How it works")] + [(_anchor(v["id"]), v["id"].replace("V", "Version ")) for v in log["versions"]] + [("v1-1-proof", "Proof of existence")]
+    rule = f'''<div class="prose reveal"><p><b>How this page works.</b> {e(log["rule"])} The page is generated from <a href="data/milestones.json">data/milestones.json</a>, and a check refuses any change that edits or removes a published entry. Later facts (for example a timestamp that finally confirms) are added as dated updates under the entry they belong to. Goals for what comes next are tracked as <a href="https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/milestones" rel="noopener">GitHub milestones</a> in the Benchmarks repository.</p></div>'''
+    achievements = '<div class="grid-3">' + "".join(_achievement(a) for a in log.get("achievements", [])) + "</div>"
+    body = block("how", "How to read this", "", rule) + block("achievements", "Achievements", "What has been done, in plain terms. Each one links to its evidence.", achievements, alt=True) + blocks
+    def chip(v: dict) -> str:
+        planned_only = all(en["status"] == "planned" for en in log["entries"] if en["version"] == v["id"])
+        return ("Goals · " if planned_only else "") + v["id"].replace("V", "Version ")
+    toc = [("how", "How it works"), ("achievements", "Achievements")] + [(_anchor(v["id"]), chip(v)) for v in log["versions"] if v["id"] != "V1.2"] + [("v1-1-proof", "Proof of existence")] + [(_anchor(v["id"]), chip(v)) for v in log["versions"] if v["id"] == "V1.2"]
     write("milestones", "Milestones", "Every version and milestone of the Lucifer Lab research, in order: Version 1, then Version 1.1 milestones M1 to M8, with results, limits and proof hashes. Append-only.",
           "Version history", "Every version, every milestone, <em>nothing removed.</em>",
-          "Version 1 first, then each Version 1.1 milestone, each with what it showed, what it did not, and its pass or fail. New entries are added at the end; published ones are never edited.", toc, body)
+          "Achievements first, then Version 1, each Version 1.1 milestone with what it showed, what it did not and its pass or fail, and finally the goals for Version 1.2. New entries are added at the end; published ones are never edited.", toc, body)
 
 
 def copy_data() -> None:
