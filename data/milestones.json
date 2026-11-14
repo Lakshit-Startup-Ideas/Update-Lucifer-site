@@ -725,6 +725,20 @@
        "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md#proof-of-existence"
       }
      ]
+    },
+    {
+     "date": "2026-11-14",
+     "text": "Both stamps are now confirmed in Bitcoin: the V1 manifest in block 975752 (06:32 UTC) and the V1.1 manifest in blocks 975759 and 975761 (07:17 and 07:18 UTC). Checked independently: each stamp commits to its manifest's SHA-256, and the Merkle root it attests equals the block header's Merkle root on a public block explorer. The stamp files linked above were replaced with the confirmed versions.",
+     "links": [
+      {
+       "label": "Pull request 13",
+       "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/pull/13"
+      },
+      {
+       "label": "How to verify",
+       "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/blob/main/v1.1/README.md#proof-of-existence"
+      }
+     ]
     }
    ]
   },
@@ -1029,6 +1043,21 @@
     {
      "label": "Proof of existence",
      "href": "#v1-1-proof"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "title": "Both file lists are anchored in Bitcoin",
+   "text": "The hashes of every file of Version 1 (56 files) and Version 1.1 (89 files) are recorded in Bitcoin blocks 975752, 975759 and 975761 through OpenTimestamps, and checked against the block headers. This shows the files existed by then. It does not show who wrote them.",
+   "links": [
+    {
+     "label": "Proof of existence",
+     "href": "#v1-1-proof"
+    },
+    {
+     "label": "Pull request 13",
+     "href": "https://github.com/Lakshit-Startup-Ideas/Lucifer-BenchMarks/pull/13"
     }
    ]
   }
