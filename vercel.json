@@ -1,5 +1,5 @@
 {
-  "cleanUrls": true,
+  "cleanUrls": false,
   "trailingSlash": false,
   "headers": [
     {
@@ -10,13 +10,28 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
       ]
-    },
-    {
-      "source": "/google08d4c68cb6bdab7d.html",
-      "headers": [{ "key": "Content-Type", "value": "text/html; charset=utf-8" }]
     }
   ],
+  "redirects": [
+    { "source": "/index", "destination": "/", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/journey.html", "destination": "/journey", "permanent": true },
+    { "source": "/limits.html", "destination": "/limits", "permanent": true },
+    { "source": "/memory.html", "destination": "/memory", "permanent": true },
+    { "source": "/method.html", "destination": "/method", "permanent": true },
+    { "source": "/milestones.html", "destination": "/milestones", "permanent": true },
+    { "source": "/proof.html", "destination": "/proof", "permanent": true },
+    { "source": "/results.html", "destination": "/results", "permanent": true },
+    { "source": "/tasks.html", "destination": "/tasks", "permanent": true }
+  ],
   "rewrites": [
-    { "source": "/google08d4c68cb6bdab7d.html", "destination": "/verification/google08d4c68cb6bdab7d.txt" }
+    { "source": "/journey", "destination": "/journey.html" },
+    { "source": "/limits", "destination": "/limits.html" },
+    { "source": "/memory", "destination": "/memory.html" },
+    { "source": "/method", "destination": "/method.html" },
+    { "source": "/milestones", "destination": "/milestones.html" },
+    { "source": "/proof", "destination": "/proof.html" },
+    { "source": "/results", "destination": "/results.html" },
+    { "source": "/tasks", "destination": "/tasks.html" }
   ]
 }
