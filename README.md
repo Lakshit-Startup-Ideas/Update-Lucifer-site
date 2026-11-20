@@ -20,6 +20,7 @@ Experiment code and raw results: https://github.com/Lakshit-Startup-Ideas/Lucife
 | `styles.css` | all styling, design tokens at the top (`:root`) |
 | `script.js` | reveal on scroll, count-ups, hero depth and tilt, live demo, the 3D memory chain, chart replay, mobile menu (the page reads fine without it) |
 | `favicon.svg`, `robots.txt` | icon, crawler rules |
+| `sitemap.xml` | page list for search engines; add a line here when a page is added |
 | `vercel.json` | clean URLs and security headers |
 
 ## Motion and interactivity
